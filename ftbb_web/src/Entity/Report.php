@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * Report
  *
@@ -17,7 +18,6 @@ class Report
      *
      * @ORM\Column(name="report_id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $reportId;
 
@@ -57,4 +57,148 @@ class Report
     private $description;
 
 
+
+    /**
+     * Get the value of description
+     *
+     * @return  string
+     */ 
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set the value of description
+     *
+     * @param  string  $description
+     *
+     * @return  self
+     */ 
+    public function setDescription(string $description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of email
+     *
+     * @return  string
+     */ 
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set the value of email
+     *
+     * @param  string  $email
+     *
+     * @return  self
+     */ 
+    public function setEmail(string $email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /** 
+     * Get the value of reportDate
+     *
+     * @return  \DateTime
+     */ 
+    public function getReportDate()
+    {
+        return $this->reportDate;
+    }
+
+    /**
+     * Set the value of reportDate
+     *
+     * @param  \DateTime  $reportDate
+     *
+     * @return  self
+     */ 
+    public function setReportDate($reportDate)
+    {
+        $this->reportDate = $reportDate;
+
+    }
+
+    /**
+     * Get the value of commandId
+     *
+     * @return  int
+     */ 
+    public function getCommandId()
+    {
+        return $this->commandId;
+    }
+
+    /**
+     * Set the value of commandId
+     *
+     * @param  int  $commandId
+     *
+     * @return  self
+     */ 
+    public function setCommandId(int $commandId)
+    {
+        $this->commandId = $commandId;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of clientId
+     *
+     * @return  int
+     */ 
+    public function getClientId()
+    {
+        return $this->clientId;
+    }
+
+    /**
+     * Set the value of clientId
+     *
+     * @param  int  $clientId
+     *
+     * @return  self
+     */ 
+    public function setClientId(int $clientId)
+    {
+        $this->clientId = $clientId;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of reportId
+     *
+     * @return  int
+     */ 
+    public function getReportId()
+    {
+        return $this->reportId;
+    }
+
+    /**
+     * Set the value of reportId
+     *
+     * @param  int  $reportId
+     *
+     * @return  self
+     */ 
+    public function setReportId($reportId)
+    {
+        $this->reportId = $reportId;
+
+    }
+
+  
 }
