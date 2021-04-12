@@ -31,6 +31,7 @@ class ArticleController extends AbstractController
     //Other than routes methods
     public function getCommentsCount(){
         // TODO : fix comments
+        
         return 5;
     }
 }
