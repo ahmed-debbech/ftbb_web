@@ -12,6 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Comment
 {
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Article",inversedBy="comments")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $article;
     /**
      * @var int
      *
@@ -49,5 +55,52 @@ class Comment
      */
     private $date;
 
+    public function getArticle(){
+		return $this->article;
+	}
+
+	public function setArticle($article){
+		$this->article = $article;
+	}
+
+	public function getId(){
+		return $this->id;
+	}
+
+	public function setId($id){
+		$this->id = $id;
+	}
+
+	public function getContent(){
+		return $this->content;
+	}
+
+	public function setContent($content){
+		$this->content = $content;
+	}
+
+	public function getClientId(){
+		return $this->clientId;
+	}
+
+	public function setClientId($clientId){
+		$this->clientId = $clientId;
+	}
+
+	public function getArticleId(){
+		return $this->articleId;
+	}
+
+	public function setArticleId($articleId){
+		$this->articleId = $articleId;
+	}
+
+	public function getDate(){
+		return $this->date;
+	}
+
+	public function setDate($date){
+		$this->date = $date;
+	}
 
 }

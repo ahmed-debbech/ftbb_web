@@ -538,7 +538,7 @@
                                                 <!--A single post start-->
                                                     <div class="gdlr-core-item-list gdlr-core-blog-full  gdlr-core-item-pdlr gdlr-core-style-left">
                                                         <div class="gdlr-core-blog-thumbnail gdlr-core-media-image  gdlr-core-opacity-on-hover gdlr-core-zoom-on-hover">
-                                                            <a href="#"><img src="{{article.photoUrl}}" width="1280" height="580" alt="">
+                                                            <a href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/articles/{{article.articleId}}"><img src="{{article.photoUrl}}" width="1280" height="580" alt="">
                                                             </a>
                                                         </div>
                                                         <div class="gdlr-core-blog-date-wrapper gdlr-core-skin-divider">
@@ -547,7 +547,7 @@
                                                             <div class="gdlr-core-blog-date-year gdlr-core-skin-caption">{{article.date | date('Y')}}</div>
                                                         </div>
                                                         <div class="gdlr-core-blog-full-content">
-                                                            <h3 class="gdlr-core-blog-title gdlr-core-skin-title" style="font-size: 40px ;font-weight: 800 ;letter-spacing: 0px ;"><a href="#">{{ article.title }}</a></h3>
+                                                            <h3 class="gdlr-core-blog-title gdlr-core-skin-title" style="font-size: 40px ;font-weight: 800 ;letter-spacing: 0px ;"><a href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/articles/{{article.articleId}}">{{ article.title }}</a></h3>
                                                             <div class="gdlr-core-blog-info-wrapper gdlr-core-skin-divider"><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><span class="gdlr-core-head"><i class="fa fa-user-o"></i></span><a href="#" title="Posts by John Smith" rel="author">{{ article.author }}</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-category"><span class="gdlr-core-head"><i class="icon_folder-alt"></i></span><a href="#" rel="tag">
                                                             {% if article.category == 0 %}
                                                                 Breaking News
@@ -558,10 +558,10 @@
                                                             {% else %}
                                                                 Misc
                                                             {% endif %}
-                                                            </a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-comment-number"><span class="gdlr-core-head"><i class="fa fa-comments-o"></i></span><a href="#">{{ article.getComments() }}</a></span>
+                                                            </a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-comment-number"><span class="gdlr-core-head"><i class="fa fa-comments-o"></i></span><a href="http://127.0.0.1/http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/articles/{{article.articleId}}">{{ article.getCommentsCount() }}</a></span>
                                                             </div>
                                                             <div class="gdlr-core-blog-content">{{ article.text|length > 50 ? article.text|slice(0, 50) ~ '...' : article.text  }}
-                                                                <div class="clear"></div><a class="gdlr-core-excerpt-read-more gdlr-core-button gdlr-core-rectangle" href="#">Read More</a></div>
+                                                                <div class="clear"></div><a class="gdlr-core-excerpt-read-more gdlr-core-button gdlr-core-rectangle" href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/articles/{{article.articleId}}">Read More</a></div>
                                                         </div>
                                                     </div>
                                                 <!-- A single post end-->

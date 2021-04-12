@@ -18,8 +18,18 @@ class ArticleController extends AbstractController
         return $this->render('article/articles.html.twig', ['articles' => $articles]);
     }
 
+    /**
+     * @Route("/articles/{id}", name="one_article")
+     */
+    public function showPost($id): Response
+    {
+        $article = $this ->getDoctrine()->getRepository(Article :: class)->find($id);
+        return $this->render('article/article-post.html.twig', ['article' => $article]);
+    }
+
+
     //Other than routes methods
-    public function getComments(){
+    public function getCommentsCount(){
         // TODO : fix comments
         return 5;
     }
