@@ -546,9 +546,6 @@
                             <td>
                                 Total Price
                             </td>
-                            <td>
-                                VALIDATE
-                            </td>
                         </tr>
                         {% for product in data %}
                             <tr>
@@ -566,9 +563,6 @@
                                 </td>
                                 <td>
                                     {{ command.total_price }}
-                                </td>
-                                <td>
-                                    <a href="/ftbb_web/ftbb_web/public/index.php/product/supprimer/{{ product.ref_product }}" role="button">supprimer</a>
                                 </td>
                             </tr>
                         {% endfor %}

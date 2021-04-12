@@ -60,7 +60,7 @@ class ProductController extends AbstractController
      */
     public function formulaire_modifier_admin(Request $req , $ref_product): Response #objet min aand symfony jey par defaut
     {
-       /* $product = new Product();
+       $product = new Product();
         $form = $this ->createForm(ModifierProductType::class,$product); //houni snaana form fil controlleur w passinelou el classe illi yasna3 el form fi 7add dhetou w instance ta3 objet feragh
         $form->handleRequest($req);
         if($form->isSubmitted() && $form->isValid()){
@@ -82,20 +82,6 @@ class ProductController extends AbstractController
 
         return $this->render('product/formulaire_modifier_admin.html.twig', [
             'product_form' => $form->createView()
-        ]);*/
-
-        $form = $this->createForm(Product::class, $ref_product);
-        $form->handleRequest($req);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('list_product');
-        }
-
-        return $this->render('product/formulaire_modifier_admin.html.twig', [
-            'product' => $ref_product,
-            'product_form' => $form->createView(),
         ]);
     }
 
