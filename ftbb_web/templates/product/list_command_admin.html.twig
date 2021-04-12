@@ -532,70 +532,40 @@
                     <table class="example-wrapper" border="1">
                         <tr>
                             <td>
-                                Reference Product
+                                Command Id
                             </td>
                             <td>
-                                Category
+                                Id Client
                             </td>
                             <td>
-                                Stock
+                                Date Command
                             </td>
                             <td>
-                                Name
+                                Status
                             </td>
                             <td>
-                                Price
+                                Total Price
                             </td>
                             <td>
-                                Details
-                            </td>
-                            <td>
-                                Id_admin
-                            </td>
-                            <td>
-                                Add_date
-                            </td>
-                            <td>
-                                Photo
-                            </td>
-                            <td>
-                                EDIT
-                            </td>
-                            <td>
-                                DELETE
+                                VALIDATE
                             </td>
                         </tr>
                         {% for product in data %}
                             <tr>
                                 <td>
-                                    {{ product.ref_product }}
+                                    {{ command.command_id }}
                                 </td>
                                 <td>
-                                    {{ product.category }}
+                                    {{ command.id_client}}
                                 </td>
                                 <td>
-                                    {{ product.stock }}
+                                    {{ command.date_command }}
                                 </td>
                                 <td>
-                                    {{ product.name }}
+                                    {{ command.status }}
                                 </td>
                                 <td>
-                                    {{ product.price }}
-                                </td>
-                                <td>
-                                    {{ product.details }}
-                                </td>
-                                <td>
-                                    {{ product.idAdmin }}
-                                </td>
-                                <td>
-                                    {{ product.addDate |date ('Y-m-d') }}
-                                </td>
-                                <td>
-                                    {{ product.photo }}
-                                </td>
-                                <td>
-                                    <a href="/ftbb_web/ftbb_web/public/index.php/product/formulaire_modifier_admin/{{ product.ref_product }}" role="button">modifier</a>
+                                    {{ command.total_price }}
                                 </td>
                                 <td>
                                     <a href="/ftbb_web/ftbb_web/public/index.php/product/supprimer/{{ product.ref_product }}" role="button">supprimer</a>
