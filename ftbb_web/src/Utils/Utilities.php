@@ -14,13 +14,13 @@ class Utilities {
         $dateTime->format($format);
         return $dateTime;
     }
-    public static function generateId($table, $doctrine){
+    public static function generateId($table,$atr, $doctrine){
         $rand = rand(10000000, 99999999);
         $article = NULL;
         do{
         $article = $doctrine->getManager()
              ->getRepository(get_class($table))
-             ->findOneBy(array('articleId' => $rand));
+             ->findOneBy(array($atr => $rand));
         }while($article != NULL);
         return $rand;
     }

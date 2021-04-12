@@ -22,7 +22,26 @@ class ArticleController extends AbstractController
         $articles = $this ->getDoctrine()->getRepository(Article :: class)->findAll();
         return $this->render('article/articles.html.twig', ['articles' => $articles]);
     }
-
+    /**
+     * @Route("/admin/articles", name="articles_admin")
+     */
+    public function listArticlesForAdmin(): Response
+    {
+        $articles = $this ->getDoctrine()->getRepository(Article :: class)->findAll();
+        return $this->render('article/admin/article-show-admin.html.twig', ['articles' => $articles]);
+    }
+    /**
+     * @Route("/admin/article/delete/{id}", name="articles_admin_delete")
+     */
+    public function deleteArticle($id): Response
+    {
+        $article = new Article();
+        $em = $this ->getDoctrine()->getManager();
+        $report=$em->getRepository(Article::class)->find($id);
+        $em->remove($report);
+        $em->flush();
+        return $this->redirectToRoute("articles_admin");
+    }
     /**
      * @Route("/articles/add", name="add_article")
      */
@@ -36,7 +55,7 @@ class ArticleController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $em = $this ->getDoctrine()->getManager();
             $article->setAdminId("47056258");
-            $article->setArticleId(Utilities::generateId($article, $this->getDoctrine()));
+            $article->setArticleId(Utilities::generateId($article,'articleId', $this->getDoctrine()));
             $dateTime = Utilities::getDateTimeObject(date("D M d, Y G:i"),"D M d, Y G:i");
             $article->setDate($dateTime);
             $em->persist($article);
