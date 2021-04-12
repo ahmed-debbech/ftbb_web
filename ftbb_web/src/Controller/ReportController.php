@@ -22,7 +22,7 @@ class ReportController extends AbstractController
         $form->handleRequest($req);
         if($form->isSubmitted() && $form->isValid()){
             $em = $this->getDoctrine()->getManager();
-            $rep->setReportId("556");
+            $rep->setReportId("551");
             $rep->setClientId("2943763");
             $rep->setReportDate("2010-02-06 19:30:13");
             $em->persist($rep);
