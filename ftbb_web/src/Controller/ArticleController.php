@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Article;
 use App\Form\ArticleAddFormType;
+use App\Utils\Utilities;
+
 //use Symfony\Component\Validator\Constraints\DateTime;
 
 class ArticleController extends AbstractController
@@ -33,9 +35,10 @@ class ArticleController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
             $em = $this ->getDoctrine()->getManager();
-            $article->setAdminId("22221199");
-            $article->setArticleId("54409");
-            $article->setDate(date('Y-m-d'));
+            $article->setAdminId("47056258");
+            $article->setArticleId(Utilities::generateId($article, $this->getDoctrine()));
+            $dateTime = Utilities::getDateTimeObject(date("D M d, Y G:i"),"D M d, Y G:i");
+            $article->setDate($dateTime);
             $em->persist($article);
             $em->flush();
             
