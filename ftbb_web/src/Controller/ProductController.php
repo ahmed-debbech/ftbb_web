@@ -24,7 +24,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/product/list_product", name="list_product")
+     * @Route("/product/list_product_admin", name="list_product")
      */
     public function Afficher_product(): Response #objet min aand symfony jey par defaut
     {
@@ -50,7 +50,7 @@ class ProductController extends AbstractController
 
             return $this->redirect('list_product');
         }
-        return $this->render('product/formulaire_ajout_admin.html.twig', [
+        return $this->render('product/admin/formulaire_ajout_admin.html.twig', [
             'product_form' => $form->createView()
         ]);
     }
@@ -80,7 +80,7 @@ class ProductController extends AbstractController
             return $this->redirectToRoute('list_product');
         }
 
-        return $this->render('product/formulaire_modifier_admin.html.twig', [
+        return $this->render('product/admin/formulaire_modifier_admin.html.twig', [
             'product_form' => $form->createView()
         ]);
     }
@@ -103,11 +103,9 @@ class ProductController extends AbstractController
         //return new Response("deleted successfully");
     }
 
-
-
     /********************************************************************************************************************************************************************************/
     /**
-     * @Route("/product/show_list_product_client", name="list_product_client")
+     * @Route("/product/list_product_client", name="list_product_client")
      */
     public function Afficher_product_client(): Response #objet min aand symfony jey par defaut
     {

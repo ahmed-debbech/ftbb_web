@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello list product!{% endblock %}
+{% block title %}Hello list command!{% endblock %}
 
 {% block body %}
     <div class="bigslam-mobile-header-wrap">
@@ -528,9 +528,51 @@
                             </div>
                         </div>
                     </div>
-
-                    <h1>Ajouter un produit !!</h1>
-                    {{ form(product_form) }}
+                    <h1>Admin "Command's List"</h1>
+                    <table class="example-wrapper" border="1">
+                        <tr>
+                            <td>
+                                Command Id
+                            </td>
+                            <td>
+                                Id Client
+                            </td>
+                            <td>
+                                Date Command
+                            </td>
+                            <td>
+                                Status
+                            </td>
+                            <td>
+                                Total Price
+                            </td>
+                            <td>
+                                VALIDATE
+                            </td>
+                        </tr>
+                        {% for command in data %}
+                            <tr>
+                                <td>
+                                    {{ command.commandId }}
+                                </td>
+                                <td>
+                                    {{ command.idClient}}
+                                </td>
+                                <td>
+                                    {{ command.dateCommand |date ('Y-m-d')  }}
+                                </td>
+                                <td>
+                                    {{ command.status }}
+                                </td>
+                                <td>
+                                    {{ command.totalPrice }}
+                                </td>
+                                <td>
+                                    <a href="/ftbb_web/ftbb_web/public/index.php/command/modifier_status_admin/{{ command.commandId}}" role="button">OK</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
                 </div>
             </div>
             <!-- end content -->

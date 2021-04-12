@@ -529,44 +529,8 @@
                         </div>
                     </div>
 
-                    <table class="example-wrapper" border="1">
-                        <tr>
-                            <td>
-                                Command Id
-                            </td>
-                            <td>
-                                Id Client
-                            </td>
-                            <td>
-                                Date Command
-                            </td>
-                            <td>
-                                Status
-                            </td>
-                            <td>
-                                Total Price
-                            </td>
-                        </tr>
-                        {% for product in data %}
-                            <tr>
-                                <td>
-                                    {{ command.command_id }}
-                                </td>
-                                <td>
-                                    {{ command.id_client}}
-                                </td>
-                                <td>
-                                    {{ command.date_command }}
-                                </td>
-                                <td>
-                                    {{ command.status }}
-                                </td>
-                                <td>
-                                    {{ command.total_price }}
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </table>
+                    <h1>Admin "Add Product "</h1>
+                    {{ form(product_form) }}
                 </div>
             </div>
             <!-- end content -->

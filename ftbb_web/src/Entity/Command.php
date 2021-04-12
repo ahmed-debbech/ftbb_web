@@ -50,4 +50,48 @@ class Command
     private $totalPrice;
 
 
+    public function getCommandId(): ?int
+    {
+        return $this->commandId;
+    }
+    public function setCommandId($commandId)
+    {
+        $this->commandId=$commandId;
+    }
+
+    public function getIdClient(): ?int
+    {
+        return $this->idClient;
+    }
+    public function setIdClient($idClient)
+    {
+        $this->idClient=$idClient;
+    }
+
+    public function getDateCommand()
+    {
+        return $this->dateCommand;
+    }
+    public function setDateCommand($dateCommand)
+    {
+        $this->dateCommand=$dateCommand;
+    }
+
+    public function getStatus(): ?int
+    {
+        return $this->status;
+    }
+    public function setStatus($status)
+    {
+        $this->status=$status;
+    }
+
+    public function getTotalPrice(): ?int
+    {
+        return $this->totalPrice;
+    }
+    public function setTotalPrice($totalPrice)
+    {
+        $this->totalPrice=$totalPrice;
+    }
 }
