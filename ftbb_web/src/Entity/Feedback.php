@@ -82,11 +82,10 @@ class Feedback
      *
      * @return  self
      */ 
-    public function setFeedbackId(int $feedbackId)
+    public function setFeedbackId($feedbackId)
     {
         $this->feedbackId = $feedbackId;
 
-        return $this;
     }
 
     /**

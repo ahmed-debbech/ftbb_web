@@ -9,6 +9,7 @@ use App\Entity\Feedback;
 use App\Form\FeedbackFormType;
 use App\Form\ModifyFeedbackType;
 use Symfony\Component\Validator\Constraints\DateTime;
+use App\Utils\Utilities;
 
 
 class FeedbackController extends AbstractController
@@ -23,9 +24,10 @@ class FeedbackController extends AbstractController
         $form->handleRequest($req);
         if($form->isSubmitted() && $form->isValid()){
             $em = $this->getDoctrine()->getManager();
-            $fed->setFeedbackId("556");
-            $fed->setClientId("2943763");   
-            $fed->setFeedbackDate("12/11/2021");
+            $fed->setFeedbackId(Utilities::generateId($fed,"feedbackId",$this->getDoctrine()));
+            $fed->setClientId("2943761");   
+            $dateTime = Utilities::getDateTimeObject(date("D M d, Y G:i"),"D M d, Y G:i");  
+            $fed->setFeedbackDate($dateTime);
             $em->persist($fed);
             $em->flush();
 

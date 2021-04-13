@@ -9,6 +9,7 @@ use App\Entity\Report;
 use App\Form\ReportFormType;
 use App\Form\ModifyReportType;
 use Symfony\Component\Validator\Constraints\DateTime;
+use App\Utils\Utilities;
 
 class ReportController extends AbstractController
 {
@@ -22,9 +23,10 @@ class ReportController extends AbstractController
         $form->handleRequest($req);
         if($form->isSubmitted() && $form->isValid()){
             $em = $this->getDoctrine()->getManager();
-            $rep->setReportId("551");
+            $rep->setReportId(Utilities::generateId($rep,"reportId",$this->getDoctrine()));
             $rep->setClientId("2943763");
-            $rep->setReportDate("2010-02-06 19:30:13");
+            $dateTime = Utilities::getDateTimeObject(date("D M d, Y G:i"),"D M d, Y G:i");             
+            $rep->setReportDate($dateTime);
             $em->persist($rep);
             $em->flush();
 
