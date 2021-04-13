@@ -17,7 +17,6 @@ class Product
      *
      * @ORM\Column(name="ref_product", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $refProduct;
 
@@ -77,13 +76,13 @@ class Product
      */
     private $photo;
 
-    public function getRef_product(): ?int
+    public function getRefProduct(): ?int
     {
         return $this->refProduct;
     }
-    public function setRef_product($ref_product)
+    public function setRefProduct($refProduct)
     {
-        $this->ref_product=$ref_product;
+        $this->refProduct=$refProduct;
     }
 
     public function getCategory(): ?string

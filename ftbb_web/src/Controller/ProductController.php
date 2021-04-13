@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-
+use App\Utils\Utilities;
 use App\Entity\Product;
 use App\Form\AjouterProductType;
 use App\Form\ModifierProductType;
@@ -24,7 +24,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/product/list_product_admin", name="list_product")
+     * @Route("/product/list_product_admin", name="list_product_admin")
      */
     public function Afficher_product(): Response #objet min aand symfony jey par defaut
     {
@@ -43,24 +43,61 @@ class ProductController extends AbstractController
         $product = new Product();
         $form = $this ->createForm(AjouterProductType::class,$product); //houni snaana form fil controlleur w passinelou el classe illi yasna3 el form fi 7add dhetou w instance ta3 objet feragh
         $form->handleRequest($req);
-        if($form->isSubmitted() && $form->isValid()){
+        /*if($form->isSubmitted() && $form->isValid()){
             $em = $this->getDoctrine()->getManager();
+            $dateTime = Utilities::getDateTimeObject(date("D M d, Y G:i"),"D M d, Y G:i");
+            $product->setAddDate($dateTime);
+            $product->setRefProduct(Utilities::generateId($product,'refProduct',$this->getDoctrine()));
             $em->persist($product);
             $em->flush();
 
-            return $this->redirect('list_product');
+            return $this->redirect('list_product_admin');
+        }*/
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $ImageFile = $form->get('photo')->getData();
+            if ($ImageFile) {
+
+                // this is needed to safely include the file name as part of the URL
+
+                $newFilename = md5(uniqid()).'.'.$ImageFile->guessExtension();
+                $destination = $this->getParameter('kernel.project_dir').'/public/images/prod';
+                // Move the file to the directory where brochures are stored
+                try {
+                    $ImageFile->move(
+                        $destination,
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'ImageFilename' property to store the PDF file name
+                // instead of its contents
+                $product->setPhoto($newFilename);
+            }
+            $entityManager = $this->getDoctrine()->getManager();
+            $dateTime = Utilities::getDateTimeObject(date("D M d, Y G:i"),"D M d, Y G:i");
+            $product->setAddDate($dateTime);
+            $product->setRefProduct(Utilities::generateId($product,'refProduct',$this->getDoctrine()));
+            $entityManager->persist($product);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('list_product_admin');
         }
+
+
         return $this->render('product/admin/formulaire_ajout_admin.html.twig', [
             'product_form' => $form->createView()
         ]);
     }
 
     /**
-     * @Route("/product/formulaire_modifier_admin/{ref_product}", name="formulaire_modifier")
+     * @Route("/product/formulaire_modifier_admin/{ref_product}", name="formulaire_modifier" )
      */
     public function formulaire_modifier_admin(Request $req , $ref_product): Response #objet min aand symfony jey par defaut
     {
-       $product = new Product();
+       /*$product = new Product();
         $form = $this ->createForm(ModifierProductType::class,$product); //houni snaana form fil controlleur w passinelou el classe illi yasna3 el form fi 7add dhetou w instance ta3 objet feragh
         $form->handleRequest($req);
         if($form->isSubmitted() && $form->isValid()){
@@ -72,12 +109,25 @@ class ProductController extends AbstractController
             $product->setName($data->getName());
             $product->setPrice($data->getPrice());
             $product->setDetails($data->getDetails());
-            $product->setAddDate($data->getAddDate());
+            $dateTime = Utilities::getDateTimeObject(date("D M d, Y G:i"),"D M d, Y G:i");
+            $product->setAddDate($dateTime);
             $product->setIdAdmin($data->getIdAdmin());
             $product->setPhoto($data->getPhoto());
             $em->flush();
 
-            return $this->redirectToRoute('list_product');
+            return $this->redirectToRoute('list_product_admin');
+        }*/
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $product = $entityManager->getRepository(Product::class)->find($ref_product);
+        $form = $this->createForm(ModifierProductType::class, $product);
+        $form->handleRequest($req);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $entityManager->flush();
+            return $this->redirectToRoute('list_product_admin');
         }
 
         return $this->render('product/admin/formulaire_modifier_admin.html.twig', [
@@ -99,7 +149,7 @@ class ProductController extends AbstractController
         $em->remove($product);
         $em->flush();
 
-        return $this->redirectToRoute('list_product');
+        return $this->redirectToRoute('list_product_admin');
         //return new Response("deleted successfully");
     }
 

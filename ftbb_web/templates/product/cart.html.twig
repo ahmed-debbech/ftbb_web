@@ -528,81 +528,36 @@
                             </div>
                         </div>
                     </div>
-                    <h1> Admin "Product's List"</h1>
-                    <table class="example-wrapper" border="1">
-                        <tr>
-                            <td>
-                                Reference Product
-                            </td>
-                            <td>
-                                Category
-                            </td>
-                            <td>
-                                Stock
-                            </td>
-                            <td>
-                                Name
-                            </td>
-                            <td>
-                                Price
-                            </td>
-                            <td>
-                                Details
-                            </td>
-                            <td>
-                                Id_admin
-                            </td>
-                            <td>
-                                Add_date
-                            </td>
-                            <td>
-                                Photo
-                            </td>
-                            <td>
-                                EDIT
-                            </td>
-                            <td>
-                                DELETE
-                            </td>
-                        </tr>
-                        {% for product in data %}
+                    <h1> YOUR CART</h1>
+                    <div>
+                        <table>
                             <tr>
                                 <td>
-                                    {{ product.refProduct }}
+                                    Product Name
                                 </td>
                                 <td>
-                                    {{ product.category }}
-                                </td>
-                                <td>
-                                    {{ product.stock }}
-                                </td>
-                                <td>
-                                    {{ product.name }}
-                                </td>
-                                <td>
-                                    {{ product.price }}
-                                </td>
-                                <td>
-                                    {{ product.details }}
-                                </td>
-                                <td>
-                                    {{ product.idAdmin }}
-                                </td>
-                                <td>
-                                    {{ product.addDate |date ('Y-m-d') }}
-                                </td>
-                                <td>
-                                    <img style="height: 100px; width: 100px" src="http://127.0.0.1/uploads/{{ product.photo }}" >
-                                </td>
-                                <td>
-                                    <a href="/ftbb_web/ftbb_web/public/index.php/product/formulaire_modifier_admin/{{ product.refProduct }}" role="button">modifier</a>
-                                </td>
-                                <td>
-                                    <a href="/ftbb_web/ftbb_web/public/index.php/product/supprimer/{{ product.refProduct }}" role="button">supprimer</a>
+                                    Price
                                 </td>
                             </tr>
-                        {% endfor %}
-                    </table>
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="gdlr-core-pbf-column gdlr-core-column-20 gdlr-core-column-first">
+                            <div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
+                                <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
+                                    <div class="gdlr-core-pbf-element">
+                                        <div class="gdlr-core-button-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-center-align"><a class="gdlr-core-button  gdlr-core-button-solid gdlr-core-button-no-border" href="#" id="gdlr-core-button-id-48095">PASSER COMMANDE<span class="gdlr-core-content"></span></a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <!-- end content -->

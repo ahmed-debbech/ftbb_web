@@ -77,7 +77,7 @@ class Command
         $this->dateCommand=$dateCommand;
     }
 
-    public function getStatus(): ?int
+    public function getStatus()
     {
         return $this->status;
     }
@@ -86,7 +86,7 @@ class Command
         $this->status=$status;
     }
 
-    public function getTotalPrice(): ?int
+    public function getTotalPrice()
     {
         return $this->totalPrice;
     }
@@ -94,4 +94,6 @@ class Command
     {
         $this->totalPrice=$totalPrice;
     }
+
+
 }

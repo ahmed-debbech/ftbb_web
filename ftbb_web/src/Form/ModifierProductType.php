@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Product;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,14 +15,16 @@ class ModifierProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('category')
+            ->add('category', ChoiceType::class, ['choices' => ['Vetements'=>'Vetements' ,
+                'Equipements'=>'Equipements','Abonnements'=>'Abonnements',] ])
             ->add('stock')
             ->add('name')
             ->add('price')
             ->add('details')
             ->add('idAdmin')
-            ->add('addDate')
-            ->add('photo')
+            ->add('photo',FileType::class,[
+                'required'=>false,'mapped'=>false,
+            ])
             ->add('Modifier', SubmitType::class)
         ;
     }

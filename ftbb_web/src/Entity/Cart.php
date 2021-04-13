@@ -57,4 +57,66 @@ class Cart
     private $refProduct;
 
 
+    public function getAdditionId()
+    {
+        return $this->additionId;
+    }
+    public function setAdditionId($additionId)
+    {
+        $this->additionId=$additionId;
+    }
+
+    public function getCartId()
+    {
+        return $this->cartId;
+    }
+    public function setCartId($cartId)
+    {
+        $this->cartId=$cartId;
+    }
+
+    public function getIdClient()
+    {
+        return $this->idClient;
+    }
+    public function setIdClient($idClient)
+    {
+        $this->idClient=$idClient;
+    }
+
+    public function getIdAdmin(): ?int
+    {
+        return $this->idAdmin;
+    }
+    public function setIdAdmin($idAdmin)
+    {
+        $this->idAdmin=$idAdmin;
+    }
+
+    public function getNumProducts()
+    {
+        return $this->numProducts;
+    }
+    public function setNumProducts($numProducts)
+    {
+        $this->numProducts=$numProducts;
+    }
+
+    public function getTotalPrice()
+    {
+        return $this->totalPrice;
+    }
+    public function setTotalPrice($totalPrice)
+    {
+        $this->totalPrice=$totalPrice;
+    }
+
+    public function getRef_product()
+    {
+        return $this->refProduct;
+    }
+    public function setRef_product($ref_product)
+    {
+        $this->ref_product=$ref_product;
+    }
 }
