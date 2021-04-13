@@ -99,7 +99,7 @@ class ReportController extends AbstractController
         if($form->isSubmitted() && $form->isValid())
         {
             $entityManager->flush();
-            return $this->redirectToRoute('list');
+            return $this->redirectToRoute('report_show_client');
         }
 
 

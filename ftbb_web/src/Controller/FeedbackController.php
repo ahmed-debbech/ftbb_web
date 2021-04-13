@@ -90,6 +90,7 @@ class FeedbackController extends AbstractController
             //return $this->redirectToRoute('list');
         }
         */
+        
         $entityManager = $this->getDoctrine()->getManager();
 
         $feedback = $entityManager->getRepository(Feedback::class)->find($id);
@@ -99,8 +100,10 @@ class FeedbackController extends AbstractController
         if($form->isSubmitted() && $form->isValid())
         {
             $entityManager->flush();
-            return $this->redirectToRoute('list');
+            return $this->redirectToRoute('feedback_show_client');
         }
+
+        
         return $this->render('feedback/clientmodifyfeedback.html.twig', [
             'feedback_form' => $form->createView()
         ]);
