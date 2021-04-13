@@ -76,6 +76,7 @@ class ReportController extends AbstractController
      */
     public function modifyReports(Request $req,$id)
     {
+/*        
         $report = new Report();
         $form = $this ->createForm(ModifyReportType::class,$report); //houni snaana form fil controlleur w passinelou el classe illi yasna3 el form fi 7add dhetou w instance ta3 objet feragh
         $form->handleRequest($req);
@@ -88,6 +89,19 @@ class ReportController extends AbstractController
 
             //return $this->redirectToRoute('list');
         }
+*/
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $report = $entityManager->getRepository(Report::class)->find($id);
+        $form = $this->createForm(ModifyReportType::class, $report);
+        $form->handleRequest($req);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $entityManager->flush();
+            return $this->redirectToRoute('list');
+        }
+
 
         return $this->render('report/clientmodifyreport.html.twig', [
             'report_form' => $form->createView()

@@ -76,6 +76,7 @@ class FeedbackController extends AbstractController
      */
     public function modifyFeedbacks(Request $req,$id)
     {
+       /*
         $feedback = new Feedback();
         $form = $this ->createForm(ModifyFeedbackType::class,$feedback); //houni snaana form fil controlleur w passinelou el classe illi yasna3 el form fi 7add dhetou w instance ta3 objet feragh
         $form->handleRequest($req);
@@ -88,7 +89,18 @@ class FeedbackController extends AbstractController
 
             //return $this->redirectToRoute('list');
         }
+        */
+        $entityManager = $this->getDoctrine()->getManager();
 
+        $feedback = $entityManager->getRepository(Feedback::class)->find($id);
+        $form = $this->createForm(ModifyFeedbackType::class, $feedback);
+        $form->handleRequest($req);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $entityManager->flush();
+            return $this->redirectToRoute('list');
+        }
         return $this->render('feedback/clientmodifyfeedback.html.twig', [
             'feedback_form' => $form->createView()
         ]);
