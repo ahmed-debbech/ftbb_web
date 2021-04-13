@@ -42,6 +42,34 @@ class ArticleController extends AbstractController
         $em->flush();
         return $this->redirectToRoute("articles_admin");
     }
+
+    /**
+     * @Route("/admin/article/modify/{id}", name="article_admin_mod")
+     */
+    public function modifyArticle(Request $req,$id)
+    {
+        $article = new Article();
+        $form = $this ->createForm(ArticleAddFormType::class,$article); 
+        $em = $this->getDoctrine()->getManager();
+        $article=$em->getRepository(Article::class)->find($id);
+        $form->handleRequest($req);
+        if($form->isSubmitted() && $form->isValid()){
+            $data=$form->getData();
+            $article=$em->getRepository(Article::class)->find($id);
+            $article->setTitle($data->getTitle());
+            $article->setText($data->getText());
+            $article->setAuthor($data->getAuthor());
+            $article->setPhotoUrl($data->getPhotoUrl());
+            $em->flush();
+        }
+
+        return $this->render('article/admin/article-add-form.html.twig', [
+            'article_add_form' => $form->createView(),
+            'article' => $article
+        ]);
+        
+    }
+
     /**
      * @Route("/articles/add", name="add_article")
      */
