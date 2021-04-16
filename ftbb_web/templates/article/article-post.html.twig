@@ -326,15 +326,16 @@
                                     </ol>
                                     <div id="respond" class="comment-respond">
                                         <h4 id="reply-title" class="comment-reply-title bigslam-content-font">Leave a Comment<small><a rel="nofollow" id="cancel-comment-reply-link" href="index.htm#respond" style="display:none;">Cancel Reply</a></small></h4>
-                                        <form action="#" method="post" id="commentform" class="comment-form" novalidate="">
+                                        {{ form_start(form) }}
                                             <div class="comment-form-comment">
-                                                <textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" placeholder="Comment*"></textarea>
+                                                {{ form_widget(form.content, {'attr': {'placeholder': 'Comment*', 'aria-required': 'true', 'cols':'45', 'rows': '8', 'id':'comment', 'name':'comment'}}) }}
                                             </div>
                                             
                                             
                                             <p class="form-submit">
-                                                <input name="submit" type="submit" id="submit" class="submit" value="Post Comment">
+                                                {{ form_widget(form.post, {'attr': {'type': 'submit', 'class':'submit'}}) }}
                                                 <input type="hidden" name="comment_post_ID" value="1268" id="comment_post_ID">
+                                                {{ form_widget(form.article_id, {'attr': {'type': 'hidden', 'value': '{{article.articleId}}' }}) }}
                                                 <input type="hidden" name="comment_parent" id="comment_parent" value="0">
                                             </p>
                                             <!-- Anti-spam plugin v.5.5 wordpress.org/plugins/anti-spam/ -->
@@ -343,7 +344,8 @@
                                                 <label>Leave this field empty</label>
                                                 <input type="text" name="antspm-e-email-url-website" class="antispam-control antispam-control-e" value="" autocomplete="off">
                                             </p>
-                                        </form>
+                                        {{ form_end(form) }}
+                                        
                                     </div>
                                     <!-- #respond -->
                                 </div>

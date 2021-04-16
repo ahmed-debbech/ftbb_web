@@ -7,7 +7,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Article;
+use App\Entity\Comment;
 use App\Form\ArticleAddFormType;
+use App\Form\CommentFormType;
 use App\Utils\Utilities;
 
 //use Symfony\Component\Validator\Constraints\DateTime;
@@ -99,11 +101,27 @@ class ArticleController extends AbstractController
     /**
      * @Route("/articles/{id}", name="one_article")
      */
-    public function showPost($id): Response
+    public function showPost(Request $req, $id): Response
     {
+        $com = new Comment();
+        $form = $this->createForm(CommentFormType::class, $com);
+
+        $form->handleRequest($req);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $em = $this ->getDoctrine()->getManager();
+            $com->setId(Utilities::generateId($com,'id', $this->getDoctrine()));
+            $dateTime = Utilities::getDateTimeObject(date("D M d, Y G:i"),"D M d, Y G:i");
+            $com->setDate($dateTime);
+            $em->persist($com);
+            $em->flush();
+            
+            //return $this->redirect('/articles');
+        }
         $article = $this ->getDoctrine()->getRepository(Article :: class)->find($id);
-        return $this->render('article/article-post.html.twig', ['article' => $article]);
+        return $this->render('article/article-post.html.twig', ['article' => $article, 'form' => $form->createView()]);
     }
+
 
 
     //Other than routes methods
