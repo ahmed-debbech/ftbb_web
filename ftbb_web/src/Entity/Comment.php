@@ -29,13 +29,6 @@ class Comment
     private $content;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="client_id", type="integer", nullable=false)
-     */
-    private $clientId;
-
-    /**
      * @var \DateTime|null
      *
      * @ORM\Column(name="date", type="datetime", nullable=true)
@@ -51,7 +44,16 @@ class Comment
      * })
      */
     private $article;
-    
+
+    /**
+     * @var \Client
+     *
+     * @ORM\ManyToOne(targetEntity="Client")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     * })
+     */
+    private $client;
 
     public function getArticle(){
 		return $this->article;
@@ -77,12 +79,12 @@ class Comment
 		$this->content = $content;
 	}
 
-	public function getClientId(){
-		return $this->clientId;
+	public function getClient(){
+		return $this->client;
 	}
 
-	public function setClientId($clientId){
-		$this->clientId = $clientId;
+	public function setClient($client){
+		$this->client = $client;
 	}
 
 	public function getDate(){
@@ -92,6 +94,5 @@ class Comment
 	public function setDate($date){
 		$this->date = $date;
 	}
-
 
 }

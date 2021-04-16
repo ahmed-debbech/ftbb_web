@@ -154,6 +154,6 @@ class Article
 		$this->category = $category;
 	}
     public function getCommentsCount(){
-        return 6;
+        return $this->comments->count();
     }
 }

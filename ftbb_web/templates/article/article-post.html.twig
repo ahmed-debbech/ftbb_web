@@ -297,9 +297,13 @@
                                                     <header class="comment-meta">
                                                         <div class="comment-author bigslam-title-font"></div>
                                                         <div class="comment-time bigslam-info-font">
+                                                            <a style="color: black;" href="index.htm#comment-5">
+                                                                {{comment.client.name}} {{" "}} {{comment.client.surname}}
+                                                            </a>
+                                                        </div>
+                                                        <div class="comment-time bigslam-info-font">
                                                             <a href="index.htm#comment-5">
-                                                                <time datetime="2016-11-26T15:04:44+00:00">
-                                                                    November 26, 2016 at 3:04 pm </time>
+                                                                    {{comment.date | date('Y-m-d hh:mm')}}
                                                             </a>
                                                         </div>
                                                         <div class="comment-reply">
@@ -308,7 +312,7 @@
                                                     </header>
 
                                                     <section class="comment-content">
-                                                        <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                                                        <p>{{comment.content}}</p>
                                                     </section>
                                                     <!-- comment-content -->
 
