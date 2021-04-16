@@ -7,17 +7,11 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Comment
  *
- * @ORM\Table(name="comment", indexes={@ORM\Index(name="client_id", columns={"client_id"}), @ORM\Index(name="article_id", columns={"article_id"})})
+ * @ORM\Table(name="comment", indexes={@ORM\Index(name="article_id", columns={"article_id"}), @ORM\Index(name="client_id", columns={"client_id"})})
  * @ORM\Entity
  */
 class Comment
 {
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Article",inversedBy="comments")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $article;
     /**
      * @var int
      *
@@ -42,18 +36,22 @@ class Comment
     private $clientId;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="article_id", type="integer", nullable=false)
-     */
-    private $articleId;
-
-    /**
      * @var \DateTime|null
      *
      * @ORM\Column(name="date", type="datetime", nullable=true)
      */
     private $date;
+
+    /**
+     * @var \Article
+     *
+     * @ORM\ManyToOne(targetEntity="Article")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="article_id", referencedColumnName="article_id")
+     * })
+     */
+    private $article;
+    
 
     public function getArticle(){
 		return $this->article;
@@ -87,14 +85,6 @@ class Comment
 		$this->clientId = $clientId;
 	}
 
-	public function getArticleId(){
-		return $this->articleId;
-	}
-
-	public function setArticleId($articleId){
-		$this->articleId = $articleId;
-	}
-
 	public function getDate(){
 		return $this->date;
 	}
@@ -102,5 +92,6 @@ class Comment
 	public function setDate($date){
 		$this->date = $date;
 	}
+
 
 }

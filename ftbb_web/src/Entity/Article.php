@@ -3,8 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use App\Controller\ArticleController;
 use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Article
  *
@@ -17,17 +17,13 @@ class Article
     public static $HOT = "Hot";
     public static $ANNOUNCE = "Announce";
     public static $MISC = "Misc";
-    
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Comment",mappedBy="article")
-     */
-    private $comments;
 
     /**
      * @var int
      *
      * @ORM\Column(name="article_id", type="integer", nullable=false)
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $articleId;
 
@@ -80,10 +76,16 @@ class Article
      */
     private $category;
 
+     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="article")
+     */
+    private $comments;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->comments = new ArrayCollection();
     }
+
     public function getArticleId(){
 		return $this->articleId;
 	}
@@ -144,26 +146,7 @@ class Article
 		return $this->category;
 	}
 
-    public function setComments($comments){
-		$this->comments = $comments;
-	}
-    public function addComment(Comment $com) : self {
-        if(!$this->comments->contains($com)){
-            $this->comments[] = $com;
-            $com->setArticle($this);
-        }
-        return $this;
-    }
-    public function removeComment(Comment $com) : self{
-        if($this->comments->contains($com)){
-            $this->comments->removeElement($com);
-            if($com->getArticle() === $this){
-                $com->setArticle(null);
-            }
-        }
-        return $this;
-    }
-	public function getComments() : Collection{
+	public function getComments(){
 		return $this->comments;
 	}
 
@@ -171,7 +154,6 @@ class Article
 		$this->category = $category;
 	}
     public function getCommentsCount(){
-        $ctl = new ArticleController();
-        return $ctl->getCommentsCount();
+        return 6;
     }
 }

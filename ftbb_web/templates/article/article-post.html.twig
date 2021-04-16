@@ -289,6 +289,7 @@
                                     <div class="bigslam-comments-title">{{article.getCommentsCount()}} Comments</div>
                                     <ol class="comment-list">
                                         <!-- #comment-## -->
+                                        {% for comment in article.comments %}
                                         <li class="comment byuser comment-author-superuser bypostauthor even thread-even depth-1" id="li-comment-5">
                                             <article id="comment-5" class="comment-article">
                                                 <div class="comment-avatar"><img alt="" src="https://secure.gravatar.com/avatar/67b587616031ee8e892e9418558406ed?s=90&amp;d=mm&amp;r=g" class="avatar avatar-90 photo" height="90" width="90"></div>
@@ -317,6 +318,7 @@
                                             <!-- comment-article -->
                                         </li>
                                         <!-- #comment-## -->
+                                        {% endfor %}
                                     </ol>
                                     <div id="respond" class="comment-respond">
                                         <h4 id="reply-title" class="comment-reply-title bigslam-content-font">Leave a Comment<small><a rel="nofollow" id="cancel-comment-reply-link" href="index.htm#respond" style="display:none;">Cancel Reply</a></small></h4>
