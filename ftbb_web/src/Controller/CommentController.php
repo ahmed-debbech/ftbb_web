@@ -42,4 +42,8 @@ class CommentController extends AbstractController
         return $this->redirectToRoute("one_article", ['id' => $id]);
 
     }
+
+    /**
+     * @Route("/admin/article/ban_comment/{id}", name="ban_comment")
+     */
 }

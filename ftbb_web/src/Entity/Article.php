@@ -23,7 +23,6 @@ class Article
      *
      * @ORM\Column(name="article_id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $articleId;
 
