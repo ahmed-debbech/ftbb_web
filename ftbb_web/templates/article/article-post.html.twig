@@ -334,8 +334,8 @@
                                             
                                             <p class="form-submit">
                                                 {{ form_widget(form.post, {'attr': {'type': 'submit', 'class':'submit'}}) }}
-                                                <input type="hidden" name="comment_post_ID" value="1268" id="comment_post_ID">
-                                                {{ form_widget(form.article_id, {'attr': {'type': 'hidden', 'value': '{{article.articleId}}' }}) }}
+                                                <h1>{{article.articleId}}</h1>
+                                                {{ form_widget(form.article_id, {'attr': {'value':'3333', 'id': 'comment_post_ID'}}) }}
                                                 <input type="hidden" name="comment_parent" id="comment_parent" value="0">
                                             </p>
                                             <!-- Anti-spam plugin v.5.5 wordpress.org/plugins/anti-spam/ -->

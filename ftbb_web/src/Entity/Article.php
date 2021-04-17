@@ -76,6 +76,8 @@ class Article
      */
     private $category;
 
+
+
      /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="article")
      */
@@ -101,6 +103,8 @@ class Article
 	public function setAdminId($adminId){
 		$this->adminId = $adminId;
 	}
+
+  
 
 	public function getTitle(){
 		return $this->title;

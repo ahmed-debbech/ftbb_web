@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Article;
 
 /**
  * Comment
@@ -26,6 +27,13 @@ class Comment
      * @ORM\Column(name="content", type="string", length=255, nullable=false)
      */
     private $content;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="article_id", type="integer", nullable=false)
+     */
+    private $article_id;
 
     /**
      * @var \DateTime|null
@@ -76,6 +84,14 @@ class Comment
 
 	public function setContent($content){
 		$this->content = $content;
+	}
+
+  public function getArticleId(){
+		return $this->article_id;
+	}
+
+	public function setArticleId($art){
+		$this->article_id = $art;
 	}
 
 	public function getClient(){

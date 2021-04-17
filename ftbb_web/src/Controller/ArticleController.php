@@ -3,11 +3,12 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Article;
 use App\Entity\Comment;
+use App\Entity\Client;
 use App\Form\ArticleAddFormType;
 use App\Form\CommentFormType;
 use App\Utils\Utilities;
@@ -16,6 +17,8 @@ use App\Utils\Utilities;
 
 class ArticleController extends AbstractController
 {
+    public static $CLIENT_ID ;
+
     /**
      * @Route("/articles", name="articles")
      */
@@ -98,6 +101,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/articles/{id}", name="one_article")
      */
@@ -107,22 +111,22 @@ class ArticleController extends AbstractController
         $form = $this->createForm(CommentFormType::class, $com);
 
         $form->handleRequest($req);
-
+        $article = $this ->getDoctrine()->getRepository(Article :: class)->find($id);
         if($form->isSubmitted() && $form->isValid()){
             $em = $this ->getDoctrine()->getManager();
+            $com = new Comment();
+            $com->setContent(";haeucv");
             $com->setId(Utilities::generateId($com,'id', $this->getDoctrine()));
             $dateTime = Utilities::getDateTimeObject(date("D M d, Y G:i"),"D M d, Y G:i");
             $com->setDate($dateTime);
+            $com->setArticle($article);
+            $com->setClient($this->getDoctrine()->getRepository(Client :: class)->find("122"));
             $em->persist($com);
             $em->flush();
-            
-            //return $this->redirect('/articles');
+           // return $this->redirectToRoute("add_comment", ['id' => $id]);
         }
-        $article = $this ->getDoctrine()->getRepository(Article :: class)->find($id);
         return $this->render('article/article-post.html.twig', ['article' => $article, 'form' => $form->createView()]);
     }
-
-
 
     //Other than routes methods
     public function getCommentsCount(){
