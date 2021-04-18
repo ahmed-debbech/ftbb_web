@@ -17,4 +17,13 @@ class TestController extends AbstractController
             'controller_name' => 'TestController',
         ]);
     }
+    /**
+     * @Route("/back", name="back")
+     */
+    public function back(): Response
+    {
+        return $this->render('back/base.html.twig', [
+            'controller_name' => 'TestController',
+        ]);
+    }
 }
