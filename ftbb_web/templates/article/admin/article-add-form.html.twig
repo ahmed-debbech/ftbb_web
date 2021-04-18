@@ -1,6 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<script src="http://tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+
+<script type="application/x-javascript">
+
+tinymce.init({selector:'textarea#article_add_form_text'});
+
+</script>
                                 <li class="menu-item menu-item-home current-menu-item"><a href="index.html" aria-current="page">Home</a></li>
                                 <li class="menu-item menu-item-has-children"><a class="mm-next" href="#mm-1" data-target="#mm-1"></a><a href="schedule.html">Schedule</a>
                                     
@@ -511,7 +518,7 @@
                                                                                 {% else %}
                                                                                     {% set content = "" %}
                                                                                 {% endif %}
-                                                                            {{ form_widget(article_add_form.text, {'attr': {'placeholder': 'Text*', 'data': content}}) }}
+                                                                            <textarea id="article_add_form_text"></textarea>
                                                                             
                                                                             </span>
                                                                         </p>
