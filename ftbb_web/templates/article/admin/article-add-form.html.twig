@@ -469,21 +469,36 @@
                                                                     <div class="quform-element">
                                                                         <p>
                                                                             <span class="wpcf7-form-control-wrap your-name">
-                                                                                {{ form_widget(article_add_form.title, {'attr': {'placeholder': 'Title*'}}) }}
+                                                                                {% if article is defined %}
+                                                                                    {% set content = article.title %}
+                                                                                {% else %}
+                                                                                    {% set content = "" %}
+                                                                                {% endif %}
+                                                                                {{ form_widget(article_add_form.title, {'attr': {'placeholder': 'Title*', 'value': content}}) }}
                                                                             </span> 
                                                                         </p>
                                                                     </div>
                                                                     <div class="quform-element">
                                                                         <p>
                                                                             <span class="wpcf7-form-control-wrap your-name">
-                                                                                {{ form_widget(article_add_form.author, {'attr': {'placeholder': 'Author*'}}) }}
+                                                                                {% if article is defined %}
+                                                                                    {% set content = article.author %}
+                                                                                {% else %}
+                                                                                    {% set content = "" %}
+                                                                                {% endif %}
+                                                                                {{ form_widget(article_add_form.author, {'attr': {'placeholder': 'Author*', 'value': content}}) }}
                                                                             </span> 
                                                                         </p>
                                                                     </div>
                                                                     <div class="quform-element">
                                                                         <p>
                                                                             <span class="wpcf7-form-control-wrap your-name">
-                                                                                {{ form_widget(article_add_form.photoUrl, {'attr': {'placeholder': 'Photo Url*'}}) }}
+                                                                                {% if article is defined %}
+                                                                                    {% set content = article.photoUrl %}
+                                                                                {% else %}
+                                                                                    {% set content = "" %}
+                                                                                {% endif %}
+                                                                                {{ form_widget(article_add_form.photoUrl, {'attr': {'placeholder': 'Photo Url*', 'value': content}}) }}
                                                                             </span> 
                                                                         </p>
                                                                     </div>
@@ -491,13 +506,24 @@
                                                                         <p>
 
                                                                             <span class="wpcf7-form-control-wrap your-message">
-                                                                            {{ form_widget(article_add_form.text, {'attr': {'placeholder': 'Text*'}}) }}
+                                                                            {% if article is defined %}
+                                                                                    {% set content = article.text %}
+                                                                                {% else %}
+                                                                                    {% set content = "" %}
+                                                                                {% endif %}
+                                                                            {{ form_widget(article_add_form.text, {'attr': {'placeholder': 'Text*', 'data': content}}) }}
+                                                                            
                                                                             </span>
                                                                         </p>
                                                                     </div>
                                                                     <div class="quform-submit">
                                                                             <div class="quform-submit-inner">
-                                                                                {{ form_widget(article_add_form.category, {'attr': { 'class': 'submit-button' ,'id': 'cb-cat'}}) }}
+                                                                                {% if article is defined %}
+                                                                                    {% set content = article.category %}
+                                                                                {% else %}
+                                                                                    {% set content = "" %}
+                                                                                {% endif %}
+                                                                                {{ form_widget(article_add_form.category, {'attr': { 'class': 'submit-button' ,'id': 'cb-cat', 'value': content}}) }}
                                                                             </div>
                                                                             <div class="quform-loading-wrap"><span class="quform-loading"></span></div>
                                                                         </div>
