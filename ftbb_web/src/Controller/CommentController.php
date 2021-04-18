@@ -44,6 +44,22 @@ class CommentController extends AbstractController
     }
 
     /**
-     * @Route("/admin/article/ban_comment/{id}", name="ban_comment")
+     * @Route("/admin/article/{id}/ban_comment", name="ban_comment")
      */
+    public function banComment($id){
+        $article = $this->getDoctrine()->getRepository(Article::class)->find($id);
+        return $this->render('comment/ban_comment.html.twig', ['article' => $article]);
+    }
+
+    /**
+     * @Route("admin/article/{id}/ban/{com_id}", name="delete_comment")
+     */
+    public function deleteComment($id, $com_id){
+        $com = new Comment();
+        $em = $this ->getDoctrine()->getManager();
+        $com=$em->getRepository(Comment::class)->find($com_id);
+        $em->remove($com);
+        $em->flush();
+        return $this->redirectToRoute("ban_comment", ['id' => $id]);
+    }
 }
