@@ -530,22 +530,73 @@
                     </div>
                     <h1> YOUR CART</h1>
                     <div>
-                        <table>
+                        <table class="example-wrapper" border="1">
                             <tr>
                                 <td>
-                                    Product Name
+                                    Reference Product
+                                </td>
+                                <td>
+                                    Category
+                                </td>
+                                <td>
+                                    Stock
+                                </td>
+                                <td>
+                                    Name
                                 </td>
                                 <td>
                                     Price
                                 </td>
-                            </tr>
-                            <tr>
                                 <td>
+                                    Details
                                 </td>
                                 <td>
-
+                                    Id_admin
+                                </td>
+                                <td>
+                                    Add_date
+                                </td>
+                                <td>
+                                    Photo
+                                </td>
+                                <td>
+                                    DELETE
                                 </td>
                             </tr>
+                            {% for product in data %}
+                                <tr>
+                                    <td>
+                                        {{ product.refProduct }}
+                                    </td>
+                                    <td>
+                                        {{ product.category }}
+                                    </td>
+                                    <td>
+                                        {{ product.stock }}
+                                    </td>
+                                    <td>
+                                        {{ product.name }}
+                                    </td>
+                                    <td>
+                                        {{ product.price }}
+                                    </td>
+                                    <td>
+                                        {{ product.details }}
+                                    </td>
+                                    <td>
+                                        {{ product.idAdmin }}
+                                    </td>
+                                    <td>
+                                        {{ product.addDate |date ('Y-m-d') }}
+                                    </td>
+                                    <td>
+                                        <img style="height: 100px; width: 100px" src="http://127.0.0.1/uploads/{{ product.photo }}" >
+                                    </td>
+                                    <td>
+                                        <a href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/cart/supprimer/{{ product.refProduct }}" role="button">supprimer</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
                         </table>
                         <div class="gdlr-core-pbf-column gdlr-core-column-20 gdlr-core-column-first">
                             <div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">

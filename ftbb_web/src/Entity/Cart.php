@@ -17,7 +17,6 @@ class Cart
      *
      * @ORM\Column(name="addition_id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $additionId;
 
@@ -117,6 +116,6 @@ class Cart
     }
     public function setRef_product($ref_product)
     {
-        $this->ref_product=$ref_product;
+        $this->refProduct = $ref_product;
     }
 }
