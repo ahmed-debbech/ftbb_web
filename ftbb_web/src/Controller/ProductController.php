@@ -30,7 +30,7 @@ class ProductController extends AbstractController
     public function Afficher_product(): Response #objet min aand symfony jey par defaut
     {
         $product = $this ->getDoctrine()->getRepository(Product :: class)->findAll(); //findAll trajjalik tableau lkoll
-        return $this->render('product/list_product.html.twig', [
+        return $this->render('back/list_product.html.twig', [
             'controller_name' => 'ProductController',
             'data'=> $product,
         ]);
@@ -88,7 +88,7 @@ class ProductController extends AbstractController
         }
 
 
-        return $this->render('product/admin/formulaire_ajout_admin.html.twig', [
+        return $this->render('back/formulaire_ajout_admin.html.twig', [
             'product_form' => $form->createView()
         ]);
     }
@@ -131,7 +131,7 @@ class ProductController extends AbstractController
             return $this->redirectToRoute('list_product_admin');
         }
 
-        return $this->render('product/admin/formulaire_modifier_admin.html.twig', [
+        return $this->render('back/formulaire_modifier_admin.html.twig', [
             'product_form' => $form->createView()
         ]);
     }

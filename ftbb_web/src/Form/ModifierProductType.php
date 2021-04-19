@@ -22,9 +22,7 @@ class ModifierProductType extends AbstractType
             ->add('price')
             ->add('details')
             ->add('idAdmin')
-            ->add('photo',FileType::class,[
-                'required'=>false,'mapped'=>false,
-            ])
+
             ->add('Modifier', SubmitType::class)
         ;
     }

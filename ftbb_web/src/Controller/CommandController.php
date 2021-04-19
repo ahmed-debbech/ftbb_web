@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Cart;
 use App\Entity\Command;
 use App\Entity\Product;
 use App\Form\ModifierProductType;
@@ -28,7 +29,7 @@ class CommandController extends AbstractController
     public function Afficher_command(): Response #objet min aand symfony jey par defaut
     {
         $command = $this ->getDoctrine()->getRepository(Command :: class)->findAll(); //findAll trajjalik tableau lkoll
-        return $this->render('command/list_command_admin.html.twig', [
+        return $this->render('back/list_command_client.html.twig', [
             'controller_name' => 'CommandController',
             'data'=> $command,
         ]);
@@ -50,7 +51,19 @@ class CommandController extends AbstractController
         $em->flush();
 
         return $this->redirectToRoute('list_command_admin');
-
-
     }
+
+    /**
+     * @Route("/Command/list_command_client", name="list_command_client")
+     */
+    public function Afficher_command_client(): Response #objet min aand symfony jey par defaut
+    {
+        $commands = $this ->getDoctrine()->getRepository(Command :: class)->findBy(array('CommandId' => 2) );
+        return $this->render('product/cart.html.twig', [
+            'controller_name' => 'ProductController',
+            'data'=> $commands,
+        ]);
+    }
+
+
 }
