@@ -37,5 +37,27 @@ class LikesController extends AbstractController
         }
         return $this->redirectToRoute("one_article", ['id' => $art_id]);
     }
-    
+
+    /**
+     * @Route("/likes/click/article/{art_id}", name="article_like");
+     */
+    public function onClickLikeArticle($art_id){
+        $em = $this ->getDoctrine()->getManager();
+        $like = $this ->getDoctrine()->getRepository(Likes :: class)->findBy(array('idClient'=>122, 'idArticle'=>$art_id));
+        if(!empty($like)){
+            $em->remove($like[0]);
+            $em->flush();
+        }else{
+            $like = new Likes();
+            $client = $this ->getDoctrine()->getRepository(Client :: class)->find(122);
+            $article = $this ->getDoctrine()->getRepository(Article :: class)->find($art_id);
+
+            $like->setIdLike(Utilities::generateId($like, "idLike", $this->getDoctrine()));
+            $like->setIdClient($client);
+            $like->setIdArticle($article);
+            $em->persist($like);
+            $em->flush();
+        }
+        return $this->redirectToRoute("one_article", ['id' => $art_id]);
+    }
 }

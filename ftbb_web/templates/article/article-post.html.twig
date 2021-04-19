@@ -255,6 +255,15 @@
                                 </div>
 
                                 <div class="clear"></div>
+                                {% if article.likes is empty %}
+                                    <div class="comment-reply">
+                                    <a rel="nofollow" class="comment-reply-link" href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/likes/click/article/{{article.articleId}}" data-commentid="5" data-postid="1268" data-belowelement="comment-5" data-respondelement="respond" aria-label="Reply to John Smith">Like - {{article.getLikesCount()}}</a> </div>
+                                {% else %}
+                                {% for like in article.likes %}
+                                    <div class="comment-reply">
+                                    <a rel="nofollow" {% if like.idClient.id == id_cli %} style="color: blue;" {% endif %} class="comment-reply-link" href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/likes/click/article/{{article.articleId}}" data-commentid="5" data-postid="1268" data-belowelement="comment-5" data-respondelement="respond" aria-label="Reply to John Smith">Like - {{article.getLikesCount()}}</a> </div>
+                                {% endfor %}
+                                {% endif %}
                                 <div class="bigslam-single-author">
                                     <div class="bigslam-single-author-wrap">
                                         <div class="bigslam-single-author-avartar bigslam-media-image"><img alt="" src="https://secure.gravatar.com/avatar/67b587616031ee8e892e9418558406ed?s=90&amp;d=mm&amp;r=g" class="avatar avatar-90 photo" height="90" width="90"></div>
