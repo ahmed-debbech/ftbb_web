@@ -257,9 +257,11 @@
                                         <div class="bigslam-single-article">
                                             <div class="bigslam-single-article-thumbnail bigslam-media-image"><img src="{{article.photoUrl}}" width="1800" height="1200" sizes="(max-width: 767px) 100vw, (max-width: 1150px) 100vw, 1150px" alt=""></div>
                                             <div class="bigslam-single-article-content">
-                                                <p>
-                                                {{article.text}}
-                                                </p>
+                                                <div>
+                                                {% apply html_to_markdown %}
+                                                        {{article.text}}
+                                                {% endapply %}
+                                                </div>
                                                 <span class="gdlr-core-space-shortcode" style="margin-top: 30px ;"></span>  
                                             </div>
                                         </div>
@@ -307,8 +309,13 @@
                                                             </a>
                                                         </div>
                                                         <div class="comment-reply">
-                                                            <a rel="nofollow" class="comment-reply-link" href="index-1.htm?replytocom=5#respond" data-commentid="5" data-postid="1268" data-belowelement="comment-5" data-respondelement="respond" aria-label="Reply to John Smith">Like</a> </div>
+                                                            <a rel="nofollow" style="color: blue;" class="comment-reply-link" href="#" data-commentid="5" data-postid="1268" data-belowelement="comment-5" data-respondelement="respond" aria-label="Reply to John Smith">Like</a> </div>
                                                         <!-- reply -->
+                                                        {% if comment.client.id == id_cli %}
+                                                        <!--delete-->
+                                                        <div class="comment-reply">
+                                                            <a rel="nofollow" style="margin-right: 50px; font-size: 12px;" class="comment-reply-link" href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/admin/article/{{comment.article.articleId}}/ban_comment" data-commentid="5" data-postid="1268" data-belowelement="comment-5" data-respondelement="respond" aria-label="Reply to John Smith">Remove</a> </div>
+                                                        {% endif %}
                                                     </header>
 
                                                     <section class="comment-content">

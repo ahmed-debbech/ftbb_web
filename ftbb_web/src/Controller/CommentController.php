@@ -50,7 +50,13 @@ class CommentController extends AbstractController
         $article = $this->getDoctrine()->getRepository(Article::class)->find($id);
         return $this->render('comment/ban_comment.html.twig', ['article' => $article]);
     }
-
+    /**
+     * @Route("/article/{id}/comment/{id_com}/delete", name="delete_comment_client")
+     */
+    public function delete($id, $id_com){
+        $article = $this->getDoctrine()->getRepository(Article::class)->find($id);
+        return $this->render('comment/ban_comment.html.twig', ['article' => $article]);
+    }
     /**
      * @Route("admin/article/{id}/ban/{com_id}", name="delete_comment")
      */

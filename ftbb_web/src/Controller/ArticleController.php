@@ -111,7 +111,7 @@ class ArticleController extends AbstractController
             return $this->redirectToRoute("add_comment", ['id' => $id, 'content' => $form->getData()->getContent()]);
         }
         $article = $this->getDoctrine()->getRepository(Article::class)->find($id);
-        return $this->render('article/article-post.html.twig', ['article' => $article, 'form' => $form->createView()]);
+        return $this->render('article/article-post.html.twig', ['id_cli' =>122,'article' => $article, 'form' => $form->createView()]);
     }
 
     //Other than routes methods
