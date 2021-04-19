@@ -17,7 +17,6 @@ class Article
     public static $HOT = "Hot";
     public static $ANNOUNCE = "Announce";
     public static $MISC = "Misc";
-
     /**
      * @var int
      *
@@ -75,16 +74,20 @@ class Article
      */
     private $category;
 
-
-
      /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="article")
      */
     private $comments;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Likes", mappedBy="idArticle")
+     */
+    private $likes;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     public function getArticleId(){
@@ -153,10 +156,17 @@ class Article
 		return $this->comments;
 	}
 
+    public function getLikes(){
+		return $this->likes;
+	}
+
 	public function setCategory($category){
 		$this->category = $category;
 	}
     public function getCommentsCount(){
         return $this->comments->count();
+    }
+    public function getLikesCount(){
+        return $this->likes->count();
     }
 }

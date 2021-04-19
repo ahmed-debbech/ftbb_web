@@ -1,26 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-                              <li class="menu-item menu-item-home current-menu-item"><a href="index.html" aria-current="page">Home</a></li>
-                                <li class="menu-item menu-item-has-children"><a class="mm-next" href="#mm-1" data-target="#mm-1"></a><a href="schedule.html">Schedule</a>
-                                    
-                                </li>
-                                <li class="menu-item menu-item-has-children"><a class="mm-next" href="#mm-2" data-target="#mm-2"></a><a href="player-list-default-style.html">Players</a>
-                                    
-                                </li>
-                                <li class="menu-item "><a href="big-slam.html">Our Team</a></li>
-                                <li class="menu-item menu-item-has-children"><a class="mm-next mm-fullsubopen" href="#mm-3" data-target="#mm-3"></a><span class="bigslam-mm-menu-blank">SportsPress</span>
-                                    
-                                </li>
-                                <li class="menu-item menu-item-has-children"><a class="mm-next mm-fullsubopen" href="#mm-6" data-target="#mm-6"></a><span class="bigslam-mm-menu-blank">Pages</span>
-                                    
-                                </li>
-                                <li class="menu-item menu-item-has-children"><a class="mm-next" href="#mm-12" data-target="#mm-12"></a><a href="blog-full-right-sidebar.html">Blog</a>
-                                    
-                                </li>
-                                <li class="menu-item menu-item-has-children"><a class="mm-next mm-fullsubopen" href="#mm-16" data-target="#mm-16"></a><span class="bigslam-mm-menu-blank">Features</span>
-                                    
-                                </li>
+                            
                             </ul></div><div class="mm-panel mm-hasnavbar mm-hidden" id="mm-1"><div class="mm-navbar"><a class="mm-btn mm-prev" href="#menu-main-navigation" data-target="#menu-main-navigation"></a><a class="mm-title" href="#menu-main-navigation">Schedule</a></div><ul class="sub-menu mm-listview">
                                         <li class="menu-item"><a href="schedule.html">Schedule – Default Style</a></li>
                                         <li class="menu-item"><a href="schedule-featured-style.html">Schedule – Featured Style</a></li>
@@ -309,7 +290,7 @@
                                                             </a>
                                                         </div>
                                                         <div class="comment-reply">
-                                                            <a rel="nofollow" style="color: blue;" class="comment-reply-link" href="#" data-commentid="5" data-postid="1268" data-belowelement="comment-5" data-respondelement="respond" aria-label="Reply to John Smith">Like</a> </div>
+                                                            <a rel="nofollow" style="color: blue;" class="comment-reply-link" href="#" data-commentid="5" data-postid="1268" data-belowelement="comment-5" data-respondelement="respond" aria-label="Reply to John Smith">Like - {{comment.getLikesCount()}}</a> </div>
                                                         <!-- reply -->
                                                         {% if comment.client.id == id_cli %}
                                                         <!--delete-->

@@ -4,11 +4,12 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Article;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Comment
  *
- * @ORM\Table(name="comment", indexes={@ORM\Index(name="article_id", columns={"article_id"}), @ORM\Index(name="client_id", columns={"client_id"})})
+ * @ORM\Table(name="comment", indexes={@ORM\Index(name="client_id", columns={"client_id"}), @ORM\Index(name="article_id", columns={"article_id"})})
  * @ORM\Entity
  */
 class Comment
@@ -22,18 +23,18 @@ class Comment
     private $id;
 
     /**
+    * @var int
+    *
+    * @ORM\Column(name="article_id", type="integer", nullable=false)
+    */
+   private $article_id;
+   
+    /**
      * @var string
      *
      * @ORM\Column(name="content", type="string", length=255, nullable=false)
      */
     private $content;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="article_id", type="integer", nullable=false)
-     */
-    private $article_id;
 
     /**
      * @var \DateTime|null
@@ -62,52 +63,67 @@ class Comment
      */
     private $client;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Likes", mappedBy="idComment")
+     */
+    private $likes;
+
+    public function __construct()
+    {
+        $this->likes = new ArrayCollection();
+    }
+
     public function getArticle(){
-		return $this->article;
-	}
-
-	public function setArticle($article){
-		$this->article = $article;
-	}
-
-	public function getId(){
-		return $this->id;
-	}
-
-	public function setId($id){
-		$this->id = $id;
-	}
-
-	public function getContent(){
-		return $this->content;
-	}
-
-	public function setContent($content){
-		$this->content = $content;
-	}
-
-  public function getArticleId(){
-		return $this->article_id;
-	}
-
-	public function setArticleId($art){
-		$this->article_id = $art;
-	}
-
-	public function getClient(){
-		return $this->client;
-	}
-
-	public function setClient($client){
-		$this->client = $client;
-	}
-
-	public function getDate(){
-		return $this->date;
-	}
-
-	public function setDate($date){
-		$this->date = $date;
-	}
-
+      return $this->article;
+    }
+  
+    public function setArticle($article){
+      $this->article = $article;
+    }
+  
+    public function getId(){
+      return $this->id;
+    }
+  
+    public function setId($id){
+      $this->id = $id;
+    }
+  
+    public function getContent(){
+      return $this->content;
+    }
+  
+    public function setContent($content){
+      $this->content = $content;
+    }
+  
+    public function getArticleId(){
+      return $this->article_id;
+    }
+  
+    public function setArticleId($art){
+      $this->article_id = $art;
+    }
+  
+    public function getClient(){
+      return $this->client;
+    }
+  
+    public function setClient($client){
+      $this->client = $client;
+    }
+  
+    public function getDate(){
+      return $this->date;
+    }
+  
+    public function setDate($date){
+      $this->date = $date;
+    }
+    public function getLikes(){
+      return $this->likes;
+    }
+    public function getLikesCount(){
+      return $this->likes->count();
+  }
 }

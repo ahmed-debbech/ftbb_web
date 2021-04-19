@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Vote
  *
- * @ORM\Table(name="vote", indexes={@ORM\Index(name="client_id", columns={"client_id"}), @ORM\Index(name="option_id", columns={"option_id"})})
+ * @ORM\Table(name="vote", indexes={@ORM\Index(name="option_id", columns={"option_id"}), @ORM\Index(name="client_id", columns={"client_id"})})
  * @ORM\Entity
  */
 class Vote
