@@ -282,20 +282,27 @@
                                                         <div class="comment-time bigslam-info-font">
                                                             <a style="color: black;" href="index.htm#comment-5">
                                                                 {{comment.client.name}} {{" "}} {{comment.client.surname}}
-                                                            </a>
+                                                            </a> 
                                                         </div>
                                                         <div class="comment-time bigslam-info-font">
                                                             <a href="index.htm#comment-5">
                                                                     {{comment.date | date('Y-m-d hh:mm')}}
                                                             </a>
                                                         </div>
-                                                        <div class="comment-reply">
-                                                            <a rel="nofollow" style="color: blue;" class="comment-reply-link" href="#" data-commentid="5" data-postid="1268" data-belowelement="comment-5" data-respondelement="respond" aria-label="Reply to John Smith">Like - {{comment.getLikesCount()}}</a> </div>
+                                                            {% if comment.likes is empty %}
+                                                                <div class="comment-reply">
+                                                                <a rel="nofollow" class="comment-reply-link" href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/likes/click/comment/{{comment.id}}/{{comment.article.articleId}}" data-commentid="5" data-postid="1268" data-belowelement="comment-5" data-respondelement="respond" aria-label="Reply to John Smith">Like - {{comment.getLikesCount()}}</a> </div>
+                                                            {% else %}
+                                                                {% for like in comment.likes %}
+                                                                <div class="comment-reply">
+                                                                <a rel="nofollow" {% if like.idClient.id == id_cli %} style="color: blue;" {% endif %} class="comment-reply-link" href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/likes/click/comment/{{comment.id}}/{{comment.article.articleId}}" data-commentid="5" data-postid="1268" data-belowelement="comment-5" data-respondelement="respond" aria-label="Reply to John Smith">Like - {{comment.getLikesCount()}}</a> </div>
+                                                                {% endfor %}
+                                                            {% endif %}
                                                         <!-- reply -->
                                                         {% if comment.client.id == id_cli %}
                                                         <!--delete-->
                                                         <div class="comment-reply">
-                                                            <a rel="nofollow" style="margin-right: 50px; font-size: 12px;" class="comment-reply-link" href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/admin/article/{{comment.article.articleId}}/ban_comment" data-commentid="5" data-postid="1268" data-belowelement="comment-5" data-respondelement="respond" aria-label="Reply to John Smith">Remove</a> </div>
+                                                            <a rel="nofollow" style="position:absolute; left: 80px; font-size: 12px;" class="comment-reply-link" href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/admin/article/{{comment.article.articleId}}/ban_comment" data-commentid="5" data-postid="1268" data-belowelement="comment-5" data-respondelement="respond" aria-label="Reply to John Smith">Remove</a> </div>
                                                         {% endif %}
                                                     </header>
 

@@ -17,7 +17,6 @@ class Likes
      *
      * @ORM\Column(name="id_like", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idLike;
 
