@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Cart;
 use App\Entity\Command;
+use App\Entity\CommandProduct;
 use App\Entity\Product;
 use App\Form\ModifierProductType;
 use App\Utils\Utilities;
@@ -78,13 +79,20 @@ class CommandController extends AbstractController
         $command->setCommandId(Utilities::generateId($command,'commandId',$this->getDoctrine()));
         $command->setTotalPrice(22);
         $command->setStatus(0);
-        $command->setIdClient(122);
+        $command->setIdClient(2);
         $entityManager->persist($command);
         $entityManager->flush();
 
         $carts = $this ->getDoctrine()->getRepository(Cart :: class)->findBy(array('idClient' => 2) );
         $x =null;
         foreach($carts as $x){
+            $command_product = new CommandProduct();
+            $command_product->setIdCp(Utilities::generateId($command_product,'idCp',$this->getDoctrine()));
+            $command_product->setRefProduct($x->getRef_Product());
+            $command_product->setIdClient(2);
+            $command_product->setCommandId($command->getCommandId());
+            $entityManager->persist($command_product);
+            $entityManager->flush();
             $entityManager->remove($x);
             $entityManager->flush();
         }

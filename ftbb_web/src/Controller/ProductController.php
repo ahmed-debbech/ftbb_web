@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Controller;
+use App\Entity\Command;
+use App\Entity\CommandProduct;
 use App\Utils\Utilities;
 use App\Entity\Product;
 use App\Form\AjouterProductType;
@@ -163,6 +165,23 @@ class ProductController extends AbstractController
         $product = $this ->getDoctrine()->getRepository(Product :: class)->findAll(); //findAll trajjalik tableau lkoll
         return $this->render('product/store.html.twig', [
             'products'=> $product,
+        ]);
+    }
+
+    /**
+     * @Route("/command/list_product_command/{id}", name="product_command")
+     */
+    public function Afficher_product_command($id): Response #objet min aand symfony jey par defaut
+    {
+        $command_product = $this ->getDoctrine()->getRepository(CommandProduct :: class)->findBy(array('commandId' => $id,'idClient'=>2)); //findAll trajjalik tableau lkoll
+        $products = array();
+        foreach($command_product as $x){
+            $prod = $this->getDoctrine()->getRepository(Product :: class)->find($x->getRefProduct());
+            array_push($products, $prod);
+        }
+        return $this->render('product/list_product_command.html.twig', [
+            'controller_name' => 'ProductController',
+            'data'=> $products,
         ]);
     }
 
