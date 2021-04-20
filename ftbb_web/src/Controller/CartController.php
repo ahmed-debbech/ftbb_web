@@ -35,7 +35,7 @@ class CartController extends AbstractController
             $product = $this ->getDoctrine()->getRepository(Product :: class)->find($x->getRef_product());
             array_push($products, $product);
         }
-        return $this->render('product/cart.html.twig', [
+        return $this->render('cart.html.twig', [
             'controller_name' => 'ProductController',
             'data'=> $products,
         ]);

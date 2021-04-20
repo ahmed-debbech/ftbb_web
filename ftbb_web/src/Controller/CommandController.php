@@ -6,6 +6,7 @@ use App\Entity\Cart;
 use App\Entity\Command;
 use App\Entity\Product;
 use App\Form\ModifierProductType;
+use App\Utils\Utilities;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,7 +30,7 @@ class CommandController extends AbstractController
     public function Afficher_command(): Response #objet min aand symfony jey par defaut
     {
         $command = $this ->getDoctrine()->getRepository(Command :: class)->findAll(); //findAll trajjalik tableau lkoll
-        return $this->render('back/list_command_cl.html.twig', [
+        return $this->render('back/list_command_admin.html.twig', [
             'controller_name' => 'CommandController',
             'data'=> $command,
         ]);
@@ -58,11 +59,36 @@ class CommandController extends AbstractController
      */
     public function Afficher_command_client(): Response #objet min aand symfony jey par defaut
     {
-        $commands = $this ->getDoctrine()->getRepository(Command :: class)->findBy(array('idClient' => 122) );
+        $commands = $this ->getDoctrine()->getRepository(Command :: class)->findBy(array('idClient' => 2) );
         return $this->render('command/list_command_client.html.twig', [
             'controller_name' => 'CommandController',
             'data'=> $commands,
         ]);
+    }
+
+    /**
+     * @Route("/command/add_new_command", name="add_new_command")
+     */
+    public function add_new_command()
+    {
+        $command=new Command();
+        $entityManager = $this->getDoctrine()->getManager();
+        $dateTime = Utilities::getDateTimeObject(date("D M d, Y G:i"),"D M d, Y G:i");
+        $command->setDateCommand($dateTime);
+        $command->setCommandId(Utilities::generateId($command,'commandId',$this->getDoctrine()));
+        $command->setTotalPrice(22);
+        $command->setStatus(0);
+        $command->setIdClient(122);
+        $entityManager->persist($command);
+        $entityManager->flush();
+
+        $carts = $this ->getDoctrine()->getRepository(Cart :: class)->findBy(array('idClient' => 2) );
+        $x =null;
+        foreach($carts as $x){
+            $entityManager->remove($x);
+            $entityManager->flush();
+        }
+        return $this->redirectToRoute('cart');
     }
 
 

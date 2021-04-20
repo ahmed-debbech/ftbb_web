@@ -17,7 +17,6 @@ class Command
      *
      * @ORM\Column(name="command_id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $commandId;
 
