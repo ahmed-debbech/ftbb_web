@@ -4,7 +4,8 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 /**
  * Article
  *
@@ -36,6 +37,7 @@ class Article
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255, nullable=false)
+     * @Assert\NotBlank(message="This field is obligatory!")
      */
     private $title;
 
@@ -43,6 +45,7 @@ class Article
      * @var string
      *
      * @ORM\Column(name="text", type="string", length=2048, nullable=false)
+     * @Assert\NotBlank(message="This field is obligatory!")
      */
     private $text;
 
@@ -50,6 +53,7 @@ class Article
      * @var string
      *
      * @ORM\Column(name="author", type="string", length=255, nullable=false)
+     * @Assert\NotBlank(message="This field is obligatory!")
      */
     private $author;
 
@@ -57,6 +61,7 @@ class Article
      * @var \DateTime|null
      *
      * @ORM\Column(name="date", type="datetime", nullable=true)
+     * @Assert\NotBlank(message="This field is obligatory!")
      */
     private $date;
 
@@ -64,6 +69,7 @@ class Article
      * @var string
      *
      * @ORM\Column(name="photo_url", type="string", length=255, nullable=false)
+     * @Assert\NotBlank(message="This field is obligatory!")
      */
     private $photoUrl;
 
@@ -71,6 +77,7 @@ class Article
      * @var int
      *
      * @ORM\Column(name="category", type="integer", nullable=false)
+     * @Assert\NotBlank(message="This field is obligatory!")
      */
     private $category;
 
@@ -168,5 +175,14 @@ class Article
     }
     public function getLikesCount(){
         return $this->likes->count();
+    }
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addGetterConstraint('passwordSafe', new Assert\IsTrue([
+            'title' => 'Could not get title',
+            'author' => 'Could not get author',
+            'text' => 'Could not get text',
+            'category' => 'Could not get category',
+        ]));
     }
 }
