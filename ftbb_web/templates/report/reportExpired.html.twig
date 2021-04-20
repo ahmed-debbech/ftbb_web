@@ -1,29 +1,7 @@
-<!DOCTYPE html>
-<html lang="en-US" class="no-js">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends 'base.html.twig' %}
 
-    <title>Big Slam &#8211; Sport Club HTML Template</title>
-
-    <link rel='stylesheet' href='plugins/goodlayers-core/plugins/fontawesome/font-awesome.css' type='text/css' media='all'>
-    <link rel='stylesheet' href='plugins/goodlayers-core/plugins/elegant/elegant-font.css' type='text/css' media='all'>
-    <link rel='stylesheet' href='plugins/goodlayers-core/plugins/style.css' type='text/css' media='all'>
-    <link rel='stylesheet' href='plugins/goodlayers-core/include/css/page-builder.css' type='text/css' media='all'>
-    <link rel='stylesheet' href='plugins/revslider/public/assets/css/rs6.css' type='text/css' media='all'>
-    <link rel='stylesheet' href='plugins/sportspress/assets/css/sportspress.css' type='text/css' media='all'>
-    <link rel='stylesheet' href='plugins/sportspress/assets/css/icons.css' type='text/css' media='all'>
-    <link rel='stylesheet' href='css/style-core.css' type='text/css' media='all'>
-    <link rel='stylesheet' href='css/bigslam-style-custom.css' type='text/css' media='all'>
-
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto+Condensed%3A300%2C300italic%2Cregular%2Citalic%2C700%2C700italic%7CRoboto%3A100%2C100italic%2C300%2C300italic%2Cregular%2Citalic%2C500%2C500italic%2C700%2C700italic%2C900%2C900italic%7CMerriweather%3A300%2C300italic%2Cregular%2Citalic%2C700%2C700italic%2C900%2C900italic%7CLora%3Aregular%2Citalic%2C700%2C700italic&subset=cyrillic-ext%2Cvietnamese%2Clatin%2Ccyrillic%2Cgreek-ext%2Clatin-ext%2Cgreek&ver=5.3' type='text/css' media='all'>
-
-
-
-</head>
-
-<body data-rsssl="1" class="page-template-default page page-id-4648 theme-bigslam gdlr-core-body woocommerce-no-js bigslam-body bigslam-body-front bigslam-full  bigslam-with-sticky-navigation  bigslam-sticky-navigation-no-logo gdlr-core-link-to-lightbox">
+{% block body  %}
     <div class="bigslam-mobile-header-wrap">
         <div class="bigslam-mobile-header bigslam-header-background bigslam-style-slide" id="bigslam-mobile-header">
             <div class="bigslam-mobile-header-container bigslam-container">
@@ -482,23 +460,21 @@
                         </div>
                         <div class="gdlr-core-pbf-wrapper-content gdlr-core-js " data-gdlr-animation="fadeInUp" data-gdlr-animation-duration="600ms" data-gdlr-animation-offset="0.8">
                             <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
-                                <div class="gdlr-core-pbf-element">
-                                    <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-bottom gdlr-core-item-pdlr">
-                                        <div class="gdlr-core-title-item-title-wrap ">
-                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " style="font-size: 75px ;letter-spacing: 0px ;text-transform: none ;">Contact Us<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider"></span></h3></div><span class="gdlr-core-title-item-caption gdlr-core-info-font gdlr-core-skin-caption" style="font-size: 25px ;margin-top: 25px ;">Get Intouch</span></div>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
                     <div class="gdlr-core-pbf-element">
-                        <div class="gdlr-core-alert-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
-                            <div class="gdlr-core-alert-box-item-inner gdlr-core-skin-e-background gdlr-core-skin-border" style="background-color: #25a34d ;border-color: #53b271 ;border-width: 3px;">
-                                <div class="gdlr-core-alert-box-remove gdlr-core-js"><i class="fa fa-remove"></i></div>
-                                <div class="gdlr-core-alert-box-item-head">
-                                    <div class="gdlr-core-alert-box-item-icon"><i class="fa fa-life-buoy"></i></div>
-                                    <h3 class="gdlr-core-alert-box-item-title gdlr-core-skin-title" style="color: #ffffff ;">You Report has Benn Sent !</h3></div>
-                                <div class="gdlr-core-alert-box-item-content gdlr-core-skin-e-content">
-                                    <p>Thank you for reporting your problem , we will respond to you as soon as possible !</p>
+                        <div class="gdlr-core-pbf-element">
+                            <div class="gdlr-core-alert-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
+                                <div class="gdlr-core-alert-box-item-inner gdlr-core-skin-e-background gdlr-core-skin-border" style="border-width: 0px;">
+                                    <div class="gdlr-core-alert-box-remove gdlr-core-js"><i class="fa fa-remove"></i></div>
+                                    <div class="gdlr-core-alert-box-item-head">
+                                        <div class="gdlr-core-alert-box-item-icon"><i class="fa fa-warning"></i></div>
+                                        <h3 class="gdlr-core-alert-box-item-title gdlr-core-skin-title" style="color: #ffffff ;">Report expired</h3></div>
+                                    <div class="gdlr-core-alert-box-item-content gdlr-core-skin-e-content">
+                                        <p>You can't modify your report because 24h has been spent after its creation !</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -604,49 +580,4 @@
         </div>
     </div><a href="#bigslam-top-anchor" class="bigslam-footer-back-to-top-button" id="bigslam-footer-back-to-top-button"><i class="fa fa-angle-up"></i></a>
 
-    <script type='text/javascript' src='js/jquery/jquery.js'></script>
-    <script type='text/javascript' src='js/jquery/jquery-migrate.min.js'></script>
-    <script type='text/javascript' src='plugins/goodlayers-core/plugins/script.js'></script>
-    <script type='text/javascript'>
-        /* <![CDATA[ */
-        var gdlr_core_pbf = {
-            "admin": "",
-            "video": {
-                "width": "640",
-                "height": "360"
-            },
-            "ajax_url": "#",
-            "ilightbox_skin": "dark"
-        };
-        /* ]]> */
-    </script>
-    <script type='text/javascript' src='plugins/goodlayers-core/include/js/page-builder.js'></script>
-    <script type='text/javascript' src='plugins/sportspress/assets/js/jquery.dataTables.min.js'></script>
-    <script type='text/javascript'>
-        /* <![CDATA[ */
-        var localized_strings = {
-            "days": "days",
-            "hrs": "hrs",
-            "mins": "mins",
-            "secs": "secs",
-            "previous": "Previous",
-            "next": "Next"
-        };
-        /* ]]> */
-    </script>
-    <script type='text/javascript' src='plugins/sportspress/assets/js/sportspress.js'></script>
-    <script type='text/javascript' src='js/jquery/ui/effect.min.js'></script>
-    <script type='text/javascript'>
-        /* <![CDATA[ */
-        var bigslam_script_core = {
-            "home_url": "index.html"
-        };
-        /* ]]> */
-    </script>
-    <script type='text/javascript' src='js/plugins.js'></script>
-  
-    <script type="text/javascript" src="plugins/quform/js/plugins.js"></script>
-    <script type="text/javascript" src="plugins/quform/js/scripts.js"></script>
-
-</body>
-</html>
+{% endblock %}

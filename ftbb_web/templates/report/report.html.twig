@@ -470,15 +470,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="gdlr-core-pbf-wrapper-content gdlr-core-js " data-gdlr-animation="fadeInUp" data-gdlr-animation-duration="600ms" data-gdlr-animation-offset="0.8">
-                            <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
-                                <div class="gdlr-core-pbf-element">
-                                    <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-bottom gdlr-core-item-pdlr">
-                                        <div class="gdlr-core-title-item-title-wrap ">
-                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " style="font-size: 75px ;letter-spacing: 0px ;text-transform: none ;">Contact Us<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider"></span></h3></div><span class="gdlr-core-title-item-caption gdlr-core-info-font gdlr-core-skin-caption" style="font-size: 25px ;margin-top: 25px ;">Get Intouch</span></div>
-                                </div>
-                            </div>
-                        </div>
                     <div class="gdlr-core-pbf-wrapper ">
                         <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
                             <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
@@ -600,7 +591,46 @@
                                                 <div class="gdlr-core-contact-form-7-item gdlr-core-item-pdlr gdlr-core-item-pdb ">
                                                     <div role="form" class="wpcf7" id="wpcf7-f1319-p1964-o1" lang="en-US" dir="ltr">
                                                         <div class="screen-reader-response"></div>
-                                                            {{ form(report_form) }}
+                                                         {{ form_start(report_form) }}  
+
+                                                                <div class="quform-elements">
+                                                                    <div class="quform-element">
+                                                                        <p>
+
+                                                                            <span class="wpcf7-form-control-wrap your-name">
+                                                                                {{ form_widget(report_form.commandId, {'attr': {'placeholder': 'Command Id*'}}) }}
+                                                                             </span> 
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="quform-element">
+                                                                        <p>
+
+                                                                            <span class="wpcf7-form-control-wrap your-email">
+                                                                             {{ form_widget(report_form.email, {'attr': {'placeholder': 'Email*'}}) }}
+                                                                            </span> 
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="quform-element">
+                                                                        <p>
+
+                                                                            <span class="wpcf7-form-control-wrap your-message">
+                                                                            {{ form_widget(report_form.description, {'attr': {'placeholder': 'Description*'}})  }}
+
+                                                                            </span>                                           
+                                                                        </p>
+                                                                    </div>
+                                                                    <p>
+                                                                        <!-- Begin Submit button -->
+                                                                        <div class="quform-submit">
+                                                                            <div class="quform-submit-inner">
+                                                                                {{ form_widget(report_form.Send, {'attr': { 'class': 'submit-button', 'type':'submit'}}) }}
+                                                                            </div>
+                                                                            <div class="quform-loading-wrap"><span class="quform-loading"></span></div>
+                                                                        </div>
+                                                                    </p>
+                                                                </div>
+                                                            {{ form_end(report_form) }}   
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

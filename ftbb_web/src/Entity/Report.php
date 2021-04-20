@@ -3,6 +3,10 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\EmailValidator;
 
 
 /**
@@ -32,6 +36,7 @@ class Report
      * @var int
      *
      * @ORM\Column(name="command_id", type="integer", nullable=false)
+     * @Assert\NotBlank(message="Insert command ID")
      */
     private $commandId;
 
@@ -46,6 +51,7 @@ class Report
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=false)
+     * @Assert\NotBlank(message="Email ")
      */
     private $email;
 
@@ -53,6 +59,7 @@ class Report
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=false)
+     * @Assert\NotBlank(message="azerty")
      */
     private $description;
 
@@ -198,6 +205,20 @@ class Report
     {
         $this->reportId = $reportId;
 
+    }
+
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('description', new Assert\Length([
+            'min' => 50,
+            'max' => 2000,
+            'minMessage' => 'Your description must be at least {{ limit }} characters long',
+            'maxMessage' => 'Your description cannot be longer than {{ limit }} characters',
+        ]));
+
+        $metadata->addPropertyConstraint('email', new Assert\Email([
+            'message' => 'The email "{{ value }}" is not a valid email.',
+        ]));
     }
 
   

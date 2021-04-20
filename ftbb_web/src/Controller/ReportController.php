@@ -10,6 +10,8 @@ use App\Form\ReportFormType;
 use App\Form\ModifyReportType;
 use Symfony\Component\Validator\Constraints\DateTime;
 use App\Utils\Utilities;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class ReportController extends AbstractController
 {
@@ -76,26 +78,18 @@ class ReportController extends AbstractController
      */
     public function modifyReports(Request $req,$id)
     {
-/*        
-        $report = new Report();
-        $form = $this ->createForm(ModifyReportType::class,$report); //houni snaana form fil controlleur w passinelou el classe illi yasna3 el form fi 7add dhetou w instance ta3 objet feragh
-        $form->handleRequest($req);
-        if($form->isSubmitted() && $form->isValid()){
-            $data=$form->getData(); //houni khdhit tableau ta3 keys (add->'name' ta3 el valeur bidha illi mawjouda fi textfield)
-            $em = $this->getDoctrine()->getManager();
-            $report=$em->getRepository(Report::class)->find($id);
-            $report->setDescription($data->getDescription());
-            $em->flush();
-
-            //return $this->redirectToRoute('list');
-        }
-*/
         $entityManager = $this->getDoctrine()->getManager();
-
+        $rep= $entityManager ->getRepository(Report::class)->find($id);
+        $today = Utilities::getDateTimeObject(date("D M d, Y G:i"), "D M d, Y G:i");
+        $diff=$rep->getReportDate()->diff($today); 
+        //var_dump($diff->format('%R%a days'));
+        
+        if($diff->format('%R%a')=="0"){
+        
         $report = $entityManager->getRepository(Report::class)->find($id);
         $form = $this->createForm(ModifyReportType::class, $report);
         $form->handleRequest($req);
-
+        
         if($form->isSubmitted() && $form->isValid())
         {
             $entityManager->flush();
@@ -106,6 +100,8 @@ class ReportController extends AbstractController
         return $this->render('report/clientmodifyreport.html.twig', [
             'report_form' => $form->createView()
         ]);
-        
+        }else{
+            return $this->render('report/reportExpired.html.twig', []);
+        }
     }
 }
