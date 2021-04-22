@@ -67,7 +67,7 @@ class ArticleController extends AbstractController
             $article->setPhotoUrl($data->getPhotoUrl());
             $em->persist($article);
             $em->flush();
-            return $this->redirectToRoute('articles_admin');
+            return $this->redirectToRoute("articles_admin");
         }
         return $this->render('article/admin/article-add-form.html.twig', [
             'article_add_form' => $form->createView(),
@@ -94,7 +94,7 @@ class ArticleController extends AbstractController
             $em->persist($article);
             $em->flush();
             
-            //return $this->redirect('/articles');
+            return $this->redirectToRoute("articles_admin");
         }
         return $this->render('article/admin/article-add-form.html.twig', [
             'article_add_form' => $form->createView()
