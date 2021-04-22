@@ -33,7 +33,7 @@ class ArticleController extends AbstractController
     public function listArticlesForAdmin(): Response
     {
         $articles = $this ->getDoctrine()->getRepository(Article :: class)->findAll();
-        return $this->render('article/admin/article-show-admin.html.twig', ['articles' => $articles]);
+        return $this->render('back/article-show-admin.html.twig', ['articles' => $articles]);
     }
     /**
      * @Route("/admin/article/delete/{id}", name="articles_admin_delete")
