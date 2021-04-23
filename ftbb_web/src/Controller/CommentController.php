@@ -47,8 +47,8 @@ class CommentController extends AbstractController
      * @Route("/admin/article/{id}/ban_comment", name="ban_comment")
      */
     public function banComment($id){
-        $article = $this->getDoctrine()->getRepository(Article::class)->find($id);
-        return $this->render('comment/ban_comment.html.twig', ['article' => $article]);
+        $comments = $this->getDoctrine()->getRepository(Comment::class)->findBy(array('article_id' => $id));
+        return $this->render('comment/ban_comment.html.twig', ['comments' => $comments]);
     }
     /**
      * @Route("/article/{id}/comment/{id_com}/delete", name="delete_comment_client")
@@ -72,5 +72,12 @@ class CommentController extends AbstractController
         $em->remove($com);
         $em->flush();
         return $this->redirectToRoute("ban_comment", ['id' => $id]);
+    }
+    /**
+     * @Route("/admin/article/{id}/ban_comment/sort_liked", name="liked_sort")
+     */
+    public function sortByLike($id){
+        $comments = $this->getDoctrine()->getRepository(Comment::class)->findBy(array('article_id' => $id), ['content' => 'DESC']);
+        return $this->render('comment/ban_comment.html.twig', ['comments' => $comments]);
     }
 }

@@ -649,8 +649,8 @@
                      <div class="page-title-wrapper">
                         <div class="page-title-heading" style="font-size: xx-large;">
                            <div>
-                              <b>Articles</b>
-                              <div class="page-title-subheading">These are all the articles that were posted.</div>
+                              <b>Comments</b>
+                              <div class="page-title-subheading">These are all the comments for {{comments[0].articleId}}</div>
                            </div>
                         </div>
                         <div class="page-title-actions">
@@ -664,7 +664,7 @@
                               <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(108px, 32px, 0px);">
                                  <ul class="nav flex-column">
                                     <li class="nav-item">
-                                       <a href="javascript:void(0);" class="nav-link">
+                                       <a href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/admin/article/{{comments[0].articleId}}/ban_comment/sort_liked" class="nav-link">
                                           <i class="nav-link-icon lnr-inbox"></i>
                                           <span>
                                           Most Liked
@@ -702,7 +702,7 @@
                               </tr>
                            </thead>
                            <tbody>
-                              {% for key,comment in article.comments %}
+                              {% for key,comment in comments %}
                               <tr>
                                  <td>{{key+1}}</td>
                                  <td> {{comment.client.name}}{{" "}}{{comment.client.surname}} </td>
@@ -710,7 +710,7 @@
                                  <td> {{comment.content}} </td>
                                  <td> {{comment.getLikesCount()}} </td>
                                  <td>
-                                 <button class="mb-2 mr-2 btn btn-danger"><a href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/admin/article/{{article.articleId}}/ban/{{comment.id}}" style="color: white;"> Ban! </a></button>
+                                 <button class="mb-2 mr-2 btn btn-danger"><a href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/admin/article/{{comment.articleId}}/ban/{{comment.id}}" style="color: white;"> Ban! </a></button>
                                  </td>
                               </tr>
                               {% endfor %}
