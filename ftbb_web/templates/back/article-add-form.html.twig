@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
    <head>
       <meta charset="utf-8">
@@ -22,6 +23,18 @@
       <style type="text/css">/* Chart.js */
          @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}
       </style>
+        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+        <script type="application/x-javascript">
+
+        tinymce.init({selector:'textare.tinyarea',
+         plugins: "advlist lists spellchecker autoresize wordcount",
+  min_height: 120,
+  menubar: false,
+  toolbar: ["bold italic underline | bullist numlist | spellchecker"],
+        });
+
+        </script>
       <script type="text/javascript" charset="UTF-8" src="http://maps.google.com/maps-api-v3/api/js/44/11a/common.js"></script><script type="text/javascript" charset="UTF-8" src="http://maps.google.com/maps-api-v3/api/js/44/11a/util.js"></script>
    </head>
    <body>
@@ -649,8 +662,14 @@
                      <div class="page-title-wrapper">
                         <div class="page-title-heading" style="font-size: xx-large;">
                            <div>
-                              <b>Articles</b>
-                              <div class="page-title-subheading">These are all the articles that were posted.</div>
+                              <b>
+                                {% if article is defined %}
+                                    Articles Editor : Editing article number{{article.articleId}}
+                                {% else %}
+                                    Articles Editor : New Article
+                                {% endif %}
+                                </b>
+                              <div class="page-title-subheading">Here you can edit or create a new article.</div>
                            </div>
                         </div>
                         <div class="page-title-actions">
@@ -708,36 +727,54 @@
                   </div>
                </div>
                <!--CONTENT STARTS-->
-                <div class="tab-pane tabs-animation fade show active" id="tab-content-1" role="tabpanel">
-                   {% set i = 0 %}
-                    {% for key,article in articles %}
-                    {% if i == 0 %}
-                    <div class="row">
-                     {% endif %}
-                     {% if i  != 3 %}
-                     {% set i = i + 1 %}
-                    <div class="col-md-4">
-                        <div class="main-card mb-3 card">
-                            <img width="500px" height="300px" src="{{article.photoUrl}}" alt="Card image cap" class="card-img-top">
-                            <div class="card-body">
-                                <h5 class="card-title">{{article.title}}</h5>
-                                <h6 class="card-subtitle">{{article.date | date('Y-m-d')}}</h6>
-                                {{ article.text|length > 100 ? article.text|slice(0, 100) ~ '...' : article.text  }}
-                                <br><br>
-                                <button class="btn btn-secondary" ><a style="color: white;" href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/admin/article/{{article.articleId}}/ban_comment">Show Comments ({{article.getCommentsCount()}})</a></button>
-                                <button class="btn btn-secondary" ><a href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/admin/article/delete/{{article.articleId}}" style="color: white;">Delete</a></button>
-                                <button class="btn btn-secondary" ><a href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/admin/article/modify/{{article.articleId}}" style="color: white;">Edit</a></button>
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        {{ form_start(article_add_form) }}
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                <div class="position-relative form-group"><label for="exampleEmail11" class="">Title</label>
+                                    {% if article is defined %}
+                                        {% set content = article.title %}
+                                    {% else %}
+                                        {% set content = "" %}
+                                    {% endif %}
+                                    {{form_widget(article_add_form.title, {'attr': {'class': 'form-control', 'placeholder': 'set a title'}})}}
+                                </div>
+                                </div>
+                                <div class="col-md-6">
+                                <div class="position-relative form-group"><label for="examplePassword11" class="">Author</label>
+                                    {% if article is defined %}
+                                        {% set content = article.author %}
+                                    {% else %}
+                                        {% set content = "" %}
+                                    {% endif %}
+                                    {{form_widget(article_add_form.author, {'attr': {'class': 'form-control', 'placeholder': 'set authors name'}})}}
+                                </div>
+                                </div>
                             </div>
-                        </div>
+                        
+                            <div class="position-relative form-group"><label for="exampleAddress2" class="">Text</label>
+                                {% if article is defined %}
+                                    {% set content = article.text %}
+                                {% else %}
+                                    {% set content = "" %}
+                                {% endif %}
+                                {{form_widget(article_add_form.text, {'attr': {'class': 'form-control', 'placeholder': 'Write down the article '}})}}
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    {{form_widget(article_add_form.url, {'attr': {'type': 'file', 'class': 'form-control', 'placeholder': 'set photo url'}})}}
+                                </div>
+                                </div>
+                                <div class="col-md-6">
+                                {{ form_widget(article_add_form.category, {'attr': {'class': 'mt-2 btn btn-primary'}})}}
+                                </div>
+                            </div>
+                            <br>
+                            {{ form_widget(article_add_form.publish, {'attr': {'type': 'submit', 'value': 'Publish', 'class': 'mt-2 btn btn-primary'}})}}
+                        {{ form_end(article_add_form) }}
                     </div>
-                    {% else %}
-                    {% set i = 0 %}
-                    {{ loop.index0 }}
-                    {% endif %}
-                     {% if i == 0 %}
-                    </div>
-                    {% endif %}
-                     {% endfor %}
                 </div>
                <!--CONTENT ENDS-->
                <div class="app-wrapper-footer">

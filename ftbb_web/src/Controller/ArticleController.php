@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Article;
 use App\Entity\Comment;
@@ -69,7 +70,7 @@ class ArticleController extends AbstractController
             $em->flush();
             return $this->redirectToRoute("articles_admin");
         }
-        return $this->render('article/admin/article-add-form.html.twig', [
+        return $this->render('back/article-add-form.html.twig', [
             'article_add_form' => $form->createView(),
             'article' => $article
         ]);
@@ -86,6 +87,17 @@ class ArticleController extends AbstractController
         $form->handleRequest($req);
 
         if($form->isSubmitted() && $form->isValid()){
+            /*** @var UploadedFile $uploadedFile */
+            $uploadedFile = $form['url']->getData();
+            $destination = $this->getParameter('kernel.project_dir').'/public/images/articles_upload';
+
+            $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $newFilename = '-'.uniqid().'.'.$uploadedFile->guessExtension();
+            $uploadedFile->move(
+                $destination,
+                $newFilename
+            );
+            $article->setPhotoUrl("http://127.0.0.1/ftbb_web/ftbb_web/public/images/articles_upload/".$newFilename);
             $em = $this ->getDoctrine()->getManager();
             $article->setAdminId("47056258");
             $article->setArticleId(Utilities::generateId($article,'articleId', $this->getDoctrine()));
@@ -96,7 +108,7 @@ class ArticleController extends AbstractController
             
             return $this->redirectToRoute("articles_admin");
         }
-        return $this->render('article/admin/article-add-form.html.twig', [
+        return $this->render('back/article-add-form.html.twig', [
             'article_add_form' => $form->createView()
         ]);
     }

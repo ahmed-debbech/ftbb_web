@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use App\Entity\Article;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ArticleAddFormType extends AbstractType
 {
@@ -18,7 +19,9 @@ class ArticleAddFormType extends AbstractType
             ->add('title')
             ->add('text', TextareaType::class)
             ->add('author')
-            ->add('photoUrl')
+            ->add('url', FileType::class, [
+                'mapped' => false
+            ])
             ->add('category', ChoiceType::class, [
                 'choices' => [
                     Article::$BREAKING_NEWS => 0,
