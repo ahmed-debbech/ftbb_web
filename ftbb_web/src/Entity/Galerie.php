@@ -49,5 +49,58 @@ class Galerie
      */
     private $description;
 
+    public function getGalerieId(): ?int
+    {
+        return $this->galerieId;
+    }
+
+    public function getAdminId(): ?int
+    {
+        return $this->adminId;
+    }
+
+    public function setAdminId(int $adminId): self
+    {
+        $this->adminId = $adminId;
+
+        return $this;
+    }
+
+    public function getPhotoUrl(): ?string
+    {
+        return $this->photoUrl;
+    }
+
+    public function setPhotoUrl(string $photoUrl): self
+    {
+        $this->photoUrl = $photoUrl;
+
+        return $this;
+    }
+
+    public function getPhotoTitle(): ?string
+    {
+        return $this->photoTitle;
+    }
+
+    public function setPhotoTitle(string $photoTitle): self
+    {
+        $this->photoTitle = $photoTitle;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
 
 }

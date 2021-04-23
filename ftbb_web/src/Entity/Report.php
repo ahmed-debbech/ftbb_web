@@ -56,5 +56,70 @@ class Report
      */
     private $description;
 
+    public function getReportId(): ?int
+    {
+        return $this->reportId;
+    }
+
+    public function getClientId(): ?int
+    {
+        return $this->clientId;
+    }
+
+    public function setClientId(int $clientId): self
+    {
+        $this->clientId = $clientId;
+
+        return $this;
+    }
+
+    public function getCommandId(): ?int
+    {
+        return $this->commandId;
+    }
+
+    public function setCommandId(int $commandId): self
+    {
+        $this->commandId = $commandId;
+
+        return $this;
+    }
+
+    public function getReportDate(): ?\DateTimeInterface
+    {
+        return $this->reportDate;
+    }
+
+    public function setReportDate(\DateTimeInterface $reportDate): self
+    {
+        $this->reportDate = $reportDate;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
 
 }

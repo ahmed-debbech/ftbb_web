@@ -28,5 +28,22 @@ class Statistique
      */
     private $doc;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getDoc(): ?string
+    {
+        return $this->doc;
+    }
+
+    public function setDoc(string $doc): self
+    {
+        $this->doc = $doc;
+
+        return $this;
+    }
+
 
 }

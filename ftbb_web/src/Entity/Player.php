@@ -52,5 +52,58 @@ class Player
      */
     private $idTeam;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getAge(): ?int
+    {
+        return $this->age;
+    }
+
+    public function setAge(int $age): self
+    {
+        $this->age = $age;
+
+        return $this;
+    }
+
+    public function getLogo(): ?string
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(string $logo): self
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+    public function getIdTeam(): ?Team
+    {
+        return $this->idTeam;
+    }
+
+    public function setIdTeam(?Team $idTeam): self
+    {
+        $this->idTeam = $idTeam;
+
+        return $this;
+    }
+
 
 }

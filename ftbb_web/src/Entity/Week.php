@@ -28,5 +28,22 @@ class Week
      */
     private $nameWeek;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getNameWeek(): ?string
+    {
+        return $this->nameWeek;
+    }
+
+    public function setNameWeek(string $nameWeek): self
+    {
+        $this->nameWeek = $nameWeek;
+
+        return $this;
+    }
+
 
 }

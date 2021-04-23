@@ -38,5 +38,34 @@ class Options
      */
     private $poll;
 
+    public function getOptionId(): ?int
+    {
+        return $this->optionId;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getPoll(): ?Poll
+    {
+        return $this->poll;
+    }
+
+    public function setPoll(?Poll $poll): self
+    {
+        $this->poll = $poll;
+
+        return $this;
+    }
+
 
 }

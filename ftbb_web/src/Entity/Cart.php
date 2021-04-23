@@ -56,5 +56,70 @@ class Cart
      */
     private $refProduct;
 
+    public function getAdditionId(): ?int
+    {
+        return $this->additionId;
+    }
+
+    public function getCartId(): ?int
+    {
+        return $this->cartId;
+    }
+
+    public function setCartId(int $cartId): self
+    {
+        $this->cartId = $cartId;
+
+        return $this;
+    }
+
+    public function getIdClient(): ?int
+    {
+        return $this->idClient;
+    }
+
+    public function setIdClient(int $idClient): self
+    {
+        $this->idClient = $idClient;
+
+        return $this;
+    }
+
+    public function getNumProducts(): ?int
+    {
+        return $this->numProducts;
+    }
+
+    public function setNumProducts(int $numProducts): self
+    {
+        $this->numProducts = $numProducts;
+
+        return $this;
+    }
+
+    public function getTotalPrice(): ?int
+    {
+        return $this->totalPrice;
+    }
+
+    public function setTotalPrice(int $totalPrice): self
+    {
+        $this->totalPrice = $totalPrice;
+
+        return $this;
+    }
+
+    public function getRefProduct(): ?int
+    {
+        return $this->refProduct;
+    }
+
+    public function setRefProduct(int $refProduct): self
+    {
+        $this->refProduct = $refProduct;
+
+        return $this;
+    }
+
 
 }

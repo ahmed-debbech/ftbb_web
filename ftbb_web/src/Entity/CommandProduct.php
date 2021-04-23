@@ -42,5 +42,46 @@ class CommandProduct
      */
     private $commandId;
 
+    public function getIdCp(): ?int
+    {
+        return $this->idCp;
+    }
+
+    public function getRefProduct(): ?int
+    {
+        return $this->refProduct;
+    }
+
+    public function setRefProduct(int $refProduct): self
+    {
+        $this->refProduct = $refProduct;
+
+        return $this;
+    }
+
+    public function getIdClient(): ?int
+    {
+        return $this->idClient;
+    }
+
+    public function setIdClient(int $idClient): self
+    {
+        $this->idClient = $idClient;
+
+        return $this;
+    }
+
+    public function getCommandId(): ?int
+    {
+        return $this->commandId;
+    }
+
+    public function setCommandId(int $commandId): self
+    {
+        $this->commandId = $commandId;
+
+        return $this;
+    }
+
 
 }

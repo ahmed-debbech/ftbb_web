@@ -42,5 +42,46 @@ class Password
      */
     private $previousPwd;
 
+    public function getPasswordId(): ?int
+    {
+        return $this->passwordId;
+    }
+
+    public function getPwd(): ?string
+    {
+        return $this->pwd;
+    }
+
+    public function setPwd(string $pwd): self
+    {
+        $this->pwd = $pwd;
+
+        return $this;
+    }
+
+    public function getLastChange(): ?\DateTimeInterface
+    {
+        return $this->lastChange;
+    }
+
+    public function setLastChange(\DateTimeInterface $lastChange): self
+    {
+        $this->lastChange = $lastChange;
+
+        return $this;
+    }
+
+    public function getPreviousPwd(): ?string
+    {
+        return $this->previousPwd;
+    }
+
+    public function setPreviousPwd(?string $previousPwd): self
+    {
+        $this->previousPwd = $previousPwd;
+
+        return $this;
+    }
+
 
 }

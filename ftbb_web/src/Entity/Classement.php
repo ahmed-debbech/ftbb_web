@@ -86,5 +86,106 @@ class Classement
      */
     private $idTeam;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getNbrPtsP(): ?int
+    {
+        return $this->nbrPtsP;
+    }
+
+    public function setNbrPtsP(?int $nbrPtsP): self
+    {
+        $this->nbrPtsP = $nbrPtsP;
+
+        return $this;
+    }
+
+    public function getNbrPtsG(): ?int
+    {
+        return $this->nbrPtsG;
+    }
+
+    public function setNbrPtsG(?int $nbrPtsG): self
+    {
+        $this->nbrPtsG = $nbrPtsG;
+
+        return $this;
+    }
+
+    public function getNbrPtsD(): ?int
+    {
+        return $this->nbrPtsD;
+    }
+
+    public function setNbrPtsD(?int $nbrPtsD): self
+    {
+        $this->nbrPtsD = $nbrPtsD;
+
+        return $this;
+    }
+
+    public function getPtsDiff(): ?int
+    {
+        return $this->ptsDiff;
+    }
+
+    public function setPtsDiff(?int $ptsDiff): self
+    {
+        $this->ptsDiff = $ptsDiff;
+
+        return $this;
+    }
+
+    public function getNbrPts(): ?int
+    {
+        return $this->nbrPts;
+    }
+
+    public function setNbrPts(?int $nbrPts): self
+    {
+        $this->nbrPts = $nbrPts;
+
+        return $this;
+    }
+
+    public function getIdCompetition(): ?Competition
+    {
+        return $this->idCompetition;
+    }
+
+    public function setIdCompetition(?Competition $idCompetition): self
+    {
+        $this->idCompetition = $idCompetition;
+
+        return $this;
+    }
+
+    public function getIdPhase(): ?Phase
+    {
+        return $this->idPhase;
+    }
+
+    public function setIdPhase(?Phase $idPhase): self
+    {
+        $this->idPhase = $idPhase;
+
+        return $this;
+    }
+
+    public function getIdTeam(): ?Team
+    {
+        return $this->idTeam;
+    }
+
+    public function setIdTeam(?Team $idTeam): self
+    {
+        $this->idTeam = $idTeam;
+
+        return $this;
+    }
+
 
 }

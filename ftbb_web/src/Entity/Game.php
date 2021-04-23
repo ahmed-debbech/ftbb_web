@@ -116,5 +116,142 @@ class Game
      */
     private $idWeek;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getScoreHome(): ?int
+    {
+        return $this->scoreHome;
+    }
+
+    public function setScoreHome(int $scoreHome): self
+    {
+        $this->scoreHome = $scoreHome;
+
+        return $this;
+    }
+
+    public function getScoreAway(): ?int
+    {
+        return $this->scoreAway;
+    }
+
+    public function setScoreAway(int $scoreAway): self
+    {
+        $this->scoreAway = $scoreAway;
+
+        return $this;
+    }
+
+    public function getStatus(): ?int
+    {
+        return $this->status;
+    }
+
+    public function setStatus(int $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getSalle(): ?string
+    {
+        return $this->salle;
+    }
+
+    public function setSalle(string $salle): self
+    {
+        $this->salle = $salle;
+
+        return $this;
+    }
+
+    public function getTime(): ?\DateTimeInterface
+    {
+        return $this->time;
+    }
+
+    public function setTime(?\DateTimeInterface $time): self
+    {
+        $this->time = $time;
+
+        return $this;
+    }
+
+    public function getIdCompetition(): ?Competition
+    {
+        return $this->idCompetition;
+    }
+
+    public function setIdCompetition(?Competition $idCompetition): self
+    {
+        $this->idCompetition = $idCompetition;
+
+        return $this;
+    }
+
+    public function getIdPhase(): ?Phase
+    {
+        return $this->idPhase;
+    }
+
+    public function setIdPhase(?Phase $idPhase): self
+    {
+        $this->idPhase = $idPhase;
+
+        return $this;
+    }
+
+    public function getIdStatistique(): ?Statistique
+    {
+        return $this->idStatistique;
+    }
+
+    public function setIdStatistique(?Statistique $idStatistique): self
+    {
+        $this->idStatistique = $idStatistique;
+
+        return $this;
+    }
+
+    public function getIdTeamAway(): ?Team
+    {
+        return $this->idTeamAway;
+    }
+
+    public function setIdTeamAway(?Team $idTeamAway): self
+    {
+        $this->idTeamAway = $idTeamAway;
+
+        return $this;
+    }
+
+    public function getIdTeamHome(): ?Team
+    {
+        return $this->idTeamHome;
+    }
+
+    public function setIdTeamHome(?Team $idTeamHome): self
+    {
+        $this->idTeamHome = $idTeamHome;
+
+        return $this;
+    }
+
+    public function getIdWeek(): ?Week
+    {
+        return $this->idWeek;
+    }
+
+    public function setIdWeek(?Week $idWeek): self
+    {
+        $this->idWeek = $idWeek;
+
+        return $this;
+    }
+
 
 }

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -102,79 +103,123 @@ class Article
 	}
 
 	public function setArticleId($articleId){
-		$this->articleId = $articleId;
-	}
+               		$this->articleId = $articleId;
+               	}
 
 	public function getAdminId(){
-		return $this->adminId;
-	}
+               		return $this->adminId;
+               	}
 
 	public function setAdminId($adminId){
-		$this->adminId = $adminId;
-	}
+               		$this->adminId = $adminId;
+               	}
 
   
 
 	public function getTitle(){
-		return $this->title;
-	}
+               		return $this->title;
+               	}
 
 	public function setTitle($title){
-		$this->title = $title;
-	}
+               		$this->title = $title;
+               	}
 
 	public function getText(){
-		return $this->text;
-	}
+               		return $this->text;
+               	}
 
 	public function setText($text){
-		$this->text = $text;
-	}
+               		$this->text = $text;
+               	}
 
 	public function getAuthor(){
-		return $this->author;
-	}
+               		return $this->author;
+               	}
 
 	public function setAuthor($author){
-		$this->author = $author;
-	}
+               		$this->author = $author;
+               	}
 
 	public function getDate(){
-		return $this->date;
-	}
+               		return $this->date;
+               	}
 
 	public function setDate($date){
-		$this->date = $date;
-	}
+               		$this->date = $date;
+               	}
 
 	public function getPhotoUrl(){
-		return $this->photoUrl;
-	}
+               		return $this->photoUrl;
+               	}
 
 	public function setPhotoUrl($photoUrl){
-		$this->photoUrl = $photoUrl;
-	}
+               		$this->photoUrl = $photoUrl;
+               	}
 
 	public function getCategory(){
-		return $this->category;
-	}
+               		return $this->category;
+               	}
 
 	public function getComments(){
-		return $this->comments;
-	}
+               		return $this->comments;
+               	}
 
     public function getLikes(){
 		return $this->likes;
 	}
 
 	public function setCategory($category){
-		$this->category = $category;
-	}
+               		$this->category = $category;
+               	}
     public function getCommentsCount(){
         return $this->comments->count();
     }
     public function getLikesCount(){
         return $this->likes->count();
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getArticle() === $this) {
+                $comment->setArticle(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function addLike(Likes $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setIdArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Likes $like): self
+    {
+        if ($this->likes->removeElement($like)) {
+            // set the owning side to null (unless already changed)
+            if ($like->getIdArticle() === $this) {
+                $like->setIdArticle(null);
+            }
+        }
+
+        return $this;
     }
     
 }

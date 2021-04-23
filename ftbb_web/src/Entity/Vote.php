@@ -45,5 +45,46 @@ class Vote
      */
     private $option;
 
+    public function getVoteId(): ?int
+    {
+        return $this->voteId;
+    }
+
+    public function getClientId(): ?int
+    {
+        return $this->clientId;
+    }
+
+    public function setClientId(?int $clientId): self
+    {
+        $this->clientId = $clientId;
+
+        return $this;
+    }
+
+    public function getVoteNbr(): ?int
+    {
+        return $this->voteNbr;
+    }
+
+    public function setVoteNbr(?int $voteNbr): self
+    {
+        $this->voteNbr = $voteNbr;
+
+        return $this;
+    }
+
+    public function getOption(): ?Options
+    {
+        return $this->option;
+    }
+
+    public function setOption(?Options $option): self
+    {
+        $this->option = $option;
+
+        return $this;
+    }
+
 
 }

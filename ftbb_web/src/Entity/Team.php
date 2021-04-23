@@ -45,5 +45,46 @@ class Team
      */
     private $idCompetition;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getLogo(): ?string
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(?string $logo): self
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+    public function getIdCompetition(): ?Competition
+    {
+        return $this->idCompetition;
+    }
+
+    public function setIdCompetition(?Competition $idCompetition): self
+    {
+        $this->idCompetition = $idCompetition;
+
+        return $this;
+    }
+
 
 }

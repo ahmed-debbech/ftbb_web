@@ -35,5 +35,34 @@ class Competition
      */
     private $calendar;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getCalendar(): ?string
+    {
+        return $this->calendar;
+    }
+
+    public function setCalendar(?string $calendar): self
+    {
+        $this->calendar = $calendar;
+
+        return $this;
+    }
+
 
 }
