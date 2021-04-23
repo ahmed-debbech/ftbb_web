@@ -22,6 +22,17 @@ class GalerieController extends AbstractController
         $form = $this ->createForm(GalerieFormType::class,$gal); 
         $form->handleRequest($req);
         if($form->isSubmitted() && $form->isValid()){
+             /*** @var UploadedFile $uploadedFile */
+             $uploadedFile = $form['url']->getData();
+             $destination = $this->getParameter('kernel.project_dir').'/public/images/galerie';
+ 
+             $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+             $newFilename = '-'.uniqid().'.'.$uploadedFile->guessExtension();
+             $uploadedFile->move(
+                 $destination,
+                 $newFilename
+             );
+             $gal->setPhotoUrl("http://127.0.0.1/ftbb_web/ftbb_web/public/images/galerie/".$newFilename);
             $em = $this->getDoctrine()->getManager();
             $gal->setGalerieId(Utilities::generateId($gal,"galerieId",$this->getDoctrine()));
             $gal->setAdminId("999");   

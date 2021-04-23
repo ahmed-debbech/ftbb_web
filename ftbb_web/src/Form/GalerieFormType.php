@@ -16,7 +16,9 @@ class GalerieFormType extends AbstractType
         $builder
         ->add('description',TextareaType::class)
         ->add('photoTitle')
-        ->add('photoUrl',FileType::class)
+        ->add('url', FileType::class, [
+            'mapped' => false
+        ])
         ->add('add', SubmitType::class)
         ;
     }

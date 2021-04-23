@@ -745,7 +745,7 @@
                                                {{form_start(galerie_form)}}
                                                     <div class="position-relative form-group"><label for="exampleAddress" class="">Photo Title</label>{{ form_widget(galerie_form.photoTitle, {'attr': {'class':'form-control','placeholder': 'photo title*'}}) }}</div>                   
                                                     <div class="position-relative form-group"><label for="exampleText" class="">Photo Description</label>{{ form_widget(galerie_form.description, {'attr': {'class':'form-control','placeholder': 'desc*'}}) }}</div>
-                                                    <div class="position-relative form-group"><label for="exampleFile" class="">Choose Photo</label>{{ form_widget(galerie_form.photoUrl, {'attr': {'class':'form-control','placeholder': 'photo url*'}}) }}
+                                                    <div class="position-relative form-group"><label for="exampleFile" class="">Choose Photo</label>{{ form_widget(galerie_form.url, {'attr': {'class':'form-control','placeholder': 'photo url*'}}) }}
                                                         <small class="form-text text-muted">Select Photo from desktop.</small>
                                                     </div>
                                                     {{ form_widget(galerie_form.add, {'attr': { 'class': 'mt-1 btn btn-primary', 'type':'submit'}}) }}

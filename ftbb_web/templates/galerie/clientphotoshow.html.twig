@@ -476,11 +476,10 @@
                                                         </div>
                                                         
                                                         <div class="gdlr-core-blog-full-content">
-                                                            <img width="500px" height="300px" src="http://127.0.0.1/uploads/{{galerie.photoUrl}}" alt="Card image cap" class="card-img-top">
+                                                            <img width="500px" height="300px" src="{{galerie.photoUrl}}" alt="Card image cap" class="card-img-top">
                                                             <h3 class="gdlr-core-blog-title gdlr-core-skin-title" style="font-size: 40px ;font-weight: 800 ;letter-spacing: 0px ;">{{ galerie.photoTitle }}</h3>
                                                             
                                                             <div class="gdlr-core-blog-content">{{ galerie.description|length > 200 ? galerie.description|slice(0, 200) ~ '...' : galerie.description  }}
-                                                                <div class="clear"></div><a class="gdlr-core-excerpt-read-more gdlr-core-button gdlr-core-rectangle" href="http://127.0.0.1/uploads/{{galerie.photoTitle}}">Read More</a></div>
                                                         </div>
                                                     </div>
                                                 <!-- A single post end-->

@@ -117,12 +117,12 @@ class ReportController extends AbstractController
     }
 
      /**
-     * @Route("/report/respond", name="report_respond")
+     * @Route("/report/respond/{id}", name="report_respond")
      */
-    public function RespondReport()
+    public function RespondReport($id)
     {
-       
-        return $this->render('back/respondClient.html.twig',[]);
+        $report = $this->getDoctrine()->getRepository(Report::class)->find($id);
+        return $this->render('back/respondClient.html.twig',['id'=>$id]);
         
     }
 }
