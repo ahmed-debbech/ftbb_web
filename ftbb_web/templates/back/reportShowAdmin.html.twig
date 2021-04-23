@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Gallery List - All photos Here.</title>
+    <title>report List - All reports Here.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="Tables are the backbone of almost all web applications.">
     <meta name="msapplication-tap-highlight" content="no">
@@ -672,8 +672,8 @@
                                         <i class="pe-7s-drawer icon-gradient bg-happy-itmeo">
                                         </i>
                                     </div>
-                                    <div>Gallery List
-                                        <div class="page-title-subheading">All Photos Here !
+                                    <div>Report List for Admin
+                                        <div class="page-title-subheading">All reports Here !
                                         </div>
                                     </div>
                                 </div>
@@ -737,29 +737,34 @@
                             
                            
                         <div class="col-lg-6">
-                                <div class="main-card mb-3 card" style="width:1000px">
+                                <div class="main-card mb-3 card" style="width:1100px">
                                     <div class="card-body" >
                                         <table class="mb-0 table table-striped" style="width:100%">
                                             <thead>
                                             <tr>
-                                                <th>Photo ID</th> 
-                                                <th>Photo Title</th>    
-                                                <th>Photo url</th>
-                                                <th>Description</th>
+                                                <th>report ID</th> 
+                                                <th>client ID</th>    
+                                                <th>command ID</th>
+                                                <th>report Date</th>
+                                                <th>email</th>
+                                                <th>description</th>
+
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            {% for galerie in galeries %}
+                                            {% for report in reports %}
 
-                                            <tr>
-                                                 <td>{{galerie.galerieId}}</td>
-                                                <td>{{galerie.photoTitle}}</td>
-                                                <td>{{galerie.photoUrl}}</td>
-                                                <td>{{galerie.description}}</td>
-                                                <td><div class="row"><a class="gdlr-core-button  gdlr-core-button-solid gdlr-core-button-no-border" href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/galerie/supp/{{galerie.galerieId}}" id="gdlr-core-button-id-51465"><span class="mb-2 mr-2 btn-transition btn btn-outline-primary" >Delete</span></a></div>
-                                                    
-                                                </td>
-                                            </tr>
+                                                <tr>
+                                                    <td>{{report.reportId}}</td>
+                                                    <td>{{report.clientId}}</td>
+                                                    <td>{{report.commandId}}</td>
+                                                    <td>{{report.reportDate |date('Y-m-d')}}</td>
+                                                    <td>{{report.email}}</td>
+                                                    <td>{{report.description}}</td>
+                                                    <td><div class="row"><a class="gdlr-core-button  gdlr-core-button-solid gdlr-core-button-no-border" href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/report/respond" id="gdlr-core-button-id-51465"><span class="mb-2 mr-2 btn-transition btn btn-outline-primary" >Respond</span></a></div>
+                                                        
+                                                    </td>
+                                                </tr>
                                             {% endfor %}
                                             </tbody>
                                         </table>

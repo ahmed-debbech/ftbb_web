@@ -104,4 +104,25 @@ class ReportController extends AbstractController
             return $this->render('report/reportExpired.html.twig', []);
         }
     }
+
+    /**
+     * @Route("/report/showAdmin", name="report_show_admin")
+     */
+    public function showReportsAdmins()
+    {
+        $reports = $this ->getDoctrine()->getRepository(Report :: class)->findAll(); //findAll trajjalik tableau lkoll
+       
+        return $this->render('back/reportShowAdmin.html.twig', ['reports' => $reports]);
+        
+    }
+
+     /**
+     * @Route("/report/respond", name="report_respond")
+     */
+    public function RespondReport()
+    {
+       
+        return $this->render('back/respondClient.html.twig',[]);
+        
+    }
 }
