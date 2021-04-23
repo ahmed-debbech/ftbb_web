@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ReportFormType extends AbstractType
 {
@@ -14,7 +15,7 @@ class ReportFormType extends AbstractType
         $builder
             ->add('commandId')
             ->add('email')
-            ->add('description')
+            ->add('description',TextareaType::class)
             ->add('Send', SubmitType::class)
         ;
     }

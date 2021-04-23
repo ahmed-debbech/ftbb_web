@@ -8,6 +8,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Galerie;
 use App\Form\GalerieFormType;
 use App\Form\ModifyGalerieType;
+use App\Utils\Utilities;
+
 
 class GalerieController extends AbstractController
 {
@@ -21,14 +23,14 @@ class GalerieController extends AbstractController
         $form->handleRequest($req);
         if($form->isSubmitted() && $form->isValid()){
             $em = $this->getDoctrine()->getManager();
-            $gal->setGalerieId("553");
-            $gal->setAdminId("000");   
+            $gal->setGalerieId(Utilities::generateId($gal,"galerieId",$this->getDoctrine()));
+            $gal->setAdminId("999");   
             $em->persist($gal);
             $em->flush();
 
             //return $this->redirect('list');
         }
-        return $this->render('galerie/galerie.html.twig', [
+        return $this->render('back/galleryAdd.html.twig', [
             'galerie_form' => $form->createView()
         ]);
     }
@@ -40,7 +42,7 @@ class GalerieController extends AbstractController
     {
         $galeries = $this ->getDoctrine()->getRepository(Galerie :: class)->findAll(); //findAll trajjalik tableau lkoll
        
-        return $this->render('galerie/adminphotoshow.html.twig', ['galeries' => $galeries]);
+        return $this->render('back/galleryShow.html.twig', ['galeries' => $galeries]);
         
     }
 
@@ -67,7 +69,16 @@ class GalerieController extends AbstractController
         
     }
 
+       /**
+     * @Route("/galerie/showclient", name="galerie_show_client")
+     */
+    public function showgalerieClient()
+    {
+        $galeries = $this ->getDoctrine()->getRepository(Galerie :: class)->findAll(); //findAll trajjalik tableau lkoll
+       
+        return $this->render('galerie/clientphotoshow.html.twig', ['galeries' => $galeries]);
         
+    } 
     
 
 

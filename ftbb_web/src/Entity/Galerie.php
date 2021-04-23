@@ -17,7 +17,6 @@ class Galerie
      *
      * @ORM\Column(name="galerie_id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $galerieId;
 
