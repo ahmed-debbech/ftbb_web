@@ -1,0 +1,18 @@
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Control panel page!{% endblock %}
+
+{% block body %}
+    <div class="sp-template sp-template-league-table">
+<h4>Create new Poll</h4>
+
+
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+
+        {{ form_end(form) }}
+
+
+{% endblock %}
