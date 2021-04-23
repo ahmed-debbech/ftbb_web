@@ -295,7 +295,7 @@
                                                         </div>
                                                         <div class="comment-time bigslam-info-font">
                                                             <a href="index.htm#comment-5">
-                                                                    {{comment.date | date('Y-m-d hh:mm')}}
+                                                                    {{comment.date | format_datetime()}}
                                                             </a>
                                                         </div>
                                                             {% if comment.likes is empty %}

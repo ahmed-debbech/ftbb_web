@@ -664,63 +664,12 @@
                            <div>
                               <b>
                                 {% if article is defined %}
-                                    Articles Editor : Editing article number{{article.articleId}}
+                                    Articles Editor : Editing article number {{article.articleId}}
                                 {% else %}
                                     Articles Editor : New Article
                                 {% endif %}
                                 </b>
                               <div class="page-title-subheading">Here you can edit or create a new article.</div>
-                           </div>
-                        </div>
-                        <div class="page-title-actions">
-                           <button type="button" data-toggle="tooltip" title="" data-placement="bottom" class="btn-shadow mr-3 btn btn-dark" data-original-title="Example Tooltip">
-                           <i class="fa fa-star"></i>
-                           </button>
-                           <div class="d-inline-block dropdown">
-                              <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-shadow dropdown-toggle btn btn-info">
-                              <span class="btn-icon-wrapper pr-2 opacity-7">
-                              <i class="fa fa-business-time fa-w-20"></i>
-                              </span>
-                              Buttons
-                              </button>
-                              <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(108px, 32px, 0px);">
-                                 <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                       <a href="javascript:void(0);" class="nav-link">
-                                          <i class="nav-link-icon lnr-inbox"></i>
-                                          <span>
-                                          Inbox
-                                          </span>
-                                          <div class="ml-auto badge badge-pill badge-secondary">86</div>
-                                       </a>
-                                    </li>
-                                    <li class="nav-item">
-                                       <a href="javascript:void(0);" class="nav-link">
-                                          <i class="nav-link-icon lnr-book"></i>
-                                          <span>
-                                          Book
-                                          </span>
-                                          <div class="ml-auto badge badge-pill badge-danger">5</div>
-                                       </a>
-                                    </li>
-                                    <li class="nav-item">
-                                       <a href="javascript:void(0);" class="nav-link">
-                                       <i class="nav-link-icon lnr-picture"></i>
-                                       <span>
-                                       Picture
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="nav-item">
-                                       <a disabled="" href="javascript:void(0);" class="nav-link disabled">
-                                       <i class="nav-link-icon lnr-file-empty"></i>
-                                       <span>
-                                       File Disabled
-                                       </span>
-                                       </a>
-                                    </li>
-                                 </ul>
-                              </div>
                            </div>
                         </div>
                      </div>
@@ -738,7 +687,7 @@
                                     {% else %}
                                         {% set content = "" %}
                                     {% endif %}
-                                    {{form_widget(article_add_form.title, {'attr': {'class': 'form-control', 'placeholder': 'set a title'}})}}
+                                    {{form_widget(article_add_form.title, {'attr': {'value': content, 'class': 'form-control', 'placeholder': 'set a title'}})}}
                                 </div>
                                 </div>
                                 <div class="col-md-6">
@@ -748,7 +697,7 @@
                                     {% else %}
                                         {% set content = "" %}
                                     {% endif %}
-                                    {{form_widget(article_add_form.author, {'attr': {'class': 'form-control', 'placeholder': 'set authors name'}})}}
+                                    {{form_widget(article_add_form.author, {'attr': {'value': content, 'class': 'form-control', 'placeholder': 'set authors name'}})}}
                                 </div>
                                 </div>
                             </div>
@@ -759,7 +708,7 @@
                                 {% else %}
                                     {% set content = "" %}
                                 {% endif %}
-                                {{form_widget(article_add_form.text, {'attr': {'class': 'form-control', 'placeholder': 'Write down the article '}})}}
+                                {{form_widget(article_add_form.text, {'attr': {'class': 'form-control', 'placeholder': 'Write down the article '}, 'empty_data': content})}}
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6">
@@ -768,7 +717,12 @@
                                 </div>
                                 </div>
                                 <div class="col-md-6">
-                                {{ form_widget(article_add_form.category, {'attr': {'class': 'mt-2 btn btn-primary'}})}}
+                                {% if article is defined %}
+                                    {% set content = article.category %}
+                                {% else %}
+                                    {% set content = "" %}
+                                {% endif %}
+                                {{ form_widget(article_add_form.category, {'attr': {'class': 'mt-2 btn btn-primary'}, 'choice_value':content})}}
                                 </div>
                             </div>
                             <br>

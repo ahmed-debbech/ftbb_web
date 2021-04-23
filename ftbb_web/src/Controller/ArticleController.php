@@ -60,12 +60,27 @@ class ArticleController extends AbstractController
         $article=$em->getRepository(Article::class)->find($id);
         $form->handleRequest($req);
         if($form->isSubmitted() && $form->isValid()){
+            /*** @var UploadedFile $uploadedFile */
+            $uploadedFile = $form['url']->getData();
+            $destination = $this->getParameter('kernel.project_dir').'/public/images/articles_upload';
+
+            $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $newFilename = '-'.uniqid().'.'.$uploadedFile->guessExtension();
+            $uploadedFile->move(
+                $destination,
+                $newFilename
+            );
+            $article->setPhotoUrl("http://127.0.0.1/ftbb_web/ftbb_web/public/images/articles_upload/".$newFilename);
+
             $data=$form->getData();
             $article=$em->getRepository(Article::class)->find($id);
             $article->setTitle($data->getTitle());
-            $article->setText($data->getText());
+            if(!empty($data->getText())){
+                $article->setText($data->getText());
+            }else{
+                $article->setText($article->getText());
+            }
             $article->setAuthor($data->getAuthor());
-            $article->setPhotoUrl($data->getPhotoUrl());
             $em->persist($article);
             $em->flush();
             return $this->redirectToRoute("articles_admin");
