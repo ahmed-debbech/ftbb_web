@@ -29,9 +29,10 @@ class FeedbackController extends AbstractController
             $dateTime = Utilities::getDateTimeObject(date("D M d, Y G:i"),"D M d, Y G:i");  
             $fed->setFeedbackDate($dateTime);
             $em->persist($fed);
+            
             $em->flush();
 
-            //return $this->redirect('list');
+            return $this->redirectToRoute("feedback_sent");
         }
         return $this->render('feedback/feedback.html.twig', [
             'feedback_form' => $form->createView()
@@ -76,23 +77,13 @@ class FeedbackController extends AbstractController
      */
     public function modifyFeedbacks(Request $req,$id)
     {
-       /*
-        $feedback = new Feedback();
-        $form = $this ->createForm(ModifyFeedbackType::class,$feedback); //houni snaana form fil controlleur w passinelou el classe illi yasna3 el form fi 7add dhetou w instance ta3 objet feragh
-        $form->handleRequest($req);
-        if($form->isSubmitted() && $form->isValid()){
-            $data=$form->getData(); //houni khdhit tableau ta3 keys (add->'name' ta3 el valeur bidha illi mawjouda fi textfield)
-            $em = $this->getDoctrine()->getManager();
-            $feedback=$em->getRepository(Feedback::class)->find($id);
-            $feedback->setText($data->getText());
-            $em->flush();
-
-            //return $this->redirectToRoute('list');
-        }
-        */
         
         $entityManager = $this->getDoctrine()->getManager();
-
+        $feedback = $entityManager->getRepository(Feedback::class)->find($id);
+        $today = Utilities::getDateTimeObject(date("D M d, Y G:i"), "D M d, Y G:i");
+        $diff=$feedback->getFeedbackDate()->diff($today);
+        
+        if($diff->format('%R%a')=="0"){
         $feedback = $entityManager->getRepository(Feedback::class)->find($id);
         $form = $this->createForm(ModifyFeedbackType::class, $feedback);
         $form->handleRequest($req);
@@ -107,13 +98,42 @@ class FeedbackController extends AbstractController
         return $this->render('feedback/clientmodifyfeedback.html.twig', [
             'feedback_form' => $form->createView()
         ]);
+        }else{
+            return $this->render('feedback/feedbackExpired.html.twig', []);
+
+        }
+    }
+
+    /**
+     * @Route("/feedback/showAdmin", name="feedback_show_admin")
+     */
+    public function showReportsAdmins()
+    {
+        $feedbacks = $this ->getDoctrine()->getRepository(Feedback :: class)->findAll(); //findAll trajjalik tableau lkoll
+       
+        return $this->render('back/feedbackShowAdmin.html.twig', ['feedbacks' => $feedbacks]);
         
     }
 
 
+    /**
+     * @Route("/feedback/respond/{id}", name="feedback_respond")
+     */
+    public function RespondReport($id)
+    {
+        $feedback = $this->getDoctrine()->getRepository(Feedback::class)->find($id);
+        return $this->render('back/respondClient.html.twig',['id'=>$id]);
+        
+    }
 
-
-
+    /**
+     * @Route("/feedback/sent", name="feedback_sent")
+     */
+    public function feedbackSent()
+    {
+        return $this->render('feedback/feedback-sent-sucess.html.twig',[]);
+        
+    }
 
 
 

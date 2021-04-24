@@ -3,6 +3,11 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\EmailValidator;
+
 
 /**
  * Feedback
@@ -39,6 +44,7 @@ class Feedback
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=false)
+     * @Assert\NotBlank(message="wrong email")
      */
     private $email;
 
@@ -53,6 +59,7 @@ class Feedback
      * @var string
      *
      * @ORM\Column(name="text", type="string", length=255, nullable=false)
+     * @Assert\NotBlank(message="Insert command ID")     
      */
     private $text;
 
@@ -230,4 +237,19 @@ class Feedback
         $this->type = $type;
 
     }
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('text', new Assert\Length([
+            'min' => 50,
+            'max' => 2000,
+            'minMessage' => 'Your text must be at least {{ limit }} characters long',
+            'maxMessage' => 'Your text cannot be longer than {{ limit }} characters',
+        ]));
+
+        $metadata->addPropertyConstraint('email', new Assert\Email([
+            'message' => 'The email "{{ value }}" is not a valid email.',
+        ]));
+    }
+
+
 }

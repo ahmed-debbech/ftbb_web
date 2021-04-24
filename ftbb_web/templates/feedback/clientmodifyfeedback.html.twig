@@ -463,7 +463,25 @@
                                 <div class="gdlr-core-contact-form-7-item gdlr-core-item-pdlr gdlr-core-item-pdb ">
                                     <div role="form" class="wpcf7" id="wpcf7-f1319-p1964-o1" lang="en-US" dir="ltr">
                                         <div class="screen-reader-response"></div>
-                                            {{form(feedback_form)}}
+                                                    {{ form_start(feedback_form) }} 
+                                                        <div class="quform-element">
+                                                                        <p>
+
+                                                                            <span class="wpcf7-form-control-wrap your-email">
+                                                                             {{ form_widget(feedback_form.text, {'attr': {'placeholder': 'Explain*'}}) }}
+                                                                            </span> 
+                                                                        </p>
+                                                                    </div>
+                                                                    <p>
+                                                                        <!-- Begin Submit button -->
+                                                                        <div class="quform-submit">
+                                                                            <div class="quform-submit-inner">
+                                                                                {{ form_widget(feedback_form.Confirm, {'attr': { 'class': 'submit-button', 'type':'submit'}}) }}
+                                                                            </div>
+                                                                            <div class="quform-loading-wrap"><span class="quform-loading"></span></div>
+                                                                        </div>
+                                                                    </p>
+                                                     {{ form_end(feedback_form) }}                 
                                     </div>
                                 </div>
                             </div>
