@@ -32,7 +32,7 @@ class CartController extends AbstractController
         $products = array();
         $x =null;
         foreach($carts as $x){
-            $product = $this ->getDoctrine()->getRepository(Product :: class)->find($x->getRef_product());
+            $product = $this ->getDoctrine()->getRepository(Product :: class)->find($x->getRefproduct());
             array_push($products, $product);
         }
         return $this->render('cart.html.twig', [

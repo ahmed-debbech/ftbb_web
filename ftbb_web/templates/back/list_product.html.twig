@@ -732,10 +732,19 @@
                             </div>
                         </div>    </div>
                 </div>
-                <div class="row">
+                <div class="search-wrapper active" >
+                    <div class="input-holder">
+                        <form method="post" action="{{ path('recherche_product') }}">
+                        <input type="text" name="search" class="search-input" placeholder="Type to search">
+                        <button class="search-icon"><span></span></button>
+                        </form>
+                    </div>
+                    <button class="close"></button>
+                </div>
 
+                <div class="row">
                     <div class="col-lg-6">
-                        <div class="main-card mb-3 card">
+                        <div>
                             <div class="card-body"><h5 class="card-title">Table with hover</h5>
                                 <table class="mb-0 table table-hover">
                                     <thead>
@@ -750,8 +759,8 @@
                                         <th>Id Admin</th>
                                         <th>Add Date</th>
                                         <th>Photo</th>
-                                        <th>MODIFIER</th>
-                                        <th>SUPPRIMER</th>
+                                        <th></th>
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -782,16 +791,20 @@
                                                 {{ product.idAdmin }}
                                             </td>
                                             <td>
-                                                {{ product.addDate |date ('Y-m-d') }}
+                                                {{ product.addDate |date ('Y-m-d H:i:s') }}
                                             </td>
                                             <td>
                                                 <img style="height: 100px; width: 100px" src="http://127.0.0.1/ftbb_web/ftbb_web/public/images/prod/{{ product.photo }}" >
                                             </td>
                                             <td>
-                                                <a href="/ftbb_web/ftbb_web/public/index.php/product/formulaire_modifier_admin/{{ product.refProduct }}" role="button">modifier</a>
+                                                <a href="/ftbb_web/ftbb_web/public/index.php/product/formulaire_modifier_admin/{{ product.refProduct }}" role="button">
+                                                    <div class="font-icon-wrapper"><i class="pe-7s-pen"> </i>
+                                                </a>
                                             </td>
                                             <td>
-                                                <a href="/ftbb_web/ftbb_web/public/index.php/product/supprimer/{{ product.refProduct }}" role="button">supprimer</a>
+                                                    <a href="/ftbb_web/ftbb_web/public/index.php/product/supprimer/{{ product.refProduct }}" role="button">
+                                                        <div class="font-icon-wrapper"><i class="pe-7s-trash"> </i>
+                                                    </a>
                                             </td>
                                         </tr>
                                     {% endfor %}
@@ -800,7 +813,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
             <div class="app-wrapper-footer">

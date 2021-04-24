@@ -110,12 +110,12 @@ class Cart
         $this->totalPrice=$totalPrice;
     }
 
-    public function getRef_product()
+    public function getRefproduct()
     {
         return $this->refProduct;
     }
-    public function setRef_product($ref_product)
+    public function setRefproduct($refproduct)
     {
-        $this->refProduct = $ref_product;
+        $this->refProduct = $refproduct;
     }
 }

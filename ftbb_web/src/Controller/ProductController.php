@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 use App\Entity\Command;
+use App\Repository\ProductRepository;
 use App\Entity\CommandProduct;
 use App\Utils\Utilities;
 use App\Entity\Product;
@@ -31,10 +32,10 @@ class ProductController extends AbstractController
      */
     public function Afficher_product(): Response #objet min aand symfony jey par defaut
     {
-        $product = $this ->getDoctrine()->getRepository(Product :: class)->findAll(); //findAll trajjalik tableau lkoll
+        $product = $this->getDoctrine()->getRepository(Product :: class)->findAll(); //findAll trajjalik tableau lkoll
         return $this->render('back/list_product.html.twig', [
             'controller_name' => 'ProductController',
-            'data'=> $product,
+            'data' => $product,
         ]);
     }
 
@@ -44,7 +45,7 @@ class ProductController extends AbstractController
     public function formulaire_ajout_admin(Request $req): Response #objet min aand symfony jey par defaut
     {
         $product = new Product();
-        $form = $this ->createForm(AjouterProductType::class,$product); //houni snaana form fil controlleur w passinelou el classe illi yasna3 el form fi 7add dhetou w instance ta3 objet feragh
+        $form = $this->createForm(AjouterProductType::class,$product); //houni snaana form fil controlleur w passinelou el classe illi yasna3 el form fi 7add dhetou w instance ta3 objet feragh
         $form->handleRequest($req);
         /*if($form->isSubmitted() && $form->isValid()){
             $em = $this->getDoctrine()->getManager();
@@ -185,4 +186,54 @@ class ProductController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/product/recherche",name="recherche_product")
+     */
+    public function Recherche(ProductRepository $repository,Request $request)
+    {
+        $data=$request->get('search');
+        $em=$repository->search($data);
+
+        return $this->render('back/list_product.html.twig',[
+            'data'=>$em
+
+        ]);
+    }
+
+    /**
+     * @return Response
+     * @Route ("/product/statistique",name="statistique")
+     */
+    public function statistique(ProductRepository $repo): Response
+    {
+        $ob = new Highchart();
+        $ob->chart->renderTo('linechart');
+        $ob->title->text('statistique products selon category');
+        $ob->plotOptions->pie(array(
+            'allowPointSelect'  => true,
+            'cursor'    => 'pointer',
+            'dataLabels'    => array('enabled' => false),
+            'showInLegend'  => true
+        ));
+        $product=$repo->stat1();
+        $data =array();
+        foreach ($product as $values)
+        {
+            $a =array($values['refProduct'],intval($values['nbdom']));
+            array_push($data,$a);
+        }
+
+        $ob->series(array(array('type' => 'pie','name' => '', 'data' => $data)));
+        return $this->render('back/list_product.html.twig', array(
+            'chart' => $ob
+        ));
+    }
+
+
+
+
+
+
 }
+
+
