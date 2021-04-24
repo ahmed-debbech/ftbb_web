@@ -124,8 +124,11 @@ class Comment
     public function getLikes(){
       return $this->likes;
     }
+    public function setLikes($arr){
+       $this->likes = $arr;
+    }
     public function getLikesCount(){
-      return $this->likes->count();
+      return count($this->likes);
   }
 
     public function addLike(Likes $like): self

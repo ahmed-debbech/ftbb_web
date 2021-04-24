@@ -77,7 +77,7 @@ class CommentController extends AbstractController
      * @Route("/admin/article/{id}/ban_comment/sort_liked", name="liked_sort")
      */
     public function sortByLike($id){
-        $comments = $this->getDoctrine()->getRepository(Comment::class)->ggg();
+        $comments = $this->getDoctrine()->getRepository(Comment::class)->getTopLiked($id);
         return $this->render('comment/ban_comment.html.twig', ['comments' => $comments]);
     }
 }
