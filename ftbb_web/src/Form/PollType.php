@@ -15,7 +15,7 @@ class PollType extends AbstractType
         $builder
             ->add('description')
 
-            ->add('Next', SubmitType::class);
+            ->add('Next ➜', SubmitType::class);
 
         ;
     }

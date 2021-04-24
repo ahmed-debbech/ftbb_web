@@ -6,6 +6,7 @@ use App\Entity\Options;
 use App\Entity\Poll;
 use App\Form\OptionsType;
 use App\Utils\Utilities;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,6 +23,7 @@ class PollController extends AbstractController
     public function index(Request $request):response
     {   $var = $request->query->get('users');
         $poll = new Poll();
+        $this->addFlash('success','Poll Added succussfuly');
         if ($var != "") {
 
             $query = $this->getDoctrine()->getRepository(poll::class)->createQueryBuilder('p');
@@ -36,7 +38,7 @@ class PollController extends AbstractController
             ->getRepository(Poll::class)
             ->findBy(array(), array('creationDate' => 'DESC'));        }
 
-        return $this->render('poll/index.html.twig', [
+        return $this->render('poll/backpollcontrol.html.twig', [
             'controller_name' => 'PollController',
             'Poll' => $poll,
         ]);
@@ -138,6 +140,8 @@ class PollController extends AbstractController
         $form = $this ->createForm(OptionsType::class, $option);
         $form->handleRequest($request);
 
+
+
         if ($form ->isSubmitted()&& $form ->isValid()){
             $em = $this ->getDoctrine()->getManager();
             $option->setOptionId(Utilities::generateId($option,'optionId',$this ->getDoctrine()));
@@ -171,7 +175,7 @@ class PollController extends AbstractController
                 return $this->redirectToRoute('add_option', ['poll_id'=>$poll->getPollId(),'number'=>2]);
             }
         }
-        return $this->render('poll/addopt.html.twig', ['form'=>$form->createView()]);
+        return $this->render('poll/addopt.html.twig', ['form'=>$form->createView(), 'number'=>$number]);
     }
 
 
