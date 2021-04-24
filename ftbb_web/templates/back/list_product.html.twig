@@ -742,9 +742,8 @@
                     <button class="close"></button>
                 </div>
 
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div>
+                    <div>
+                        <div class="main-card mb-3 card">
                             <div class="card-body"><h5 class="card-title">Table with hover</h5>
                                 <table class="mb-0 table table-hover">
                                     <thead>
@@ -756,7 +755,6 @@
                                         <th>Name</th>
                                         <th>Price</th>
                                         <th>Details</th>
-                                        <th>Id Admin</th>
                                         <th>Add Date</th>
                                         <th>Photo</th>
                                         <th></th>
@@ -788,9 +786,6 @@
                                                 {{ product.details }}
                                             </td>
                                             <td>
-                                                {{ product.idAdmin }}
-                                            </td>
-                                            <td>
                                                 {{ product.addDate |date ('Y-m-d H:i:s') }}
                                             </td>
                                             <td>
@@ -813,7 +808,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+
             </div>
             <div class="app-wrapper-footer">
                 <div class="app-footer">

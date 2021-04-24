@@ -201,6 +201,20 @@ class ProductController extends AbstractController
     }
 
     /**
+     * @Route("/product/recherche_store",name="recherche_product_store")
+     */
+    public function Recherche_store(ProductRepository $repository,Request $request)
+    {
+        $data=$request->get('search');
+        $em=$repository->search($data);
+
+        return $this->render('product/store.html.twig',[
+            'products'=>$em
+
+        ]);
+    }
+
+    /**
      * @return Response
      * @Route ("/product/statistique",name="statistique")
      */
@@ -229,7 +243,12 @@ class ProductController extends AbstractController
         ));
     }
 
-
+    /**
+     * @Route("/product/statistiques", name="stats")
+     */
+    public function statistiques(){
+            return $this->render('back/stats.html.twig');
+    }
 
 
 
