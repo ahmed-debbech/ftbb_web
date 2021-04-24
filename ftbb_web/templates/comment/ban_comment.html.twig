@@ -654,6 +654,14 @@
                            </div>
                         </div>
                         <div class="page-title-actions">
+                        <div class="search-wrapper active">
+                           <div class="input-holder">
+                           {{ form_start(form) }}
+                              {{form_widget(form.search, {'attr': {'class': 'search-input', 'placeholder': 'Type to search'}})}}
+                              {{form_widget(form.submit, {'attr': {'class': 'search-icon'}})}}
+                              {{ form_end(form) }}
+                           </div>
+                           </div>
                            <div class="d-inline-block dropdown">
                               <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-shadow dropdown-toggle btn btn-info">
                               <span class="btn-icon-wrapper pr-2 opacity-7">

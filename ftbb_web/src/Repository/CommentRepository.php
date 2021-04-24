@@ -92,5 +92,24 @@ class CommentRepository extends ServiceEntityRepository
         }
         return $a;
     }
-    
+    public function search($text, $art_id){
+        $sql = "SELECT  comment.*, client.name, client.surname FROM `comment` inner join client on comment.client_id=client.id where article_id = ".$art_id." and comment.content like '%".$text."%';";
+        $conn = $this->getEntityManager()->getConnection();
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $arr = $stmt->fetchAllAssociative();
+        $a = array();
+        for($i=0; $i<=count($arr)-1; $i++){
+            $com = new Comment();
+            $com->setId($arr[$i]['id']);
+            $com->setContent($arr[$i]['content']);
+            $cl = new Client();
+            $cl->setName($arr[$i]['name']);
+            $cl->setSurname($arr[$i]['surname']);
+            $com->setClient($cl);
+            $com->setDate($arr[$i]['date']);
+            array_push($a, $com);
+        }
+        return $a;
+    }
 }

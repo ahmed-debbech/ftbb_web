@@ -11,6 +11,9 @@ use App\Entity\Article;
 use App\Entity\Client;
 use App\Form\ArticleAddFormType;
 use App\Utils\Utilities;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 
 class CommentController extends AbstractController
 {
@@ -46,10 +49,18 @@ class CommentController extends AbstractController
     /**
      * @Route("/admin/article/{id}/ban_comment", name="ban_comment")
      */
-    public function banComment($id){
+    public function banComment($id, Request $req){
+        $form = $this->createFormBuilder()
+            ->add('search', TextType::class)
+            ->add('submit', SubmitType::class)
+            ->getForm();
+        $form->handleRequest($req);
         $comments = $this->getDoctrine()->getRepository(Comment::class)->findBy(array('article_id' => $id));
+        if($form->isSubmitted() && $form->isValid()){
+            $comments = $this->getDoctrine()->getRepository(Comment::class)->search($form->getData()['search'], $id);
+        }
         if(!empty($comments)){
-            return $this->render('comment/ban_comment.html.twig', ['comments' => $comments]);
+            return $this->render('comment/ban_comment.html.twig', ['comments' => $comments, 'form' => $form->createView()]);
         }
         return $this->redirectToRoute("articles_admin");
     }
@@ -79,15 +90,23 @@ class CommentController extends AbstractController
     /**
      * @Route("/admin/article/{id}/ban_comment/sort_liked", name="liked_sort")
      */
-    public function sortByLike($id){
+    public function sortByLike($id,  Request $req){
         $comments = $this->getDoctrine()->getRepository(Comment::class)->getTopLiked($id);
-        return $this->render('comment/ban_comment.html.twig', ['comments' => $comments]);
+        $form = $this->createFormBuilder()
+            ->add('search', TextType::class)
+            ->add('submit', SubmitType::class)
+            ->getForm();
+        return $this->render('comment/ban_comment.html.twig', ['comments' => $comments, 'form' => $form->createView()]);
     }
     /**
      * @Route("/admin/article/{id}/ban_comment/sort_newest", name="sort_newest")
      */
-    public function sortByNewest($id){
+    public function sortByNewest($id,  Request $req){
         $comments = $this->getDoctrine()->getRepository(Comment::class)->getNewest($id);
-        return $this->render('comment/ban_comment.html.twig', ['comments' => $comments]);
+        $form = $this->createFormBuilder()
+            ->add('search', TextType::class)
+            ->add('submit', SubmitType::class)
+            ->getForm();
+        return $this->render('comment/ban_comment.html.twig', ['comments' => $comments, 'form' => $form->createView()]);
     }
 }
