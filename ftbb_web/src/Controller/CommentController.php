@@ -80,4 +80,11 @@ class CommentController extends AbstractController
         $comments = $this->getDoctrine()->getRepository(Comment::class)->getTopLiked($id);
         return $this->render('comment/ban_comment.html.twig', ['comments' => $comments]);
     }
+    /**
+     * @Route("/admin/article/{id}/ban_comment/sort_newest", name="sort_newest")
+     */
+    public function sortByNewest($id){
+        $comments = $this->getDoctrine()->getRepository(Comment::class)->getNewest($id);
+        return $this->render('comment/ban_comment.html.twig', ['comments' => $comments]);
+    }
 }

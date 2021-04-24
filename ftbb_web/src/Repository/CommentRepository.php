@@ -23,7 +23,27 @@ class CommentRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Comment::class);
     }
-
+    private function trans($arr){
+        $a = array();
+        for($i=0; $i<=count($arr)-1; $i++){
+            $com = new Comment();
+            $com->setId($arr[$i]['id']);
+            $com->setContent($arr[$i]['content']);
+            $cl = new Client();
+            $cl->setName($arr[$i]['name']);
+            $cl->setSurname($arr[$i]['surname']);
+            $com->setClient($cl);
+            $com->setDate($arr[$i]['date']);
+            $lik = array();
+            for($h=0; $h<=$arr[$i]['likes_count']-1; $h++){
+                $like = new Likes();
+                array_push($lik, $like);
+            }
+            $com->setLikes($lik);
+            array_push($a, $com);
+        }
+        return $a;
+    }
     public function getTopLiked($id){
     
         $conn = $this->getEntityManager()->getConnection();
@@ -52,32 +72,25 @@ class CommentRepository extends ServiceEntityRepository
         }
         return $a;
     }
-    // /**
-    //  * @return Comment[] Returns an array of Comment objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+    public function getNewest($id){
+        $sql="SELECT comment.*, client.name, client.surname FROM `comment` inner join client on comment.client_id=client.id where article_id= :article_id order by date DESC;";
+        $conn = $this->getEntityManager()->getConnection();
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['article_id' => $id]);
+        $arr = $stmt->fetchAllAssociative();
+        $a = array();
+        for($i=0; $i<=count($arr)-1; $i++){
+            $com = new Comment();
+            $com->setId($arr[$i]['id']);
+            $com->setContent($arr[$i]['content']);
+            $cl = new Client();
+            $cl->setName($arr[$i]['name']);
+            $cl->setSurname($arr[$i]['surname']);
+            $com->setClient($cl);
+            $com->setDate($arr[$i]['date']);
+            array_push($a, $com);
+        }
+        return $a;
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Comment
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+    
 }
