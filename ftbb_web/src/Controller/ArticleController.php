@@ -144,11 +144,19 @@ class ArticleController extends AbstractController
         return $this->render('article/article-post.html.twig', ['id_cli' =>122,'article' => $article, 'form' => $form->createView()]);
     }
 
-    //Other than routes methods
-    public function getCommentsCount(){
-        // TODO : fix comments
-        
-        return 5;
+    
+    /**
+     * @Route("/admin/articles/sort_liked", name="art_sort_liked")
+     */
+    public function sortByLiked(){
+        $articles = $this->getDoctrine()->getRepository(Article::class)->getTopLiked();
+        return $this->render('back/article-show-admin.html.twig', ['articles' => $articles]);
     }
-
+    /**
+     * @Route("/admin/articles/sort_comment", name="art_sort_commented")
+     */
+    public function sortByComments(){
+        $articles = $this->getDoctrine()->getRepository(Article::class)->getMostCommented();
+        return $this->render('back/article-show-admin.html.twig', ['articles' => $articles]);
+    }
 }

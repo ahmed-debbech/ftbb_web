@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
  * Article
  *
  * @ORM\Table(name="article", indexes={@ORM\Index(name="admin_id", columns={"admin_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
  */
 class Article
 {
@@ -163,6 +163,9 @@ class Article
 	public function getComments(){
                		return $this->comments;
                	}
+                   public function setComments($com){
+                    $this->comments = $com;
+                }
 
     public function getLikes(){
 		return $this->likes;
@@ -172,7 +175,7 @@ class Article
                		$this->category = $category;
                	}
     public function getCommentsCount(){
-        return $this->comments->count();
+        return count($this->comments);
     }
     public function getLikesCount(){
         return $this->likes->count();
