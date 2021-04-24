@@ -23,7 +23,6 @@ class PollController extends AbstractController
     public function index(Request $request):response
     {   $var = $request->query->get('users');
         $poll = new Poll();
-        $this->addFlash('success','Poll Added succussfuly');
         if ($var != "") {
 
             $query = $this->getDoctrine()->getRepository(poll::class)->createQueryBuilder('p');
@@ -57,10 +56,46 @@ class PollController extends AbstractController
         $poll = $em->getRepository(Poll::class)->find($pollId);
         $em->remove($poll);
         $em->flush();
+        $this->addFlash('danger','the Poll has been deleted Successfully');
+
+
 
         return $this->redirectToRoute('poll');
 
     }
+
+    /**
+     * @Route("/poll/Endpoll/{pollId}", name="End")
+     */
+    public function Endpoll($pollId, \Swift_Mailer $mailer): Response
+    {
+
+        $poll = new Poll();
+
+
+        $em = $this->getDoctrine()->getManager();
+        $poll = $em->getRepository(Poll::class)->find($pollId);
+        $poll->setStatus('Ended');
+        $em->flush();
+        $this->addFlash('dark','Poll Ended Successfully the user can now find the result on the ended poll section!');
+
+
+        $message = (new \Swift_Message('Poll just ended'))
+            ->setFrom('ftbb.store@gmail.com')
+            ->setTo('slim.jaafoura@esprit.tn')
+            ->setBody(
+                "Hello dear User, \na new poll just ended you can check results now on our App or web page! \n  \n http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/poll/Endedpolldisplay",
+                'text/plain'
+            );
+        $mailer->send($message);
+
+        return $this->redirectToRoute('poll');
+
+    }
+
+
+
+
     /**
      * @Route("/poll/deleteall", name="deleteall")
      */
@@ -75,6 +110,8 @@ class PollController extends AbstractController
         foreach ($poll as $p) {
             $em->remove($p);
             $em->flush();
+            $this->addFlash('danger','All Poll in the table has been deleted successfully');
+
         }
 
         return $this->redirectToRoute('poll');
@@ -82,32 +119,28 @@ class PollController extends AbstractController
 
     }
 
+    /**
+     * @Route("poll/vote/{voteId}", name="vote")
+     */
+    public function vote($voteId): Response
+    {
+
+        $vote = new Vote();
 
 
-//
-//        /**
-//     * @Route("/poll/addpoll", name="add_poll")
-//     */
-//    public function addPoll(Request $request): Response{
-//        $poll = new Poll();
-//        $form = $this ->createForm(PollType::class, $poll);
-//        $form->handleRequest($request);
-//
-//        if ($form ->isSubmitted()&& $form ->isValid()){
-//            $em = $this ->getDoctrine()->getManager();
-//            $poll->setPollId(Utilities::generateId($poll,'pollId',$this ->getDoctrine()));
-//            $poll->setDescription($form->getData()->getDescription());
-//
-//            $dateTime = Utilities::getDateTimeObject(date("D M d, Y G:i"),"D M d, Y G:i");
-//            $poll->setCreationDate($dateTime);
-//            $poll->setStatus("Active");
-//
-//            $em->persist($poll);
-//            $em->flush();
-//
-//            return $this->redirectToRoute('add_option');        }
-//        return $this->render('poll/add.html.twig', ['form'=>$form->createView()]);
-//    }
+        $em = $this->getDoctrine()->getManager();
+        $vote = $em->getRepository(Vote::class)->find($voteId);
+        $votenbr= $vote->getVoteNbr();
+
+        $vote->setVoteNbr($votenbr+1);
+
+        $em->flush();
+        $this->addFlash('Notification','your vote has been registred!');
+
+        return $this->redirectToRoute('polldisplay');
+
+    }
+
 
     /**
      * @Route("/poll/addpoll", name="add_poll")
@@ -129,9 +162,13 @@ class PollController extends AbstractController
             $em->persist($poll);
             $em->flush();
 
+
+
             return $this->redirectToRoute('add_option', ['poll_id'=>$poll->getPollId(),'number'=>1]);        }
         return $this->render('poll/add.html.twig', ['form'=>$form->createView()]);
     }
+
+
     /**
      * @Route("/poll/addpolloption/{number}/{poll_id}", name="add_option")
      */
@@ -162,7 +199,7 @@ class PollController extends AbstractController
 
                 $em->persist($vote);
                 $em->flush();
-
+                $this->addFlash('success','Poll Added Succussfuly');
                 return $this->redirectToRoute('poll');
             }else{
                 $vote = new Vote();
@@ -179,23 +216,7 @@ class PollController extends AbstractController
     }
 
 
-    /**
-     * @Route("/poll/Endpoll/{pollId}", name="End")
-     */
-    public function Endpoll($pollId): Response
-    {
 
-        $poll = new Poll();
-
-
-        $em = $this->getDoctrine()->getManager();
-        $poll = $em->getRepository(Poll::class)->find($pollId);
-        $poll->setStatus('Ended');
-        $em->flush();
-
-        return $this->redirectToRoute('poll');
-
-    }
 
     /**
      * @Route("/poll/polldisplay", name="polldisplay")
@@ -205,11 +226,13 @@ class PollController extends AbstractController
         $var = $request->query->get('users');
         $poll = new Poll();
         $option = new Options();
-
+        $vote = new Vote();
 
         $repository = $this->getDoctrine()->getRepository(Options::class);
         $option= $repository->findAll();
 
+        $repository = $this->getDoctrine()->getRepository(Vote::class);
+        $vote= $repository->findAll();
 
         if ($var != "") {
 
@@ -233,8 +256,10 @@ class PollController extends AbstractController
             'controller_name' => 'PollController',
             'Poll' => $poll,
             'Options' => $option,
+            'Vote' => $vote,
         ]);
     }
+
 
 
     /**

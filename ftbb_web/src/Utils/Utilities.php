@@ -24,6 +24,8 @@ class Utilities {
         }while($article != NULL);
         return $rand;
     }
+
+
 }
 
 ?>

@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-
+{% include 'alert.html.twig' %}
 {% block title %}Control panel page!{% endblock %}
 
 {% block body %}
@@ -19,6 +19,7 @@
         </div>
     </form>
 </div>
+
 
 
 <table class="table">
@@ -53,7 +54,7 @@
 
 
                     <td>
-                        <a class="gdlr-core-button  gdlr-core-button-solid gdlr-core-button-no-border" href="/ftbb_web/ftbb_web/public/index.php/poll/delete/{{ p.pollId }}" id="gdlr-core-button-id-27645"><span class="gdlr-core-content">delete</span></a>
+                        <a class="gdlr-core-button  gdlr-core-button-solid gdlr-core-button-no-border" href="/ftbb_web/ftbb_web/public/index.php/poll/delete/{{ p.pollId }}" id="gdlr-core-button-id-27645" ><span class="gdlr-core-content">delete</span></a>
 
                     </td>
                     <td>

@@ -3,6 +3,7 @@
 {% block title %}Control panel page!{% endblock %}
 
 {% block body %}
+    {% include 'frontalert.html.twig' %}
 
 
     <h6> </h6>
@@ -34,26 +35,34 @@
                         <p style="color: black; padding: 20px; border: 3px solid #ccc; border-radius: 15px; width: 390px;">{{ p.description }}</p>
                 </div>
 
-                <form action="vote" method="get">
+                <form   >
                     <div class="poll-options">
 
                         {% for o in Options  %}
                             {% if p == o.poll %}
+                                {% for v in Vote  %}
+                                    {% if o == v.option %}
+                        <div class="option">
+{#                            <input type="radio" name="vote"  value="{{ v.voteId }}"  >#}
+{#                            <input type="button" value="Vote"    style="width: 70px; padding: 4px 10px; border-radius: 15px; ">#}
+                            <td>
 
-                        <div class="option1">
-                            <input type="radio" name="option" value="{{ o.optionId }}" id="c1" >
+                                <a class="gdlr-core-button  gdlr-core-button-solid gdlr-core-button-no-border" href="/ftbb_web/ftbb_web/public/index.php/poll/vote/{{ v.voteId}}" id="gdlr-core-button-id-27645" style="border-radius: 20px">X</a>
+                            </td>
 
-                            <label for="c1" style="padding: 5px; border: 3px solid #ccc; border-radius: 15px;">{{ o.description }}</label>
+                            <label  style="padding: 5px; border: 3px solid #ccc; border-radius: 15px; ">{{ o.description  }}</label>
                             <hr>
                         </div>
+                                    {% endif %}
+                                {% endfor %}
 
                             {% endif %}
                         {% endfor %}
 
                     </div>
                     <hr>
-                    <input type="submit" value="Vote" style="width: 70px; padding: 4px 10px; border-radius: 15px; ">
-                    <input type="hidden" name="poll"   value="1">
+{#                    <input type="hidden" href="/ftbb_web/ftbb_web/public/index.php/poll/vote/{voteId}">#}
+{#                    #}
                 </form>
 
              </div>

@@ -669,7 +669,7 @@
                         </div>
                         <!--CONTENT STARTS-->
 
-                        {% include 'alertbox.html.twig' %}
+                        {% include 'alert.html.twig' %}
 
 
                         {% block body %}
@@ -677,13 +677,21 @@
                         <div class="sp-template sp-template-league-table">
                             {% if  number == 1 %}
                             <h4>Set the first option</h4>
+                                <hr>
+                                {{ form_start(form) }}
+                                {{ form_widget(form) }}
+                                <button type="submit" class="mb-2 mr-2 btn btn-primary" style="border-radius: 15px">Next➜</button>
+                                {{ form_end(form) }}
                                 {% else  %}
                             <h4>Set the second option</h4>
+                                    <hr>
+                                    {{ form_start(form) }}
+                                    {{ form_widget(form) }}
+                                    <button type="submit" class="mb-2 mr-2 btn btn-success active" style="border-radius: 15px">Add</button>
+                                    {{ form_end(form) }}
                             {% endif %}
 
-                            {{ form_start(form) }}
-                            {{ form_widget(form) }}
-                            {{ form_end(form) }}
+
 
                             {% endblock %}
 
