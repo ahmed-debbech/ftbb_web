@@ -61,6 +61,7 @@ class CommandController extends AbstractController
     public function Afficher_command_client(): Response #objet min aand symfony jey par defaut
     {
         $commands = $this ->getDoctrine()->getRepository(Command :: class)->findBy(array('idClient' => 2) );
+        //dd($commands);
         return $this->render('command/list_command_client.html.twig', [
             'controller_name' => 'CommandController',
             'data'=> $commands,
@@ -88,7 +89,7 @@ class CommandController extends AbstractController
         foreach($carts as $x){
             $command_product = new CommandProduct();
             $command_product->setIdCp(Utilities::generateId($command_product,'idCp',$this->getDoctrine()));
-            $command_product->setRefProduct($x->getRef_Product());
+            $command_product->setRefProduct($x->getRefProduct());
             $command_product->setIdClient(2);
             $command_product->setCommandId($command->getCommandId());
             $entityManager->persist($command_product);

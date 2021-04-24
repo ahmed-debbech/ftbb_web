@@ -582,6 +582,7 @@
                                                          <a href="#">
                                                              <div class="dashicons dashicons-video-alt"></div>Preview</a>
                                                      </td>-->
+                                                {% if data is not empty %}
                                                 {% for product in data %}
                                                     <tr class="sp-row sp-post alternate sp-row-no-0">
                                                         <td>
@@ -613,6 +614,7 @@
                                                         </td>
                                                     </tr>
                                                 {% endfor %}
+                                                {% endif %}
                                                 </tr>
                                                 </tbody>
                                             </table>

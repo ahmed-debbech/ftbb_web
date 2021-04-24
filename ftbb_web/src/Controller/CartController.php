@@ -35,69 +35,13 @@ class CartController extends AbstractController
             $product = $this ->getDoctrine()->getRepository(Product :: class)->find($x->getRefproduct());
             array_push($products, $product);
         }
+        // dd function tnejem testa3melha kima sout fl java
+        //dd($carts);
         return $this->render('cart.html.twig', [
             'controller_name' => 'ProductController',
             'data'=> $products,
         ]);
     }
-
-    /**
-     * @Route("/product/formulaire_ajout_admin", name="formulaire_ajout")
-     */
-    public function formulaire_ajout_admin(Request $req): Response #objet min aand symfony jey par defaut
-    {
-        $product = new Product();
-        $form = $this ->createForm(AjouterProductType::class,$product); //houni snaana form fil controlleur w passinelou el classe illi yasna3 el form fi 7add dhetou w instance ta3 objet feragh
-        $form->handleRequest($req);
-        /*if($form->isSubmitted() && $form->isValid()){
-            $em = $this->getDoctrine()->getManager();
-            $dateTime = Utilities::getDateTimeObject(date("D M d, Y G:i"),"D M d, Y G:i");
-            $product->setAddDate($dateTime);
-            $product->setRefProduct(Utilities::generateId($product,'refProduct',$this->getDoctrine()));
-            $em->persist($product);
-            $em->flush();
-
-            return $this->redirect('list_product_admin');
-        }*/
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $ImageFile = $form->get('photo')->getData();
-            if ($ImageFile) {
-
-                // this is needed to safely include the file name as part of the URL
-
-                $newFilename = md5(uniqid()).'.'.$ImageFile->guessExtension();
-                $destination = $this->getParameter('kernel.project_dir').'/public/images/prod';
-                // Move the file to the directory where brochures are stored
-                try {
-                    $ImageFile->move(
-                        $destination,
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
-
-                // updates the 'ImageFilename' property to store the PDF file name
-                // instead of its contents
-                $product->setPhoto($newFilename);
-            }
-            $entityManager = $this->getDoctrine()->getManager();
-            $dateTime = Utilities::getDateTimeObject(date("D M d, Y G:i"),"D M d, Y G:i");
-            $product->setAddDate($dateTime);
-            $product->setRefProduct(Utilities::generateId($product,'refProduct',$this->getDoctrine()));
-            $entityManager->persist($product);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('list_product_admin');
-        }
-
-
-        return $this->render('product/admin/formulaire_ajout_admin.html.twig', [
-            'product_form' => $form->createView()
-        ]);
-    }
-
 
     /**
      * @Route("/cart/add/{id}", name="add_to_cart")
@@ -111,7 +55,7 @@ class CartController extends AbstractController
         $cart->setNumProducts(1);
         $cart->setAdditionId(Utilities::generateId($cart,'additionId',$this->getDoctrine()));
         $cart->setTotalPrice(0);
-        $cart->setRef_product($id);
+        $cart->setRefproduct($id);
         $em->persist($cart);
         $em->flush();
 
