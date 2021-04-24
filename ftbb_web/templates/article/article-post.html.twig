@@ -253,12 +253,18 @@
                                 <div class="bigslam-page-builder-wrap bigslam-item-rvpdlr">
                                     <div class="gdlr-core-page-builder-body"></div>
                                 </div>
-
+                                <div class="gdlr-core-pbf-element">
+                                    <div class="gdlr-core-button-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-center-align"><a onclick="window.open('https://www.facebook.com/dialog/share?app_id=1155678251616612&display=popup&quote=ftbb&href='+window.location.href)"  class="gdlr-core-button  gdlr-core-button-gradient gdlr-core-button-no-border" href="#" style="font-size: 13px ;border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px;background: #6c8ee2 ;background: linear-gradient(#6c8ee2, #4b76e3);-moz-background: linear-gradient(#6c8ee2, #4b76e3);-o-background: linear-gradient(#6c8ee2, #4b76e3);-webkit-background: linear-gradient(#6c8ee2, #4b76e3);"><span class="gdlr-core-content">Share to Facebook</span></a></div>
+                                </div>
+                                <div class="gdlr-core-pbf-element">
+                                    <div class="gdlr-core-button-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-center-align"><a onclick="window.open('http://twitter.com/share?text=ftbb%0A&url='+window.location.href)"  class="gdlr-core-button  gdlr-core-button-gradient gdlr-core-button-no-border" href="#" style="font-size: 13px ;background: #6eb6ea ;background: linear-gradient(#6eb6ea, #2d9bea);-moz-background: linear-gradient(#6eb6ea, #2d9bea);-o-background: linear-gradient(#6eb6ea, #2d9bea);-webkit-background: linear-gradient(#6eb6ea, #2d9bea);"><span class="gdlr-core-content">Share to Twitter</span></a></div>
+                                </div>
                                 <div class="clear"></div>
                                 {% if article.likes is empty %}
                                     <div class="comment-reply">
                                     <a rel="nofollow" class="comment-reply-link" href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/likes/click/article/{{article.articleId}}" data-commentid="5" data-postid="1268" data-belowelement="comment-5" data-respondelement="respond" aria-label="Reply to John Smith">Like - {{article.getLikesCount()}}</a> </div>
                                 {% else %}
+                                
                                 {% for like in article.likes %}
                                     <div class="comment-reply">
                                     <a rel="nofollow" {% if like.idClient.id == id_cli %} style="color: blue;" {% endif %} class="comment-reply-link" href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/likes/click/article/{{article.articleId}}" data-commentid="5" data-postid="1268" data-belowelement="comment-5" data-respondelement="respond" aria-label="Reply to John Smith">Like - {{article.getLikesCount()}}</a> </div>

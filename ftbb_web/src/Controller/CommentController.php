@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Comment;
@@ -85,7 +86,9 @@ class CommentController extends AbstractController
         $com=$em->getRepository(Comment::class)->find($com_id);
         $em->remove($com);
         $em->flush();
+        $comments = $this->getDoctrine()->getRepository(Comment::class)->findBy(array('article_id' => $id));
         return $this->redirectToRoute("ban_comment", ['id' => $id]);
+        //return new JsonResponse(array('comments' => $comments));
     }
     /**
      * @Route("/admin/article/{id}/ban_comment/sort_liked", name="liked_sort")

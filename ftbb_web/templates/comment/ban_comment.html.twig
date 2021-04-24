@@ -23,6 +23,8 @@
          @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}
       </style>
       <script type="text/javascript" charset="UTF-8" src="http://maps.google.com/maps-api-v3/api/js/44/11a/common.js"></script><script type="text/javascript" charset="UTF-8" src="http://maps.google.com/maps-api-v3/api/js/44/11a/util.js"></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script type="text/javascript" src="{{asset('back/assets/scripts/ajax_ban_comments.js')}}"></script>
    </head>
    <body>
       <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header closed-sidebar closed-sidebar-mobile">
@@ -698,7 +700,7 @@
                 <div class="main-card mb-3 card">
                      <div class="card-body">
                         <h5 class="card-title">Simple table</h5>
-                        <table class="mb-0 table">
+                        <table id="commentss" class="mb-0 table">
                            <thead>
                               <tr>
                                  <th>#</th>
@@ -709,7 +711,7 @@
                                  <th>Ban</th>
                               </tr>
                            </thead>
-                           <tbody>
+                           <tbody id="comentss_body">
                               {% for key,comment in comments %}
                               <tr>
                                  <td>{{key+1}}</td>
@@ -718,7 +720,13 @@
                                  <td> {{comment.content}} </td>
                                  <td> {{comment.getLikesCount()}} </td>
                                  <td>
-                                 <button class="mb-2 mr-2 btn btn-danger"><a href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/admin/article/{{comment.articleId}}/ban/{{comment.id}}" style="color: white;"> Ban! </a></button>
+                                 <button class="mb-2 mr-2 btn btn-danger" onclick="
+                                 $.get('http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/admin/article/{{comment.articleId}}/ban/{{comment.id}}', function(data, status) {
+                                       const obj = JSON.parse(data);
+                                       alert(obj);
+                                       $('#passa').html(obj.comments);
+                                 });
+                                 "><a id="banv"  style="color: white;"> Ban! </a></button>
                                  </td>
                               </tr>
                               {% endfor %}
