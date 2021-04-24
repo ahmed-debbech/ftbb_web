@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+use App\Entity\Cart;
 use App\Entity\Command;
 use App\Repository\ProductRepository;
 use App\Entity\CommandProduct;
@@ -249,6 +250,26 @@ class ProductController extends AbstractController
     public function statistiques(){
             return $this->render('back/stats.html.twig');
     }
+
+    /**
+     * @Route("/product/favourite/{id}", name="add_to_favoris")
+     */
+    public function favourite($id)
+    {
+        $Product=new Product();
+        $em = $this->getDoctrine()->getManager();
+        $cart->setCartId(2);
+        $cart->setIdClient(2);
+        $cart->setNumProducts(1);
+        $cart->setAdditionId(Utilities::generateId($cart,'additionId',$this->getDoctrine()));
+        $cart->setTotalPrice(0);
+        $cart->setRef_product($id);
+        $em->persist($cart);
+        $em->flush();
+
+        return $this->redirectToRoute('list_product_client');
+    }
+
 
 
 

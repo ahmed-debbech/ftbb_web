@@ -542,10 +542,36 @@
                                             <div class="gdlr-core-item-list gdlr-core-item-pdlr gdlr-core-item-mgb gdlr-core-column-20 ">
                                                 <div class="gdlr-core-blog-modern gdlr-core-with-image gdlr-core-hover-overlay-content gdlr-core-opacity-on-hover gdlr-core-zoom-on-hover gdlr-core-outer-frame-element">
                                                     <div class="gdlr-core-blog-modern-inner">
-                                                        <div class="gdlr-core-blog-thumbnail gdlr-core-media-image"><img src="http://127.0.0.1/uploads/{{ product.photo }}" width="700" height="660" alt=""></div>
+                                                        <div class="gdlr-core-blog-thumbnail gdlr-core-media-image">
+                                                            <img src="http://127.0.0.1/uploads/{{ product.photo }}" width="700" height="660" alt="">
+                                                        </div>
                                                         <div class="gdlr-core-blog-modern-content gdlr-core-center-align">
-                                                            <h3 class="gdlr-core-blog-title gdlr-core-skin-title" style="font-size: 22px ;font-weight: 700 ;letter-spacing: 0px ;"><a href="#">{{ product.name }}</a></h3>
-                                                            <div class="gdlr-core-blog-info-wrapper gdlr-core-skin-divider"><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date"><span class="gdlr-core-head"><i class="fa fa-clock-o"></i></span><a href="#">{{ product.addDate | date ('Y-m-d') }}</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><span class="gdlr-core-head"><i class="fa fa-user-o"></i></span><a href="#" title="Posts by John Smith" rel="author">{{ product.price}}</a></span>
+                                                            <div class="gdlr-core-icon-list-item gdlr-core-item-pdlr gdlr-core-item-pdb clearfix  gdlr-core-icon-list-with-background-circle gdlr-core-left-align" style="padding-bottom: 0px ;">
+                                                                <a class="gdlr-core-button gdlr-core-button-solid gdlr-core-button-no-border" href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/product/favoris/{{ product.refProduct }}" id="gdlr-core-button-id-48095">
+                                                                <ul>
+                                                                    <li class=" gdlr-core-skin-divider gdlr-core-with-hover clearfix">
+                                                                        <span class="gdlr-core-icon-list-icon-wrap gdlr-core-skin-e-background" style="background-color: #303030 ;">
+                                                                            <i class="gdlr-core-icon-list-icon-hover fa fa-heart gdlr-core-skin-e-content" style="color: #51b0f3 ;"></i>
+                                                                            <i class="gdlr-core-icon-list-icon fa fa-heart-o gdlr-core-skin-e-content" style="color: #51b0f3 ;"></i>
+                                                                        </span>
+                                                                    </li>
+                                                                </ul>
+                                                                </a>
+                                                            </div>
+                                                            <h3 class="gdlr-core-blog-title gdlr-core-skin-title" style="font-size: 22px ;font-weight: 700 ;letter-spacing: 0px ;">
+                                                                <a href="#">{{ product.name }}</a>
+                                                            </h3>
+                                                            <div class="gdlr-core-blog-info-wrapper gdlr-core-skin-divider">
+                                                                <span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-date">
+                                                                    <span class="gdlr-core-head">
+                                                                        <i class="fa fa-clock-o"></i>
+                                                                    </span><a href="#">{{ product.addDate | date ('Y-m-d') }}</a>
+                                                                </span>
+                                                                <span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author">
+                                                                    <span class="gdlr-core-head"><i class="fa fa-user-o"></i>
+                                                                    </span>
+                                                                    <a href="#" title="Posts by John Smith" rel="author">{{ product.price}}</a>
+                                                                </span>
                                                             </div>
 
                                                             <div class="gdlr-core-pbf-column gdlr-core-column-20 gdlr-core-column-first">
