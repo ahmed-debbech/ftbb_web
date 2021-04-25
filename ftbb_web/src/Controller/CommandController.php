@@ -8,7 +8,10 @@ use App\Entity\CommandProduct;
 use App\Entity\Product;
 use App\Form\ModifierProductType;
 use App\Repository\CommandRepository;
+use App\Repository\ProductRepository;
 use App\Utils\Utilities;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -129,6 +132,39 @@ class CommandController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/command/list_command_pdf", name="list_command_pdf")
+     */
+    public function pdf(CommandRepository $repository,Request $request): Response
+    {
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+        $data=$request->get('search');
+        $em=$repository->search($data);
+
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('back/list_command_pdf.html.twig', [
+            'data' => $em,
+        ]);
+
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => false
+        ]);
+    }
 
 
 }
