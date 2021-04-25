@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Report;
 use App\Form\ReportFormType;
 use App\Form\ModifyReportType;
+use App\Form\ContactType;
 use Symfony\Component\Validator\Constraints\DateTime;
 use App\Utils\Utilities;
 use Symfony\Component\HttpFoundation\Response;
@@ -119,10 +120,32 @@ class ReportController extends AbstractController
      /**
      * @Route("/report/respond/{id}", name="report_respond")
      */
-    public function RespondReport($id)
+    public function RespondReport(Request $request,$id,\Swift_Mailer $mailer)
     {
         $report = $this->getDoctrine()->getRepository(Report::class)->find($id);
-        return $this->render('back/respondClient.html.twig',['id'=>$id]);
+        $form = $this->createForm(ContactType::class);
+        $form ->handleRequest($request);
+        if($form->isSubmitted()&& $form->isValid()){
+            $contact = $form->getData();
+
+            $message = (new \Swift_Message('We Responded to your Report !'))
+            ->setFrom('ftbb.store@gmail.com')
+            ->setTo($contact['email'])
+            
+            ->setBody($this->renderView('contact/contact.html.twig',compact('contact')),'text/html');
+
+            $mailer->send($message);
+            $this->addFlash('message','Le message a bien été envoyé ');
+            
+
+        }
+        
+        return $this->render('back/respondClient.html.twig',['id'=>$id,
+            'contact_form' => $form->createView()
+        ]);
         
     }
+
+     
+    
 }

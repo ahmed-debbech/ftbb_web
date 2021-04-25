@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Feedback;
 use App\Form\FeedbackFormType;
 use App\Form\ModifyFeedbackType;
+use App\Form\ContactType;
 use Symfony\Component\Validator\Constraints\DateTime;
 use App\Utils\Utilities;
 
@@ -119,10 +120,29 @@ class FeedbackController extends AbstractController
     /**
      * @Route("/feedback/respond/{id}", name="feedback_respond")
      */
-    public function RespondReport($id)
+    public function RespondReport(Request $request,$id,\Swift_Mailer $mailer)
     {
         $feedback = $this->getDoctrine()->getRepository(Feedback::class)->find($id);
-        return $this->render('back/respondClient.html.twig',['id'=>$id]);
+        $form = $this->createForm(ContactType::class);
+        $form ->handleRequest($request);
+        if($form->isSubmitted()&& $form->isValid()){
+            $contact = $form->getData();
+
+            $message = (new \Swift_Message('We Responded to your Report !'))
+            ->setFrom('ftbb.store@gmail.com')
+            ->setTo($contact['email'])
+            
+            ->setBody($this->renderView('contact/contact.html.twig',compact('contact')),'text/html');
+
+            $mailer->send($message);
+            $this->addFlash('message','Le message a bien été envoyé ');
+            
+
+        }
+        
+        return $this->render('back/respondClient.html.twig',['id'=>$id,
+            'contact_form' => $form->createView()
+        ]);
         
     }
 
