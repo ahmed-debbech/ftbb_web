@@ -75,4 +75,41 @@ class ArticleRepository extends ServiceEntityRepository
         }
         return $a;
     }
+    public function getTopLast($time){
+
+        switch($time){
+            case 1:
+                $query = "SELECT article.*, count(likes.id_like) as likes_count from `article` left join likes on likes.id_article = article.article_id where article.date > subdate(CURRENT_TIMESTAMP(), INTERVAL 6 hour)  group by article.article_id order by likes_count DESC;";
+                break;
+            case 2:
+                $query = "SELECT article.*, count(likes.id_like) as likes_count from `article` left join likes on likes.id_article = article.article_id where article.date > subdate(CURRENT_TIMESTAMP(), INTERVAL 24 hour)  group by article.article_id order by likes_count DESC;";
+                break;
+            case 3:
+                $query = "SELECT article.*, count(likes.id_like) as likes_count from `article` left join likes on likes.id_article = article.article_id  group by article.article_id order by likes_count DESC;";
+                break;
+            default:
+            return;
+            break;
+        }
+
+        $conn = $this->getEntityManager()->getConnection();
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+        $arr = $stmt->fetchAllAssociative();
+        $a = array();
+        for($i=0; $i<=count($arr)-1; $i++){
+            $com = new Article();
+            $com->setArticleId($arr[$i]['article_id']);
+            $com->setTitle($arr[$i]['title']);
+            //$cl = new Admin();
+            $com->setAdminId($arr[$i]['admin_id']);
+            $com->setDate($arr[$i]['date']);
+            $com->setText($arr[$i]['text']);
+            $com->setAuthor($arr[$i]['author']);
+            $com->setPhotoUrl($arr[$i]['photo_url']);
+            $com->setCategory($arr[$i]['category']);
+            array_push($a, $com);
+        }
+        return $a;
+    }
 }

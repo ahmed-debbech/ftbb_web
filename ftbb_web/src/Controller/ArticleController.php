@@ -159,4 +159,12 @@ class ArticleController extends AbstractController
         $articles = $this->getDoctrine()->getRepository(Article::class)->getMostCommented();
         return $this->render('back/article-show-admin.html.twig', ['articles' => $articles]);
     }
+
+    /**
+     * @Route("/articles/last_sort/{time}" , name="last_sort")
+     */
+    public function lastSort($time){
+        $articles = $this->getDoctrine()->getRepository(Article::class)->getTopLast($time);
+        return $this->render('article/articles.html.twig', ['articles' => $articles]);
+    }
 }
