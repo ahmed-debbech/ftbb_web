@@ -33,7 +33,7 @@ class ReportController extends AbstractController
             $em->persist($rep);
             $em->flush();
 
-            //return $this->redirect('list');
+            return $this->redirectToRoute("report_sent");
         }
         return $this->render('report/report.html.twig', [
             'report_form' => $form->createView()
@@ -146,6 +146,13 @@ class ReportController extends AbstractController
         
     }
 
-     
+     /**
+     * @Route("/report/sent", name="report_sent")
+     */
+    public function reportSent()
+    {
+        return $this->render('report/report-sent-success.html.twig',[]);
+        
+    }
     
 }
