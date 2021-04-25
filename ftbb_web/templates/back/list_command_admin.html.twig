@@ -748,13 +748,18 @@
                                 </div>
                             </a>
                         </td>
+                        <td>
+                            <a href="/ftbb_web/ftbb_web/public/index.php/command/pdf" role="button">
+                                <div class="font-icon-wrapper font-icon-lg">
+                                    <i class="fa fa-file-archive icon-gradient bg-happy-itmeo"> </i>
+                                </div>
+                            </a>
+                        </td>
                     </tr>
                 </table>
-                <div class="row">
 
-                    <div class="col-lg-6">
                         <div class="main-card mb-3 card">
-                            <div class="card-body"><h5 class="card-title">Table with hover</h5>
+                            <div class="card-body">
                                 <table class="mb-0 table table-hover">
                                     <thead>
                                     <tr>
@@ -764,7 +769,7 @@
                                         <th>Date Command</th>
                                         <th>Status</th>
                                         <th>Total Price</th>
-                                        <th>VALIDER</th>
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -780,18 +785,22 @@
                                                 {{ command.idClient }}
                                             </td>
                                             <td>
-                                                {{ command.dateCommand |date ('Y-m-d')}}
+                                                {{ command.dateCommand |date ('Y-m-d H:i:s')}}
                                             </td>
                                             <td>
-                                                <button class="mb-2 mr-2 btn btn-primary active">
-                                                    {{ command.status }}
-                                                </button>
+                                                {% if command.status==0 %}
+                                                    <div class="mb-2 mr-2 badge badge-pill badge-danger">En attente</div>
+                                                {% elseif command.status == 1 %}
+                                                    <div class="mb-2 mr-2 badge badge-pill badge-success">Validée</div>
+                                                {% endif %}
                                             </td>
                                             <td>
                                                 {{ command.totalPrice }}
                                             </td>
                                             <td>
-                                                <a href="/ftbb_web/ftbb_web/public/index.php/command/modifier_status_admin/{{ command.commandId}}" role="button">OK</a>
+                                                <a href="/ftbb_web/ftbb_web/public/index.php/command/modifier_status_admin/{{ command.commandId}}" role="button">
+                                                    <button class="mb-2 mr-2 btn btn-dark"> VALIDER </button>
+                                                </a>
                                             </td>
                                         </tr>
                                     {% endfor %}
