@@ -728,6 +728,28 @@
                             </div>
                         </div>    </div>
                 </div>
+                <table>
+                    <tr>
+                        <td>
+                            <div class="search-wrapper active" >
+                                <div class="input-holder">
+                                    <form method="post" action="{{ path('recherche_list_command_admin') }}">
+                                        <input type="text" name="search" class="search-input" placeholder="Type to search">
+                                        <button class="search-icon"><span></span></button>
+                                    </form>
+                                </div>
+                                <button class="close"></button>
+                            </div>
+                        </td>
+                        <td>
+                            <a href="/ftbb_web/ftbb_web/public/index.php/command/statistique" role="button">
+                                <div class="font-icon-wrapper font-icon-lg">
+                                    <i class="fa fa-database icon-gradient bg-ripe-malin"> </i>
+                                </div>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
                 <div class="row">
 
                     <div class="col-lg-6">
@@ -761,7 +783,9 @@
                                                 {{ command.dateCommand |date ('Y-m-d')}}
                                             </td>
                                             <td>
-                                                {{ command.status }}
+                                                <button class="mb-2 mr-2 btn btn-primary active">
+                                                    {{ command.status }}
+                                                </button>
                                             </td>
                                             <td>
                                                 {{ command.totalPrice }}

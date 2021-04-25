@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class FavouriteControllerPhpController extends AbstractController
+class FavouriteController extends AbstractController
 {
     /**
      * @Route("/favourite/controller/php", name="favourite_controller_php")
@@ -17,7 +17,7 @@ class FavouriteControllerPhpController extends AbstractController
     public function index(): Response
     {
         return $this->render('favourite_controller_php/index.html.twig', [
-            'controller_name' => 'FavouriteControllerPhpController',
+            'controller_name' => 'FavouriteController',
         ]);
     }
 
@@ -33,7 +33,7 @@ class FavouriteControllerPhpController extends AbstractController
             $product = $this ->getDoctrine()->getRepository(Product :: class)->find($x->getRefproduct());
             array_push($products, $product);
         }
-        return $this->render('list_favourite.html.twig', [
+        return $this->render('product/list_favourite.html.twig', [
             'controller_name' => 'ProductController',
             'data'=> $products,
         ]);

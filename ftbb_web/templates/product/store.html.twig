@@ -526,12 +526,36 @@
                     </div>
                 </div>
                 <div class="bigslam-page-wrapper" id="bigslam-page-wrapper">
-                    <div class="gdlr-core-page-builder-body">
+                    <a class="gdlr-core-page-builder-body">
+                        <table>
+                            <tr>
+                                <td>
+                                         <form method="post" action="{{ path('recherche_product_store') }}">
+                                             <input type="text"name="search"> <input type="submit" value="Recherche">
+                                         </form>
+                                </td>
+                                <td>
+                                    <a href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/command/list_command_client">
+                                        <i class=" gdlr-core-icon-item-icon fa fa-gears" style="color: orangered ;font-size: 30px;"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/product/list_favourite">
+                                        <span class="gdlr-core-icon-list-icon-wrap">
+                                            <i class="gdlr-core-icon-list-icon-hover fa fa-heart" style="color: orangered ;font-size: 30px ;"></i>
+                                        </span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/product/cart">
+                                     <span class="gdlr-core-icon-list-icon-wrap">
+                                         <i class="gdlr-core-icon-list-icon-hover fa fa-truck" style="color: orangered ;font-size: 30px ;"></i>
+                                     </span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
 
-                        <form method="post" action="{{ path('recherche_product_store') }}">
-
-                            <input type="text"name="search"> <input type="submit" value="Recherche">
-                        </form>
 
                         <div class="gdlr-core-pbf-section">
                             <div class="gdlr-core-pbf-section-container gdlr-core-container clearfix">
@@ -570,7 +594,7 @@
                                                                 <span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author">
                                                                     <span class="gdlr-core-head"><i class="fa fa-user-o"></i>
                                                                     </span>
-                                                                    <a href="#" title="Posts by John Smith" rel="author">{{ product.price}}</a>
+                                                                    <a href="#" title="Posts by John Smith" rel="author">{{ product.price}} DT</a>
                                                                 </span>
                                                             </div>
 

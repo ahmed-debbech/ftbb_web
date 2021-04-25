@@ -9,6 +9,7 @@ use App\Utils\Utilities;
 use App\Entity\Product;
 use App\Form\AjouterProductType;
 use App\Form\ModifierProductType;
+use Ob\HighchartsBundle\Highcharts\Highchart;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -239,17 +240,11 @@ class ProductController extends AbstractController
         }
 
         $ob->series(array(array('type' => 'pie','name' => '', 'data' => $data)));
-        return $this->render('back/list_product.html.twig', array(
+        return $this->render('back/statistique.html.twig', array(
             'chart' => $ob
         ));
     }
 
-    /**
-     * @Route("/product/statistiques", name="stats")
-     */
-    public function statistiques(){
-            return $this->render('back/stats.html.twig');
-    }
 
 
 

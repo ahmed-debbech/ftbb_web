@@ -732,20 +732,32 @@
                             </div>
                         </div>    </div>
                 </div>
-                <div class="search-wrapper active" >
-                    <div class="input-holder">
-                        <form method="post" action="{{ path('recherche_product') }}">
-                        <input type="text" name="search" class="search-input" placeholder="Type to search">
-                        <button class="search-icon"><span></span></button>
-                        </form>
-                    </div>
-                    <button class="close"></button>
-                </div>
-
-                    <div>
-                        <div class="main-card mb-3 card">
-                            <div class="card-body"><h5 class="card-title">Table with hover</h5>
-                                <table class="mb-0 table table-hover">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="search-wrapper active" >
+                                <div class="input-holder">
+                                    <form method="post" action="{{ path('recherche_product') }}">
+                                        <input type="text" name="search" class="search-input" placeholder="Type to search">
+                                        <button class="search-icon"><span></span></button>
+                                    </form>
+                                </div>
+                                <button class="close"></button>
+                            </div>
+                        </td>
+                        <td>
+                            <a href="/ftbb_web/ftbb_web/public/index.php/product/statistique" role="button">
+                              <div class="font-icon-wrapper font-icon-lg">
+                                  <i class="fa fa-database icon-gradient bg-ripe-malin"> </i>
+                              </div>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+                <div>
+                    <div class="main-card mb-3 card">
+                        <div class="card-body"><h5 class="card-title">Table with hover</h5>
+                            <table class="mb-0 table table-hover">
                                     <thead>
                                     <tr>
                                         <th>#</th>
@@ -780,7 +792,7 @@
                                                 {{ product.name }}
                                             </td>
                                             <td>
-                                                {{ product.price }}
+                                                {{ product.price }} DT
                                             </td>
                                             <td>
                                                 {{ product.details }}
@@ -804,10 +816,10 @@
                                         </tr>
                                     {% endfor %}
                                     </tbody>
-                                </table>
-                            </div>
+                            </table>
                         </div>
                     </div>
+                </div>
 
             </div>
             <div class="app-wrapper-footer">

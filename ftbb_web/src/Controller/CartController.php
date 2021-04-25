@@ -49,17 +49,17 @@ class CartController extends AbstractController
     public function addtocart($id)
     {
         $cart=new Cart();
-        $em = $this->getDoctrine()->getManager();
-        $cart->setCartId(2);
-        $cart->setIdClient(2);
-        $cart->setNumProducts(1);
-        $cart->setAdditionId(Utilities::generateId($cart,'additionId',$this->getDoctrine()));
-        $cart->setTotalPrice(0);
-        $cart->setRefproduct($id);
-        $em->persist($cart);
-        $em->flush();
+            $em = $this->getDoctrine()->getManager();
+            $cart->setCartId(2);
+            $cart->setIdClient(2);
+            $cart->setNumProducts(1);
+            $cart->setAdditionId(Utilities::generateId($cart, 'additionId', $this->getDoctrine()));
+            $cart->setTotalPrice(0);
+            $cart->setRefproduct($id);
+            $em->persist($cart);
+            $em->flush();
 
-        return $this->redirectToRoute('list_product_client');
+            return $this->redirectToRoute('list_product_client');
     }
 
     /**

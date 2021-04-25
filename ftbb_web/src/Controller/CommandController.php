@@ -7,6 +7,7 @@ use App\Entity\Command;
 use App\Entity\CommandProduct;
 use App\Entity\Product;
 use App\Form\ModifierProductType;
+use App\Repository\CommandRepository;
 use App\Utils\Utilities;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -98,6 +99,34 @@ class CommandController extends AbstractController
             $entityManager->flush();
         }
         return $this->redirectToRoute('cart');
+    }
+
+    /**
+     * @Route("/command/recherche_list_command_client",name="recherche_list_command_client")
+     */
+    public function Recherche_listcommandclient(CommandRepository $repository,Request $request)
+    {
+        $data=$request->get('search');
+        $em=$repository->search($data);
+
+        return $this->render('command/list_command_client.html.twig',[
+            'data'=>$em
+
+        ]);
+    }
+
+    /**
+     * @Route("/command/recherche_list_command_admin",name="recherche_list_command_admin")
+     */
+    public function Recherche_listcommandadmin(CommandRepository $repository,Request $request)
+    {
+        $data=$request->get('search');
+        $em=$repository->search($data);
+
+        return $this->render('back/list_command_admin.html.twig',[
+            'data'=>$em
+
+        ]);
     }
 
 
