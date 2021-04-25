@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Comment;
@@ -45,7 +47,8 @@ class LikesController extends AbstractController
             $this->addFlash('message', 'Le message a bien été envoyé');
             }
         }
-        return $this->redirectToRoute("one_article", ['id' => $art_id]);
+        $art = $this ->getDoctrine()->getRepository(Comment :: class)->find($com_id);
+        return new JsonResponse(['count' => $art->getLikesCount()]);
     }
 
     /**
@@ -68,6 +71,7 @@ class LikesController extends AbstractController
             $em->persist($like);
             $em->flush();
         }
-        return $this->redirectToRoute("one_article", ['id' => $art_id]);
+        $art = $this ->getDoctrine()->getRepository(Article :: class)->find($art_id);
+        return new JsonResponse(['count' => $art->getLikesCount()]);
     }
 }
