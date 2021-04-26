@@ -7,6 +7,7 @@ use App\Entity\Product;
 use App\Form\AjouterProductType;
 use App\Utils\Utilities;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -80,7 +81,7 @@ class CartController extends AbstractController
             $em->flush();
         }
 
-            return $this->redirectToRoute('list_product_client');
+            return new JsonResponse();
     }
 
     /**

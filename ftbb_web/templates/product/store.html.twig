@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<div class="bigslam-mobile-header-wrap">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <div class="bigslam-mobile-header-wrap">
     <div class="bigslam-mobile-header bigslam-header-background bigslam-style-slide" id="bigslam-mobile-header">
         <div class="bigslam-mobile-header-container bigslam-container">
             <div class="bigslam-logo  bigslam-item-pdlr">
@@ -602,7 +604,13 @@
                                                                 <div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
                                                                     <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
                                                                         <div class="gdlr-core-pbf-element">
-                                                                            <div class="gdlr-core-button-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-center-align"><a class="gdlr-core-button gdlr-core-button-solid gdlr-core-button-no-border" href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/cart/add/{{ product.refProduct }}" id="gdlr-core-button-id-48095"><i class="gdlr-core-pos-left fa fa-arrow-circle-right"></i><span class="gdlr-core-content"></span></a></div>
+                                                                            <div class="gdlr-core-button-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-center-align">
+                                                                                <button onclick="
+                                                                                        $.get('http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/cart/add/{{ product.refProduct }}', function(data, status) {
+                                                                                        alert('');
+                                                                                        });
+
+                                                                                        " class="gdlr-core-button gdlr-core-button-solid gdlr-core-button-no-border" id="gdlr-core-button-id-48095"><i class="gdlr-core-pos-left fa fa-arrow-circle-right"></i><span class="gdlr-core-content"></span></button></div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
