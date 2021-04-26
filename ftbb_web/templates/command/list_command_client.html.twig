@@ -608,7 +608,11 @@
                                                             {{ command.dateCommand |date ('Y-m-d / H:i:s')  }}
                                                         </td>
                                                         <td>
-                                                            {{ command.status }}
+                                                            {% if command.status == 1 %}
+                                                            Validée
+                                                            {% else %}
+                                                            En attente
+                                                            {% endif %}
                                                         </td>
                                                         <td>
                                                             {{ command.totalPrice }} DT
