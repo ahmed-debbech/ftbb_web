@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Entity;
-
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -38,7 +37,6 @@ class Article
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255, nullable=false)
-     * 
      */
     private $title;
 
@@ -46,7 +44,6 @@ class Article
      * @var string
      *
      * @ORM\Column(name="text", type="string", length=2048, nullable=false)
-     *
      */
     private $text;
 
@@ -54,11 +51,12 @@ class Article
      * @var string
      *
      * @ORM\Column(name="author", type="string", length=255, nullable=false)
-     * 
+
      */
     private $author;
 
     /**
+
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime", nullable=true)
@@ -70,7 +68,6 @@ class Article
      * @var string
      *
      * @ORM\Column(name="photo_url", type="string", length=255, nullable=false)
-     * 
      */
     private $photoUrl;
 

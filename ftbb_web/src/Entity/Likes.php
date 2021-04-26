@@ -21,6 +21,7 @@ class Likes
     private $idLike;
 
     /**
+
      * @var \Comment
      *
      * @ORM\ManyToOne(targetEntity="Comment")
