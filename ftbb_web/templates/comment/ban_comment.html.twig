@@ -720,13 +720,7 @@
                                  <td> {{comment.content}} </td>
                                  <td> {{comment.getLikesCount()}} </td>
                                  <td>
-                                 <button class="mb-2 mr-2 btn btn-danger" onclick="
-                                 $.get('http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/admin/article/{{comment.articleId}}/ban/{{comment.id}}', function(data, status) {
-                                       const obj = JSON.parse(data);
-                                       alert(obj);
-                                       $('#passa').html(obj.comments);
-                                 });
-                                 "><a id="banv"  style="color: white;"> Ban! </a></button>
+                                 <button class="mb-2 mr-2 btn btn-danger" ><a id="banv" href="http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/admin/article/{{comment.articleId}}/ban/{{comment.id}}" style="color: white;"> Ban! </a></button>
                                  </td>
                               </tr>
                               {% endfor %}
