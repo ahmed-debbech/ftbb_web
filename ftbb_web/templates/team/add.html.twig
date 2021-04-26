@@ -16,7 +16,9 @@
                 <div class="col-md-6">
                     <div class="main-card mb-3 card">
                         <div class="card-body"><h5 class="card-title">Add team </h5>
-                            <form  method="POST" action= "Addteams">
+                        <a href="{{path('Showteams') }}">
+                                     <button type="button" class="btn btn-primary">Back</button></a>
+                            <form  method="POST" action= "Addteams" enctype="multipart/form-data">
                                 <div class="position-relative form-group"><label for="Name" class="">Name</label><input name="name" id="name" placeholder="name team" type="text" class="form-control"></div>
                                    <div class="position-relative form-group">
                                    <label for="exampleSelect" class="">Select</label>
@@ -27,7 +29,8 @@
                                                     </select>
                                                     </div>
                                 <div class="position-relative form-group">
-                                <label for="exampleFile" class="">File</label><input name="file" id="exampleFile" type="file" class="form-control-file">
+                                <label for="exampleFile" class="">File</label>
+                                <input name="image" id="image" type="file" class="form-control-file">
                                     <small class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
                                 </div>
                                 <input type="submit" value="ADD" />

@@ -2,8 +2,9 @@
 
 
 {% block body %}
+
 <!-- start content -->
-            <div class="bigslam-page-wrapper" id="bigslam-page-wrapper">
+           {#  <div class="bigslam-page-wrapper" id="bigslam-page-wrapper">
                 <div class="gdlr-core-page-builder-body">
                     <div class="gdlr-core-pbf-wrapper " style="padding: 0px 0px 0px 0px;">
                         <div class="gdlr-core-pbf-background-wrap"></div>
@@ -17,7 +18,7 @@
                                             <rs-module id="rev_slider_1_1" style="display:none;" data-version="6.1.5">
                                                 <rs-slides>
                                                     <rs-slide data-key="rs-1" data-title="Slide" data-thumb="#" data-anim="ei:d;eo:d;s:600;r:0;t:fade;sl:d;">
-                                                        <img src="upload/slider-1-2.jpg" title="Homepage" class="rev-slidebg" data-no-retina="">
+                                                        <img src="{{ asset("upload/slider-1-2.jpg") }}" title="Homepage" class="rev-slidebg" data-no-retina="">
 
                                                         <rs-layer id="slider-1-slide-1-layer-1" data-type="text" data-color="#ec4613" data-rsp_ch="on" data-xy="xo:40px,40px,40px,45px;y:m;yo:-3px,-3px,-3px,-170px;" data-text="s:17;l:22;ls:3px;a:inherit;" data-frame_0="tp:600;" data-frame_1="tp:600;st:180;sR:180;" data-frame_999="o:0;tp:600;st:w;sR:8520;" style="z-index:5;font-family:Roboto Condensed;text-transform:uppercase;">Hey! We Are
                                                         </rs-layer>
@@ -37,18 +38,18 @@
                                                         <rs-layer id="slider-1-slide-1-layer-6" class="rev-btn" data-type="button" data-color="#000000" data-xy="xo:40px,40px,40px,47px;y:m;yo:265px,265px,265px,43px;" data-text="s:12;l:17;ls:1px;fw:700;a:inherit;" data-dim="h:auto,auto,auto,49px;" data-rsp_bd="off" data-padding="t:17,17,17,15;r:32,32,32,27;b:17,17,17,13;l:32,32,32,27;" data-border="bor:3px,3px,3px,3px;" data-frame_0="x:-200px;skX:85px;tp:600;" data-frame_1="tp:600;st:880;sR:880;" data-frame_999="o:0;tp:600;st:w;sR:7820;" data-frame_hover="c:#000;bgc:#fff;boc:#000;bor:3px,3px,3px,3px;bos:solid;oX:50;oY:50;sp:0;" style="z-index:10;background-color:#ffffff;font-family:Roboto;text-transform:uppercase;cursor:pointer;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;">Learn More
                                                         </rs-layer>
                                                         <!-- -->
-                                                        <rs-layer id="slider-1-slide-1-layer-7" data-type="image" data-rsp_ch="on" data-xy="x:r;xo:418px,418px,418px,366px;y:b;yo:93px,93px,93px,111px;" data-text="l:22;a:inherit;" data-dim="w:85px,85px,85px,59px;h:43px,43px,43px,30px;" data-frame_0="tp:600;" data-frame_1="tp:600;st:1160;sR:1160;" data-frame_999="o:0;tp:600;st:w;sR:7540;" style="z-index:7;"><img src="upload/banner-1.png" width="85" height="43" data-no-retina="" alt="">
+                                                        <rs-layer id="slider-1-slide-1-layer-7" data-type="image" data-rsp_ch="on" data-xy="x:r;xo:418px,418px,418px,366px;y:b;yo:93px,93px,93px,111px;" data-text="l:22;a:inherit;" data-dim="w:85px,85px,85px,59px;h:43px,43px,43px,30px;" data-frame_0="tp:600;" data-frame_1="tp:600;st:1160;sR:1160;" data-frame_999="o:0;tp:600;st:w;sR:7540;" style="z-index:7;"><img   src='{{ asset("upload/banner-1.png") }}'  width="85" height="43" data-no-retina="" alt="">
                                                         </rs-layer>
                                                         <!-- -->
-                                                        <rs-layer id="slider-1-slide-1-layer-10" data-type="image" data-rsp_ch="on" data-xy="x:r;xo:229px,229px,229px,230px;y:b;yo:98px,98px,98px,113px;" data-text="l:22;a:inherit;" data-dim="w:150px,150px,150px,116px;h:14px,14px,14px,11px;" data-frame_0="tp:600;" data-frame_1="tp:600;st:1420;sR:1420;" data-frame_999="o:0;tp:600;st:w;sR:7280;" style="z-index:14;"><img src="upload/banner-2.png" width="150" height="14" data-no-retina="" alt="">
+                                                        <rs-layer id="slider-1-slide-1-layer-10" data-type="image" data-rsp_ch="on" data-xy="x:r;xo:229px,229px,229px,230px;y:b;yo:98px,98px,98px,113px;" data-text="l:22;a:inherit;" data-dim="w:150px,150px,150px,116px;h:14px,14px,14px,11px;" data-frame_0="tp:600;" data-frame_1="tp:600;st:1420;sR:1420;" data-frame_999="o:0;tp:600;st:w;sR:7280;" style="z-index:14;"><img  src='{{ asset("upload/banner-2.png") }}'  width="150" height="14" data-no-retina="" alt="">
                                                         </rs-layer>
                                                         <!-- -->
-                                                        <rs-layer id="slider-1-slide-1-layer-11" data-type="image" data-rsp_ch="on" data-xy="x:r;xo:39px,39px,39px,92px;y:b;yo:92px,92px,92px,110px;" data-text="l:22;a:inherit;" data-dim="w:156px,156px,156px,113px;h:27px,27px,27px,20px;" data-frame_0="tp:600;" data-frame_1="tp:600;st:1710;sR:1710;" data-frame_999="o:0;tp:600;st:w;sR:6990;" style="z-index:15;"><img src="upload/banner-3.png" width="156" height="27" data-no-retina="" alt="">
+                                                        <rs-layer id="slider-1-slide-1-layer-11" data-type="image" data-rsp_ch="on" data-xy="x:r;xo:39px,39px,39px,92px;y:b;yo:92px,92px,92px,110px;" data-text="l:22;a:inherit;" data-dim="w:156px,156px,156px,113px;h:27px,27px,27px,20px;" data-frame_0="tp:600;" data-frame_1="tp:600;st:1710;sR:1710;" data-frame_999="o:0;tp:600;st:w;sR:6990;" style="z-index:15;"><img  src='{{ asset("upload/banner-3.png") }}'   width="156" height="27" data-no-retina="" alt="">
                                                         </rs-layer>
                                                         <!---->
                                                     </rs-slide>
                                                     <rs-slide data-key="rs-3" data-title="Slide" data-thumb="#" data-anim="ei:d;eo:d;s:600;r:0;t:fade;sl:d;">
-                                                        <img src="upload/slider-2-1.jpg" title="Homepage" data-bg="p:center top;" class="rev-slidebg" data-no-retina="">
+                                                        <img   src='{{ asset("upload/slider-2-1.jpg") }}'  title="Homepage" data-bg="p:center top;" class="rev-slidebg" data-no-retina="">
                                                         <!-- -->
                                                         <rs-layer id="slider-1-slide-3-layer-1" data-type="text" data-color="#ec4613" data-rsp_ch="on" data-xy="xo:40px,40px,40px,42px;y:m;yo:-3px,-3px,-3px,-165px;" data-text="s:17;l:22;ls:3px;a:inherit;" data-frame_0="tp:600;" data-frame_1="tp:600;st:180;sR:180;" data-frame_999="o:0;tp:600;st:w;sR:8520;" style="z-index:5;font-family:Roboto Condensed;text-transform:uppercase;">Meet the rookie!
                                                         </rs-layer>
@@ -90,9 +91,9 @@
                                     <div class="gdlr-core-sp-featured-event-item gdlr-core-item-pdb clearfix " style="padding-bottom: 115px ;">
                                         <div class="bigslam-sp-event-featured-top bigslam-status-score">
                                             <div class="bigslam-sp-event-featured-title bigslam-title-font clearfix">
-                                                <div class="bigslam-sp-event-featured-title-left"><span class="bigslam-sp-team-logo"><img width="200" height="244" src="upload/team-1.png" class="attachment-sportspress-fit-medium size-sportspress-fit-medium wp-post-image" alt="" ></span><span class="bigslam-sp-team-name">Big Slam</span></div><span class="bigslam-sp-event-result"><a href="#">78<span class="bigslam-sp-event-result-sep"> - </span>97</a>
+                                                <div class="bigslam-sp-event-featured-title-left"><span class="bigslam-sp-team-logo"><img width="200" height="244"   src='{{ asset("upload/team-1.png") }}'  class="attachment-sportspress-fit-medium size-sportspress-fit-medium wp-post-image" alt="" ></span><span class="bigslam-sp-team-name">Big Slam</span></div><span class="bigslam-sp-event-result"><a href="#">78<span class="bigslam-sp-event-result-sep"> - </span>97</a>
                                                 </span>
-                                                <div class="bigslam-sp-event-featured-title-right"><span class="bigslam-sp-team-logo"><img width="200" height="219" src="upload/team-8.png" class="attachment-sportspress-fit-medium size-sportspress-fit-medium wp-post-image" alt="" ></span><span class="bigslam-sp-team-name">New Yorkers</span></div>
+                                                <div class="bigslam-sp-event-featured-title-right"><span class="bigslam-sp-team-logo"><img width="200" height="219"    src='{{ asset("upload/team-8.png") }}' class="attachment-sportspress-fit-medium size-sportspress-fit-medium wp-post-image" alt="" ></span><span class="bigslam-sp-team-name">New Yorkers</span></div>
                                             </div>
                                             <div class="bigslam-sp-event-featured-info"><span class="bigslam-sp-event-date">April 8, 2017</span><span class="bigslam-sp-event-venue"><a href="#" rel="tag">Chicago Bulls Arena</a></span></div>
                                             <div class="bigslam-sp-event-featured-link"><a class="gdlr-core-button gdlr-core-rectangle" href="#">Game Info</a></div>
@@ -152,7 +153,7 @@
                                             <div class="gdlr-core-pbf-element">
                                                 <div class="gdlr-core-image-item gdlr-core-item-pdb  gdlr-core-center-align gdlr-core-item-pdlr" style="padding-bottom: 32px ;">
                                                     <div class="gdlr-core-image-item-wrap gdlr-core-media-image  gdlr-core-image-item-style-rectangle" style="border-width: 0px;max-width: 143px ;">
-                                                        <a href="http://goodlayers.com" target="_blank"><img src="upload/banner-3-logo.png" alt="" width="208" height="74" title="banner-3-logo"><span class="gdlr-core-image-overlay "></span></a>
+                                                        <a href="http://goodlayers.com" target="_blank"><img   src='{{ asset("upload/banner-3-logo.png") }}'  alt="" width="208" height="74" title="banner-3-logo"><span class="gdlr-core-image-overlay "></span></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -189,27 +190,27 @@
                                                                 <div class="bigslam-sp-event-featured-holder clearfix">
                                                                     <div class="bigslam-sp-event-featured-top bigslam-status-vs">
                                                                         <div class="bigslam-sp-event-featured-title bigslam-title-font clearfix">
-                                                                            <div class="bigslam-sp-event-featured-title-left"><span class="bigslam-sp-team-logo"><img width="200" height="244" src="upload/team-1.png" class="attachment-sportspress-fit-medium size-sportspress-fit-medium wp-post-image" alt=""  ></span><span class="bigslam-sp-team-name">Big Slam</span></div><span class="bigslam-sp-event-result"><a href="#">VS</a></span>
-                                                                            <div class="bigslam-sp-event-featured-title-right"><span class="bigslam-sp-team-logo"><img width="200" height="217" src="upload/team-10.png" class="attachment-sportspress-fit-medium size-sportspress-fit-medium wp-post-image" alt="" ></span><span class="bigslam-sp-team-name">Miami Heat</span></div>
+                                                                            <div class="bigslam-sp-event-featured-title-left"><span class="bigslam-sp-team-logo"><img width="200" height="244"   src='{{ asset("upload/team-1.png") }}'  class="attachment-sportspress-fit-medium size-sportspress-fit-medium wp-post-image" alt=""  ></span><span class="bigslam-sp-team-name">Big Slam</span></div><span class="bigslam-sp-event-result"><a href="#">VS</a></span>
+                                                                            <div class="bigslam-sp-event-featured-title-right"><span class="bigslam-sp-team-logo"><img width="200" height="217"  src='{{ asset("upload/team-10.png") }}'  class="attachment-sportspress-fit-medium size-sportspress-fit-medium wp-post-image" alt="" ></span><span class="bigslam-sp-team-name">Miami Heat</span></div>
                                                                         </div>
                                                                         <div class="bigslam-sp-event-featured-info"><span class="bigslam-sp-event-date">March 10, 2022</span><span class="bigslam-sp-event-venue"><a href="#" rel="tag">New Yorkers Stadium</a></span></div>
                                                                     </div>
                                                                     <div class="bigslam-sp-event-featured-list clearfix">
-                                                                        <div class="bigslam-sp-event-featured-title bigslam-title-font"><span class="bigslam-sp-team-logo"><img width="200" height="244" src="upload/team-1.png" class="attachment-sportspress-fit-medium size-sportspress-fit-medium wp-post-image" alt=""  ></span><span class="bigslam-sp-team-name">Big Slam</span><span class="bigslam-sp-event-result"><a href="#">VS</a></span><span class="bigslam-sp-team-name">Oklahoma</span><span class="bigslam-sp-team-logo"><img width="200" height="171" src="upload/team-7.png" class="attachment-sportspress-fit-medium size-sportspress-fit-medium wp-post-image" alt="" ></span></div>
+                                                                        <div class="bigslam-sp-event-featured-title bigslam-title-font"><span class="bigslam-sp-team-logo"><img width="200" height="244"  src='{{ asset("upload/team-1.png") }}'  class="attachment-sportspress-fit-medium size-sportspress-fit-medium wp-post-image" alt=""  ></span><span class="bigslam-sp-team-name">Big Slam</span><span class="bigslam-sp-event-result"><a href="#">VS</a></span><span class="bigslam-sp-team-name">Oklahoma</span><span class="bigslam-sp-team-logo"><img width="200" height="171"  src='{{ asset("upload/team-7.png") }}' class="attachment-sportspress-fit-medium size-sportspress-fit-medium wp-post-image" alt="" ></span></div>
                                                                         <div class="bigslam-sp-event-featured-info"><span class="bigslam-sp-event-date">April 5, 2023</span><span class="bigslam-sp-event-venue"><a href="#" rel="tag">Boston Celtics Arena</a></span>
                                                                             <a class="bigslam-sp-event-link" href="#">
                                                                                 <div class="dashicons dashicons-video-alt"></div>Preview<i class="fa fa-long-arrow-right"></i></a>
                                                                         </div>
                                                                     </div>
                                                                     <div class="bigslam-sp-event-featured-list clearfix">
-                                                                        <div class="bigslam-sp-event-featured-title bigslam-title-font"><span class="bigslam-sp-team-logo"><img width="200" height="219" src="upload/team-8.png" class="attachment-sportspress-fit-medium size-sportspress-fit-medium wp-post-image" alt="" ></span><span class="bigslam-sp-team-name">New Yorkers</span><span class="bigslam-sp-event-result"><a href="#">VS</a></span><span class="bigslam-sp-team-name">Big Slam</span><span class="bigslam-sp-team-logo"><img width="200" height="244" src="upload/team-1.png" class="attachment-sportspress-fit-medium size-sportspress-fit-medium wp-post-image" alt="" ></span></div>
+                                                                        <div class="bigslam-sp-event-featured-title bigslam-title-font"><span class="bigslam-sp-team-logo"><img width="200" height="219"    src='{{ asset("upload/team-8.png") }}'  class="attachment-sportspress-fit-medium size-sportspress-fit-medium wp-post-image" alt="" ></span><span class="bigslam-sp-team-name">New Yorkers</span><span class="bigslam-sp-event-result"><a href="#">VS</a></span><span class="bigslam-sp-team-name">Big Slam</span><span class="bigslam-sp-team-logo"><img width="200" height="244" src="upload/team-1.png" class="attachment-sportspress-fit-medium size-sportspress-fit-medium wp-post-image" alt="" ></span></div>
                                                                         <div class="bigslam-sp-event-featured-info"><span class="bigslam-sp-event-date">April 10, 2024</span><span class="bigslam-sp-event-venue"><a href="#" rel="tag">New Yorkers Stadium</a></span>
                                                                             <a class="bigslam-sp-event-link" href="#">
                                                                                 <div class="dashicons dashicons-video-alt"></div>Preview<i class="fa fa-long-arrow-right"></i></a>
                                                                         </div>
                                                                     </div>
                                                                     <div class="bigslam-sp-event-featured-list clearfix">
-                                                                        <div class="bigslam-sp-event-featured-title bigslam-title-font"><span class="bigslam-sp-team-logo"><img width="200" height="244" src="upload/team-1.png" class="attachment-sportspress-fit-medium size-sportspress-fit-medium wp-post-image" alt=""  ></span><span class="bigslam-sp-team-name">Big Slam</span><span class="bigslam-sp-event-result"><a href="#">VS</a></span><span class="bigslam-sp-team-name">Houston</span><span class="bigslam-sp-team-logo"><img width="200" height="180" src="upload/team-5.png" class="attachment-sportspress-fit-medium size-sportspress-fit-medium wp-post-image" alt="" ></span></div>
+                                                                        <div class="bigslam-sp-event-featured-title bigslam-title-font"><span class="bigslam-sp-team-logo"><img width="200" height="244"    src='{{ asset("upload/team-1.png") }}' class="attachment-sportspress-fit-medium size-sportspress-fit-medium wp-post-image" alt=""  ></span><span class="bigslam-sp-team-name">Big Slam</span><span class="bigslam-sp-event-result"><a href="#">VS</a></span><span class="bigslam-sp-team-name">Houston</span><span class="bigslam-sp-team-logo"><img width="200" height="180"   src='{{ asset("upload/team-5.png") }}'  class="attachment-sportspress-fit-medium size-sportspress-fit-medium wp-post-image" alt="" ></span></div>
                                                                         <div class="bigslam-sp-event-featured-info"><span class="bigslam-sp-event-date">April 6, 2025</span><span class="bigslam-sp-event-venue"><a href="#" rel="tag">Houston House</a></span>
                                                                             <a class="bigslam-sp-event-link" href="#">
                                                                                 <div class="dashicons dashicons-video-alt"></div>Preview<i class="fa fa-long-arrow-right"></i></a>
@@ -240,15 +241,15 @@
                                                                 <div class="bigslam-sp-event-widget-holder clearfix">
                                                                     <div class="bigslam-sp-event-widget-list">
                                                                         <div class="bigslam-sp-event-widget-title bigslam-title-font clearfix">
-                                                                            <div class="bigslam-sp-event-widget-title-left"><span class="bigslam-sp-team-logo"><img width="26" height="32" src="upload/team-1-26x32.png" class="attachment-sportspress-fit-mini size-sportspress-fit-mini wp-post-image" alt="" ></span><span class="bigslam-sp-team-name">Big Slam</span></div><span class="bigslam-sp-event-result"><a href="#">92<span class="bigslam-sp-event-result-sep"> - </span>84</a>
+                                                                            <div class="bigslam-sp-event-widget-title-left"><span class="bigslam-sp-team-logo"><img width="26" height="32"   src='{{ asset("upload/team-1-26x32.png") }}' class="attachment-sportspress-fit-mini size-sportspress-fit-mini wp-post-image" alt="" ></span><span class="bigslam-sp-team-name">Big Slam</span></div><span class="bigslam-sp-event-result"><a href="#">92<span class="bigslam-sp-event-result-sep"> - </span>84</a>
                                                                             </span>
-                                                                            <div class="bigslam-sp-event-widget-title-right"><span class="bigslam-sp-team-logo"><img width="32" height="32" src="upload/team-6-32x32.png" class="attachment-sportspress-fit-mini size-sportspress-fit-mini wp-post-image" alt=""  ></span><span class="bigslam-sp-team-name">Los Angeles</span></div>
+                                                                            <div class="bigslam-sp-event-widget-title-right"><span class="bigslam-sp-team-logo"><img width="32" height="32"   src='{{ asset("upload/team-6-32x32.png") }}' class="attachment-sportspress-fit-mini size-sportspress-fit-mini wp-post-image" alt=""  ></span><span class="bigslam-sp-team-name">Los Angeles</span></div>
                                                                         </div>
                                                                         <div class="bigslam-sp-event-widget-info"><span class="bigslam-sp-event-date">April 4, 2015</span><span class="bigslam-sp-event-venue"><a href="#" rel="tag">Golden States Stadium</a></span></div>
                                                                     </div>
                                                                     <div class="bigslam-sp-event-widget-list">
                                                                         <div class="bigslam-sp-event-widget-title bigslam-title-font clearfix">
-                                                                            <div class="bigslam-sp-event-widget-title-left"><span class="bigslam-sp-team-logo"><img width="26" height="32" src="upload/team-1-26x32.png" class="attachment-sportspress-fit-mini size-sportspress-fit-mini wp-post-image" alt="" ></span><span class="bigslam-sp-team-name">Big Slam</span></div><span class="bigslam-sp-event-result"><a href="#">106<span class="bigslam-sp-event-result-sep"> - </span>87</a>
+                                                                            <div class="bigslam-sp-event-widget-title-left"><span class="bigslam-sp-team-logo"><img width="26" height="32"   src='{{ asset("upload/team-1-26x32.png") }}'  class="attachment-sportspress-fit-mini size-sportspress-fit-mini wp-post-image" alt="" ></span><span class="bigslam-sp-team-name">Big Slam</span></div><span class="bigslam-sp-event-result"><a href="#">106<span class="bigslam-sp-event-result-sep"> - </span>87</a>
                                                                             </span>
                                                                             <div class="bigslam-sp-event-widget-title-right"><span class="bigslam-sp-team-logo"><img width="32" height="28" src="upload/team-2-32x28.png" class="attachment-sportspress-fit-mini size-sportspress-fit-mini wp-post-image" alt="" ></span><span class="bigslam-sp-team-name">Golden States</span></div>
                                                                         </div>
@@ -656,21 +657,21 @@
                                                 <li class="gdlr-core-item-mglr">
                                                     <div class="gdlr-core-sp-player-grid">
                                                         <div class="gdlr-core-sp-player-thumbnail gdlr-core-media-image gdlr-core-zoom-on-hover">
-                                                            <a href="#"><img src="upload/player-1-400x564.jpg" width="600" height="846"  alt=""></a>
+                                                            <a href="#"><img src='{{ asset("upload/player-1-400x564.jpg") }}' width="600" height="846"  alt=""></a>
                                                         </div>
                                                         <h3 class="gdlr-core-sp-player-title"><a href="#">Michael Jorden</a></h3></div>
                                                 </li>
                                                 <li class="gdlr-core-item-mglr">
                                                     <div class="gdlr-core-sp-player-grid">
                                                         <div class="gdlr-core-sp-player-thumbnail gdlr-core-media-image gdlr-core-zoom-on-hover">
-                                                            <a href="#"><img src="upload/player-2-400x564.jpg" width="600" height="846" alt=""></a>
+                                                            <a href="#"><img src='{{ asset("upload/player-2-400x564.jpg") }}' width="600" height="846" alt=""></a>
                                                         </div>
                                                         <h3 class="gdlr-core-sp-player-title"><a href="#">Paul Frank</a></h3></div>
                                                 </li>
                                                 <li class="gdlr-core-item-mglr">
                                                     <div class="gdlr-core-sp-player-grid">
                                                         <div class="gdlr-core-sp-player-thumbnail gdlr-core-media-image gdlr-core-zoom-on-hover">
-                                                            <a href="#"><img src="upload/player-3-400x564.jpg" width="600" height="846"  alt=""></a>
+                                                            <a href="#"><img src='{{ asset("upload/player-3-400x564.jpg") }}' width="600" height="846"  alt=""></a>
                                                         </div>
                                                         <h3 class="gdlr-core-sp-player-title"><a href="#">Ricardo Spacey</a></h3></div>
                                                 </li>
@@ -882,5 +883,5 @@
                     </div>
                 </div>
             </div>
-            <!-- end content -->
+            <!-- end content --> #}
 {% endblock %}

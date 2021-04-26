@@ -35,7 +35,7 @@ if (($request->isMethod('POST'))){
     $em=$this->getDoctrine()->getManager();
     $em->persist($competition);
     $em->flush();
-    return $this->redirectToRoute('back');
+    return $this->redirectToRoute('Showcompetition');
 }
 
 
@@ -74,7 +74,7 @@ if (($request->isMethod('POST'))){
         $entityManager->remove($competition);
         $entityManager->flush();
 
-        return $this->redirectToRoute('back');
+        return $this->redirectToRoute('Showcompetition');
     }
 
  /**
@@ -106,7 +106,7 @@ if (($request->isMethod('POST'))){
         $competition->setName($request->get('name'));
         $entityManager->flush();
 
-        return $this->redirectToRoute('back');
+        return $this->redirectToRoute('Showcompetition');
     }
 
 }
