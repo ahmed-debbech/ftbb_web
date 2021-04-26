@@ -15,7 +15,7 @@ class AjouterProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('category', ChoiceType::class, ['choices' => ['Vetements'=>'Vetements' ,
+            ->add('category', ChoiceType::class, ['choices' => ['Vêtements'=>'Vêtements' ,
                 'Equipements'=>'Equipements','Abonnements'=>'Abonnements',] ])
             ->add('stock')
             ->add('name')

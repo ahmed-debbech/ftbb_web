@@ -570,6 +570,7 @@
                                                     <th class="data-league">Name</th>
                                                     <th class="data-season">Price</th>
                                                     <th class="data-venue">Details</th>
+                                                    <th></th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -611,6 +612,11 @@
                                                             </td>
                                                             <td>
                                                                 {{ product.details }}
+                                                            </td>
+                                                            <td class="data-article">
+                                                                <a href="/ftbb_web/ftbb_web/public/index.php/favourite/supprimer/{{ product.refProduct}}" role="button">
+                                                                    <div class="dashicons dashicons-video-alt"></div> Supprimer
+                                                                </a>
                                                             </td>
                                                         </tr>
                                                     {% endfor %}

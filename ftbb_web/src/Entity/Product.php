@@ -65,7 +65,7 @@ class Product
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="add_date", type="date", nullable=false)
+     * @ORM\Column(name="add_date", type="date", nullable=true)
      */
     private $addDate;
 

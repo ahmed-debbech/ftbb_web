@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Cart;
 use App\Entity\Favourite;
 use App\Entity\Product;
 use App\Utils\Utilities;
@@ -12,17 +13,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class FavouriteController extends AbstractController
 {
     /**
-     * @Route("/favourite/controller/php", name="favourite_controller_php")
+     * @Route("/favourite/controller/php", name="favourite")
      */
     public function index(): Response
     {
-        return $this->render('favourite_controller_php/index.html.twig', [
+        return $this->render('favourite/index.html.twig', [
             'controller_name' => 'FavouriteController',
         ]);
     }
 
     /**
-     * @Route("/product/list_favourite", name="favourite")
+     * @Route("/favourite/list_favourite", name="favourite")
      */
     public function Afficher_product_favourite(): Response #objet min aand symfony jey par defaut
     {
@@ -33,7 +34,7 @@ class FavouriteController extends AbstractController
             $product = $this ->getDoctrine()->getRepository(Product :: class)->find($x->getRefproduct());
             array_push($products, $product);
         }
-        return $this->render('product/list_favourite.html.twig', [
+        return $this->render('favourite/list_favourite.html.twig', [
             'controller_name' => 'ProductController',
             'data'=> $products,
         ]);
@@ -44,14 +45,17 @@ class FavouriteController extends AbstractController
      */
     public function addtofavourite($id)
     {
-        $favourite=new Favourite();
-        $em = $this->getDoctrine()->getManager();
-        $favourite->setIdClient(2);
-        $favourite->setIdFav(Utilities::generateId($favourite,'idFav',$this->getDoctrine()));
-        $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
-        $favourite->setRefProduct($product);
-        $em->persist($favourite);
-        $em->flush();
+        $fine = $this->getDoctrine()->getRepository(Favourite::class)->findBy(array('refProduct' => $id, 'clientId' => 2));
+        if($fine == NULL) {
+            $favourite = new Favourite();
+            $em = $this->getDoctrine()->getManager();
+            $favourite->setIdClient(2);
+            $favourite->setIdFav(Utilities::generateId($favourite, 'idFav', $this->getDoctrine()));
+            $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
+            $favourite->setRefProduct($product);
+            $em->persist($favourite);
+            $em->flush();
+        }
 
         return $this->redirectToRoute('list_product_client');
     }

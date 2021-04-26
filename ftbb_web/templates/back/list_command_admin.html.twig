@@ -742,13 +742,6 @@
                             </div>
                         </td>
                         <td>
-                            <a href="/ftbb_web/ftbb_web/public/index.php/command/statistique" role="button">
-                                <div class="font-icon-wrapper font-icon-lg">
-                                    <i class="fa fa-database icon-gradient bg-ripe-malin"> </i>
-                                </div>
-                            </a>
-                        </td>
-                        <td>
                             <a href="/ftbb_web/ftbb_web/public/index.php/command/list_command_pdf" role="button">
                                 <div class="font-icon-wrapper font-icon-lg">
                                     <i class="fa fa-file-archive icon-gradient bg-happy-itmeo"> </i>
@@ -795,7 +788,7 @@
                                                 {% endif %}
                                             </td>
                                             <td>
-                                                {{ command.totalPrice }}
+                                                {{ command.totalPrice }} DT
                                             </td>
                                             <td>
                                                 <a href="/ftbb_web/ftbb_web/public/index.php/command/modifier_status_admin/{{ command.commandId}}" role="button">

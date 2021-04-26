@@ -573,9 +573,8 @@
                                                     <th class="data-time">Stock</th>
                                                     <th class="data-league">Nom</th>
                                                     <th class="data-season">Prix</th>
-                                                    <th class="data-venue">Details</th>
                                                     <th class="data-event">Quantité</th>
-                                                    <th class="data-venue">Supprimer</th>
+                                                    <th></th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -602,24 +601,23 @@
                                                         <td>
                                                             <img style="height: 100px; width: 100px" src="http://127.0.0.1/uploads/{{ product.photo }}" >
                                                         </td>
-                                                        <td class="data-event">
+                                                        <td>
                                                             {{ product.category }}
                                                         </td>
-                                                        <td>
+                                                        <td class="data-event">
                                                             {{ product.stock }}
                                                         </td>
-                                                        <td class="data-event">
+                                                        <td>
                                                             {{ product.name }}
                                                         </td>
-                                                        <td>
-                                                            {{ product.price }}
+                                                        <td class="data-event">
+                                                            {{ product.price }} DT
                                                         </td>
                                                         <td>
-                                                            {{ product.details }}
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="qt">
-                                                            <button onclick="location.href='/ftbb_web/ftbb_web/public/index.php/cart/quant/'+document.getElementsByName('qt')[{{ key }}].value+'/{{ product.refProduct }}';">V</button>
+                                                            <input type="text" name="qt" style="border: none; border-radius: 5px; width: 40px; padding: 10px;">
+                                                            <button style="color: white; border: none; border-radius: 5px; background-color: orangered;" onclick="location.href='/ftbb_web/ftbb_web/public/index.php/cart/quant/'+document.getElementsByName('qt')[{{ key }}].value+'/{{ product.refProduct }}';">
+                                                            <i class="gdlr-core-icon-list-icon fa fa-flash" style="color: white ;font-size: 20px ;width: 20px ;"></i>
+                                                            </button>
                                                         </td>
                                                         <td class="data-article">
                                                             <a href="/ftbb_web/ftbb_web/public/index.php/cart/supprimer/{{ product.refProduct}}" role="button">

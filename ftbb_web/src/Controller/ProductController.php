@@ -270,7 +270,7 @@ class ProductController extends AbstractController
 
         foreach ($product as $product)
         {
-            if (  $product->getCategory()=='Vetements')  :
+            if (  $product->getCategory()=='Vêtements')  :
 
                 $c1+=1;
             elseif ($product->getCategory()=='Equipements'):
@@ -286,20 +286,20 @@ class ProductController extends AbstractController
         $pieChart = new PieChart();
         $pieChart->getData()->setArrayToDataTable(
             [['Categories', 'Nombres'],
-                ['Vetements',  $c1],
+                ['Vêtements',  $c1],
                 ['Equipements',  $c2],
                 ['Abonnements',  $c3],
 
             ]
         );
         $pieChart->getOptions()->setTitle('Top Catégories');
-        $pieChart->getOptions()->setHeight(500);
+        $pieChart->getOptions()->setHeight(600);
         $pieChart->getOptions()->setWidth(900);
         $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
-        $pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
+        $pieChart->getOptions()->getTitleTextStyle()->setColor('#EE3D00');
         $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
         $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
-        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
+        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(40);
 
         return $this->render('back/stat.html.twig', array('piechart' => $pieChart));
     }
