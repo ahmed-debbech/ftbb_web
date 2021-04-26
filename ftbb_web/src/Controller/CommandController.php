@@ -53,11 +53,18 @@ class CommandController extends AbstractController
         {
             $command->setStatus(1);
         }
-        $message = (new \Swift_Message('You Got Mail!'))
+        $message = (new \Swift_Message('Commande validée !'))
             ->setFrom('ftbb.store@gmail.com')
             ->setTo('ons.kechrid@esprit.tn')
             ->setBody(
-                'text/plain');
+                'Cher Client,
+
+Merci de faire vos achats sur FTBB store ! Votre commande 303925136 a été confirmée avec succès.
+
+Elle sera à votre disposition dès que possible. Veuillez noter : Si vous avez depassé une semaine pour récupérer votre commande , elle va être annulée automatiquement.
+
+Merci davoir fait vos achats sur  FTBB store.
+    ');
 
         $mailer->send($message);
 

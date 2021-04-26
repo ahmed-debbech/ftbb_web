@@ -45,8 +45,8 @@ class FavouriteController extends AbstractController
      */
     public function addtofavourite($id)
     {
-        $fine = $this->getDoctrine()->getRepository(Favourite::class)->findBy(array('refProduct' => $id, 'clientId' => 2));
-        if($fine == NULL) {
+        $product = $this->getDoctrine()->getRepository(Favourite::class)->findBy(array('refProduct'=>$id));
+        if($product==NULL) {
             $favourite = new Favourite();
             $em = $this->getDoctrine()->getManager();
             $favourite->setIdClient(2);
@@ -55,8 +55,8 @@ class FavouriteController extends AbstractController
             $favourite->setRefProduct($product);
             $em->persist($favourite);
             $em->flush();
-        }
 
+        }
         return $this->redirectToRoute('list_product_client');
     }
 
@@ -67,7 +67,7 @@ class FavouriteController extends AbstractController
     {
         $favourite = new Favourite();
         $em = $this ->getDoctrine()->getManager();
-        $product=$em->getRepository(Favourite::class)->findBy(array('idFav' => 2,'refProduct'=>$refProduct)); //array trajja3 tableau houni el produit illi bech yattithoulna bech ykoun fi awel case fi tableau
+        $product=$em->getRepository(Favourite::class)->findBy(array('idClient' => 2,'refProduct'=>$refProduct)); //array trajja3 tableau houni el produit illi bech yattithoulna bech ykoun fi awel case fi tableau
         $em->remove($product[0]); //remove awell case fi tableau
         $em->flush();
 

@@ -93,6 +93,11 @@ class ProductController extends AbstractController
             $entityManager->persist($product);
             $entityManager->flush();
 
+            $this->addFlash(
+                'info',
+                'ajout effectué avec succès'
+            );
+
             return $this->redirectToRoute('list_product_admin');
         }
 

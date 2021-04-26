@@ -614,8 +614,13 @@
                                                             {{ product.price }} DT
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="qt" style="border: none; border-radius: 5px; width: 40px; padding: 10px;">
-                                                            <button style="color: white; border: none; border-radius: 5px; background-color: orangered;" onclick="location.href='/ftbb_web/ftbb_web/public/index.php/cart/quant/'+document.getElementsByName('qt')[{{ key }}].value+'/{{ product.refProduct }}';">
+                                                            <input type="text" value="{{ num[key] }}" name="qt" style="border: none; border-radius: 5px; width: 40px; padding: 10px;">
+                                                            <button style="color: white; border: none; border-radius: 5px; background-color: orangered;" onclick="
+                                                                    $.get('/ftbb_web/ftbb_web/public/index.php/cart/quant/'+document.getElementsByName('qt')[{{ key }}].value+'/{{ product.refProduct }}', function(data, status) {
+                                                                    alert('');
+                                                                    });
+
+                                                                    ">
                                                             <i class="gdlr-core-icon-list-icon fa fa-flash" style="color: white ;font-size: 20px ;width: 20px ;"></i>
                                                             </button>
                                                         </td>
@@ -641,12 +646,7 @@
                                 <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-center-align gdlr-core-title-item-caption-bottom gdlr-core-item-pdlr">
                                     <div class="gdlr-core-title-item-title-wrap  gdlr-core-js-2 gdlr-core-with-divider">
                                         <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " style="font-weight: 600 ;color: #858585 ;">
-                                            {% set somme = 0 %}
-                                            {% for product in data %}
-                                                {% set somme = somme+ product.price %}
-                                            {% endfor %}
-                                            TOTAL :
-                                            {{somme}} DT
+                                            TOTAL : {{ total }} DT
                                             <span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider"></span>
                                         </h3>
                                         <div class="gdlr-core-title-item-divider gdlr-core-left gdlr-core-skin-divider" style="border-bottom: 2px dashed #858585; border-top-style: dashed; border-right-style: dashed; border-left-style: dashed; border-top-color: #2e2e2e; border-right-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); width: 203px;"></div>

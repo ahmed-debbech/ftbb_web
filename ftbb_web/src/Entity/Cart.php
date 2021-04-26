@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Cart
@@ -38,6 +40,7 @@ class Cart
      * @var int
      *
      * @ORM\Column(name="num_products", type="integer", nullable=false)
+     * @Assert\Range(min=1, max=100)
      */
     private $numProducts;
 
@@ -45,6 +48,7 @@ class Cart
      * @var int
      *
      * @ORM\Column(name="total_price", type="integer", nullable=false)
+     * @Assert\Positive
      */
     private $totalPrice;
 

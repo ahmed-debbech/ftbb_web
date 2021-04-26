@@ -32,15 +32,21 @@ class CartController extends AbstractController
         $carts = $this ->getDoctrine()->getRepository(Cart :: class)->findBy(array('cartId' => 2) ); //findAll trajjalik tableau lkoll
         $products = array();
         $x =null;
+        $somme=0;
+        $k=array();
         foreach($carts as $x){
+            $somme=$somme+ $x->getTotalPrice();
             $product = $this ->getDoctrine()->getRepository(Product :: class)->find($x->getRefproduct());
             array_push($products, $product);
+            array_push($k,$x->getNumProducts());
         }
         // dd function tnejem testa3melha kima sout fl java
         //dd($carts);
         return $this->render('cart.html.twig', [
             'controller_name' => 'ProductController',
             'data'=> $products,
+            'total'=>$somme,
+            'num'=>$k
         ]);
     }
     /**
