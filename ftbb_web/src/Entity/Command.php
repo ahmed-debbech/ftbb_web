@@ -17,6 +17,7 @@ class Command
      *
      * @ORM\Column(name="command_id", type="integer", nullable=false)
      * @ORM\Id
+
      */
     private $commandId;
 
@@ -31,6 +32,7 @@ class Command
      * @var \DateTime
      *
      * @ORM\Column(name="date_command", type="datetime", nullable=true)
+
      */
     private $dateCommand;
 

@@ -19,6 +19,7 @@ class Product
      *
      * @ORM\Column(name="ref_product", type="integer", nullable=false)
      * @ORM\Id
+
      */
     private $refProduct;
 
@@ -82,6 +83,7 @@ class Product
      * @var \DateTime
      *
      * @ORM\Column(name="add_date", type="date", nullable=true)
+     * @ORM\Column(name="add_date", type="date", nullable=false)
      */
     private $addDate;
 
@@ -172,4 +174,5 @@ class Product
     {
         $this->photo=$photo;
     }
+
 }
