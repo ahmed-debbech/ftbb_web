@@ -10,7 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="client", uniqueConstraints={@ORM\UniqueConstraint(name="email", columns={"email"})}, indexes={@ORM\Index(name="password_id", columns={"password_id"})})
  * @ORM\Entity
  */
-
 class Client
 {
     /**
@@ -18,6 +17,7 @@ class Client
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
@@ -101,130 +101,5 @@ class Client
      */
     private $password;
 
-    public function getId(){return $this->id;}
-    public function setId($id){$this->id = $id;}
-    public function getName(){return $this->name;}
-    public function getSurname(){return $this->surname;}
 
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function setSurname(string $surname): self
-    {
-        $this->surname = $surname;
-
-        return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function getNumber(): ?int
-    {
-        return $this->number;
-    }
-
-    public function setNumber(int $number): self
-    {
-        $this->number = $number;
-
-        return $this;
-    }
-
-    public function getBirthday(): ?\DateTimeInterface
-    {
-        return $this->birthday;
-    }
-
-    public function setBirthday(?\DateTimeInterface $birthday): self
-    {
-        $this->birthday = $birthday;
-
-        return $this;
-    }
-
-    public function getSex(): ?string
-    {
-        return $this->sex;
-    }
-
-    public function setSex(string $sex): self
-    {
-        $this->sex = $sex;
-
-        return $this;
-    }
-
-    public function getCreationDate(): ?\DateTimeInterface
-    {
-        return $this->creationDate;
-    }
-
-    public function setCreationDate(\DateTimeInterface $creationDate): self
-    {
-        $this->creationDate = $creationDate;
-
-        return $this;
-    }
-
-    public function getPhotoUrl(): ?string
-    {
-        return $this->photoUrl;
-    }
-
-    public function setPhotoUrl(string $photoUrl): self
-    {
-        $this->photoUrl = $photoUrl;
-
-        return $this;
-    }
-
-    public function getIdCart(): ?int
-    {
-        return $this->idCart;
-    }
-
-    public function setIdCart(int $idCart): self
-    {
-        $this->idCart = $idCart;
-
-        return $this;
-    }
-
-    public function getStatus(): ?int
-    {
-        return $this->status;
-    }
-
-    public function setStatus(int $status): self
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    public function getPassword(): ?Password
-    {
-        return $this->password;
-    }
-
-    public function setPassword(?Password $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
 }
