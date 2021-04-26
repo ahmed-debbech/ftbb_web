@@ -42,22 +42,43 @@ class CartController extends AbstractController
             'data'=> $products,
         ]);
     }
+    /**
+     * @Route("/cart/quant/{q}/{id}"), name="add_quant")
+     */
+    public function addQuant($q, $id){
+        $em = $this->getDoctrine()->getManager();
+        $cart = $this ->getDoctrine()->getRepository(Cart :: class)->findBy(array('refProduct' => $id, 'cartId' => 2));
+        $cart[0]->setNumProducts($q);
+        $prod =  $this ->getDoctrine()->getRepository(Product :: class)->findBy(array('refProduct' => $id));
+        $cart[0]->setTotalPrice($q * $prod[0]->getPrice());
+        $em->persist($cart[0]);
+        $em->flush();
 
+        $p = $prod[0];
+        $p->setStock($p->getStock() - $q);
+        $em->persist($p);
+        $em->flush();
+        return $this->redirectToRoute('cart');
+    }
     /**
      * @Route("/cart/add/{id}", name="add_to_cart")
      */
     public function addtocart($id)
     {
-        $cart=new Cart();
+       $fine = $this->getDoctrine()->getRepository(Cart::class)->findBy(array('refProduct' => $id, 'cartId' => 2));
+        if($fine == NULL) {
+            $cart = new Cart();
             $em = $this->getDoctrine()->getManager();
             $cart->setCartId(2);
             $cart->setIdClient(2);
             $cart->setNumProducts(1);
             $cart->setAdditionId(Utilities::generateId($cart, 'additionId', $this->getDoctrine()));
-            $cart->setTotalPrice(0);
+            $prod = $this->getDoctrine()->getRepository(Product :: class)->findBy(array('refProduct' => $id));
+            $cart->setTotalPrice($prod[0]->getPrice());
             $cart->setRefproduct($id);
             $em->persist($cart);
             $em->flush();
+        }
 
             return $this->redirectToRoute('list_product_client');
     }

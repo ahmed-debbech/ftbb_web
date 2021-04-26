@@ -10,6 +10,7 @@ use App\Entity\Product;
 use App\Form\AjouterProductType;
 use App\Form\ModifierProductType;
 use Ob\HighchartsBundle\Highcharts\Highchart;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -219,34 +220,6 @@ class ProductController extends AbstractController
         ]);
     }
 
-    /**
-     * @return Response
-     * @Route ("/product/statistique",name="statistique")
-     */
-    public function statistique(ProductRepository $repo): Response
-    {
-        $ob = new Highchart();
-        $ob->chart->renderTo('linechart');
-        $ob->title->text('statistique products selon category');
-        $ob->plotOptions->pie(array(
-            'allowPointSelect'  => true,
-            'cursor'    => 'pointer',
-            'dataLabels'    => array('enabled' => false),
-            'showInLegend'  => true
-        ));
-        $product=$repo->stat1();
-        $data =array();
-        foreach ($product as $values)
-        {
-            $a =array($values['refProduct'],intval($values['nbdom']));
-            array_push($data,$a);
-        }
-
-        $ob->series(array(array('type' => 'pie','name' => '', 'data' => $data)));
-        return $this->render('back/statistique.html.twig', array(
-            'chart' => $ob
-        ));
-    }
 
     /**
      * @Route("/product/list_product_pdf", name="list_product_pdf")
@@ -280,6 +253,55 @@ class ProductController extends AbstractController
         $dompdf->stream("mypdf.pdf", [
             "Attachment" => false
         ]);
+    }
+
+    /**
+     * @Route("/product/stat", name="stat")
+     */
+    public function stat(){
+
+        $product = $this ->getDoctrine()->getRepository(Product :: class)->findAll(); //findAll trajjalik tableau lkoll
+        //dd($product);
+        $em = $this->getDoctrine()->getManager();
+        $c1=0;
+        $c2=0;
+        $c3=0;
+
+
+        foreach ($product as $product)
+        {
+            if (  $product->getCategory()=='Vetements')  :
+
+                $c1+=1;
+            elseif ($product->getCategory()=='Equipements'):
+
+                $c2+=1;
+            else :
+                $c3 +=1;
+
+            endif;
+
+        }
+
+        $pieChart = new PieChart();
+        $pieChart->getData()->setArrayToDataTable(
+            [['Categories', 'Nombres'],
+                ['Vetements',  $c1],
+                ['Equipements',  $c2],
+                ['Abonnements',  $c3],
+
+            ]
+        );
+        $pieChart->getOptions()->setTitle('Top Catégories');
+        $pieChart->getOptions()->setHeight(500);
+        $pieChart->getOptions()->setWidth(900);
+        $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
+        $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
+        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
+
+        return $this->render('back/stat.html.twig', array('piechart' => $pieChart));
     }
 
 

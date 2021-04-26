@@ -44,7 +44,7 @@ class CommandController extends AbstractController
     /**
      * @Route("/command/modifier_status_admin/{commandId}", name="modifier_status")
      */
-    public function modifier_status_admin(Request $req , $commandId): Response #objet min aand symfony jey par defaut
+    public function modifier_status_admin(Request $req , $commandId , \Swift_Mailer $mailer): Response #objet min aand symfony jey par defaut
     {
         $command = new Command();
         $em = $this->getDoctrine()->getManager();
@@ -53,6 +53,14 @@ class CommandController extends AbstractController
         {
             $command->setStatus(1);
         }
+        $message = (new \Swift_Message('You Got Mail!'))
+            ->setFrom('ftbb.store@gmail.com')
+            ->setTo('ons.kechrid@esprit.tn')
+            ->setBody(
+                'text/plain');
+
+        $mailer->send($message);
+
         $em->persist($command);
         $em->flush();
 
@@ -82,18 +90,16 @@ class CommandController extends AbstractController
         $dateTime = Utilities::getDateTimeObject(date("D M d, Y G:i"),"D M d, Y G:i");
         $command->setDateCommand($dateTime);
         $command->setCommandId(Utilities::generateId($command,'commandId',$this->getDoctrine()));
-        $command->setTotalPrice(22);
-        $command->setStatus(0);
-        $command->setIdClient(2);
-        $entityManager->persist($command);
-        $entityManager->flush();
+
 
         $carts = $this ->getDoctrine()->getRepository(Cart :: class)->findBy(array('idClient' => 2) );
         $x =null;
+        $somme = 0;
         foreach($carts as $x){
             $command_product = new CommandProduct();
             $command_product->setIdCp(Utilities::generateId($command_product,'idCp',$this->getDoctrine()));
             $command_product->setRefProduct($x->getRefProduct());
+            $somme = $somme + $x->getTotalPrice();
             $command_product->setIdClient(2);
             $command_product->setCommandId($command->getCommandId());
             $entityManager->persist($command_product);
@@ -101,6 +107,12 @@ class CommandController extends AbstractController
             $entityManager->remove($x);
             $entityManager->flush();
         }
+
+        $command->setTotalPrice($somme);
+        $command->setStatus(0);
+        $command->setIdClient(2);
+        $entityManager->persist($command);
+        $entityManager->flush();
         return $this->redirectToRoute('cart');
     }
 

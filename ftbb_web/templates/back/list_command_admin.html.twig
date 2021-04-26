@@ -785,7 +785,7 @@
                                                 {{ command.idClient }}
                                             </td>
                                             <td>
-                                                {{ command.dateCommand |date ('Y-m-d H:i:s')}}
+                                                {{ command.dateCommand |format_datetime()}}
                                             </td>
                                             <td>
                                                 {% if command.status==0 %}

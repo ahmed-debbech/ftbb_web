@@ -597,7 +597,7 @@
                                                          <a href="#">
                                                              <div class="dashicons dashicons-video-alt"></div>Preview</a>
                                                      </td>-->
-                                                {% for product in data %}
+                                                {% for key,product in data %}
                                                     <tr class="sp-row sp-post alternate sp-row-no-0">
                                                         <td>
                                                             <img style="height: 100px; width: 100px" src="http://127.0.0.1/uploads/{{ product.photo }}" >
@@ -618,7 +618,8 @@
                                                             {{ product.details }}
                                                         </td>
                                                         <td>
-
+                                                            <input type="text" name="qt">
+                                                            <button onclick="location.href='/ftbb_web/ftbb_web/public/index.php/cart/quant/'+document.getElementsByName('qt')[{{ key }}].value+'/{{ product.refProduct }}';">V</button>
                                                         </td>
                                                         <td class="data-article">
                                                             <a href="/ftbb_web/ftbb_web/public/index.php/cart/supprimer/{{ product.refProduct}}" role="button">

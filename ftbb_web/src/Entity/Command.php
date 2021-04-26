@@ -30,7 +30,7 @@ class Command
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_command", type="date", nullable=false)
+     * @ORM\Column(name="date_command", type="datetime", nullable=true)
      */
     private $dateCommand;
 
