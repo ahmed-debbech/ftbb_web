@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello list product!{% endblock %}
+{% block title %}Your cart{% endblock %}
 
 {% block body %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <div class="bigslam-mobile-header-wrap">
         <div class="bigslam-mobile-header bigslam-header-background bigslam-style-slide" id="bigslam-mobile-header">
             <div class="bigslam-mobile-header-container bigslam-container">
@@ -599,13 +601,13 @@
                                                 {% for key,product in data %}
                                                     <tr class="sp-row sp-post alternate sp-row-no-0">
                                                         <td>
-                                                            <img style="height: 100px; width: 100px" src="http://127.0.0.1/uploads/{{ product.photo }}" >
+                                                            <img style="height: 100px; width: 100px" src="http://127.0.0.1/ftbb_web/ftbb_web/public/images/prod/{{ product.photo }}" >
                                                         </td>
                                                         <td>
                                                             {{ product.category }}
                                                         </td>
-                                                        <td class="data-event">
-                                                            {{ product.stock }}
+                                                        <td  class="data-event">
+                                                            <a name="stock">{{ product.stock }} </a>
                                                         </td>
                                                         <td>
                                                             {{ product.name }}
@@ -616,8 +618,9 @@
                                                         <td>
                                                             <input type="text" value="{{ num[key] }}" name="qt" style="border: none; border-radius: 5px; width: 40px; padding: 10px;">
                                                             <button style="color: white; border: none; border-radius: 5px; background-color: orangered;" onclick="
-                                                                    $.get('/ftbb_web/ftbb_web/public/index.php/cart/quant/'+document.getElementsByName('qt')[{{ key }}].value+'/{{ product.refProduct }}', function(data, status) {
-                                                                    alert('');
+                                                                    $.get('http://127.0.0.1/ftbb_web/ftbb_web/public/index.php/cart/quant/'+document.getElementsByName('qt')[{{ key }}].value+'/{{ product.refProduct }}', function(data, status) {
+                                                                        document.getElementsByName('stock')[{{ key }}].innerHTML =  data.stock;
+                                                                        document.getElementById('tot').innerHTML = 'TOTAL: '+ data.tot + 'DT';
                                                                     });
 
                                                                     ">
@@ -646,7 +649,7 @@
                                 <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-center-align gdlr-core-title-item-caption-bottom gdlr-core-item-pdlr">
                                     <div class="gdlr-core-title-item-title-wrap  gdlr-core-js-2 gdlr-core-with-divider">
                                         <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " style="font-weight: 600 ;color: #858585 ;">
-                                            TOTAL : {{ total }} DT
+                                            <a id="tot">TOTAL : {{ total }} DT</a>
                                             <span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider"></span>
                                         </h3>
                                         <div class="gdlr-core-title-item-divider gdlr-core-left gdlr-core-skin-divider" style="border-bottom: 2px dashed #858585; border-top-style: dashed; border-right-style: dashed; border-left-style: dashed; border-top-color: #2e2e2e; border-right-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); width: 203px;"></div>

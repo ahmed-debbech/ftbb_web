@@ -65,7 +65,14 @@ class CartController extends AbstractController
         $p->setStock($p->getStock() - $q);
         $em->persist($p);
         $em->flush();
-        return $this->redirectToRoute('cart');
+
+        $carts = $this ->getDoctrine()->getRepository(Cart :: class)->findBy(array('cartId' => 2) ); //findAll trajjalik tableau lkoll
+        $somme=0;
+        $k=array();
+        foreach($carts as $x){
+            $somme=$somme+ $x->getTotalPrice();
+        }
+        return new JsonResponse(['stock' => $p->getstock(), 'tot' => $somme]);
     }
     /**
      * @Route("/cart/add/{id}", name="add_to_cart")
