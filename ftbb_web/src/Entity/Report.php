@@ -22,6 +22,7 @@ class Report
      *
      * @ORM\Column(name="report_id", type="integer", nullable=false)
      * @ORM\Id
+
      */
     private $reportId;
 
@@ -36,6 +37,7 @@ class Report
      * @var int
      *
      * @ORM\Column(name="command_id", type="integer", nullable=false)
+
      * @Assert\NotBlank(message="Insert command ID")
      */
     private $commandId;
@@ -51,6 +53,7 @@ class Report
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=false)
+
      * @Assert\NotBlank(message="Email ")
      */
     private $email;
@@ -59,9 +62,11 @@ class Report
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=false)
+
      * @Assert\NotBlank(message="azerty")
      */
     private $description;
+
 
 
 

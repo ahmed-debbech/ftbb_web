@@ -17,7 +17,6 @@ class CommandProduct
      *
      * @ORM\Column(name="id_cp", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idCp;
 
@@ -41,6 +40,38 @@ class CommandProduct
      * @ORM\Column(name="command_id", type="integer", nullable=false)
      */
     private $commandId;
+
+    public function getIdCp(){
+        return $this->idCp;
+    }
+
+    public function setIdCp($idCp){
+        $this->idCp = $idCp;
+    }
+
+    public function getRefProduct(){
+        return $this->refProduct;
+    }
+
+    public function setRefProduct($refProduct){
+        $this->refProduct = $refProduct;
+    }
+
+    public function getIdClient(){
+        return $this->idClient;
+    }
+
+    public function setIdClient($idClient){
+        $this->idClient = $idClient;
+    }
+
+    public function getCommandId(){
+        return $this->commandId;
+    }
+
+    public function setCommandId($commandId){
+        $this->commandId = $commandId;
+    }
 
 
 }

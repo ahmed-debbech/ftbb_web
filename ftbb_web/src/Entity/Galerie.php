@@ -50,6 +50,7 @@ class Galerie
 
 
 
+
     /**
      * Get the value of galerieId
      *

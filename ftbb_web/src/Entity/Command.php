@@ -17,7 +17,7 @@ class Command
      *
      * @ORM\Column(name="command_id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+
      */
     private $commandId;
 
@@ -31,7 +31,8 @@ class Command
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_command", type="date", nullable=false)
+     * @ORM\Column(name="date_command", type="datetime", nullable=true)
+
      */
     private $dateCommand;
 
@@ -48,6 +49,52 @@ class Command
      * @ORM\Column(name="total_price", type="integer", nullable=false)
      */
     private $totalPrice;
+
+
+    public function getCommandId(): ?int
+    {
+        return $this->commandId;
+    }
+    public function setCommandId($commandId)
+    {
+        $this->commandId=$commandId;
+    }
+
+    public function getIdClient(): ?int
+    {
+        return $this->idClient;
+    }
+    public function setIdClient($idClient)
+    {
+        $this->idClient=$idClient;
+    }
+
+    public function getDateCommand()
+    {
+        return $this->dateCommand;
+    }
+    public function setDateCommand($dateCommand)
+    {
+        $this->dateCommand=$dateCommand;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+    public function setStatus($status)
+    {
+        $this->status=$status;
+    }
+
+    public function getTotalPrice()
+    {
+        return $this->totalPrice;
+    }
+    public function setTotalPrice($totalPrice)
+    {
+        $this->totalPrice=$totalPrice;
+    }
 
 
 }

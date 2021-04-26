@@ -8,7 +8,6 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\EmailValidator;
 
-
 /**
  * Feedback
  *
@@ -22,7 +21,6 @@ class Feedback
      *
      * @ORM\Column(name="feedback_id", type="integer", nullable=false)
      * @ORM\Id
-
      */
     private $feedbackId;
 
@@ -59,6 +57,7 @@ class Feedback
      * @var string
      *
      * @ORM\Column(name="text", type="string", length=255, nullable=false)
+
      * @Assert\NotBlank(message="Insert command ID")     
      */
     private $text;

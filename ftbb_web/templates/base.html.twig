@@ -1,9 +1,10 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
 
         <title>{% block title %}Fédération Tunisienne de Basket Ball{% endblock %}</title>
         {# Run `composer require symfony/webpack-encore-bundle`
@@ -16,6 +17,7 @@
         <link rel='stylesheet' href='{{asset("plugins/revslider/public/assets/css/rs6.css")}}' type='text/css' media='all'>
         <link rel='stylesheet' href='{{asset("plugins/sportspress/assets/css/sportspress.css")}}' type='text/css' media='all'>
         <link rel='stylesheet' href='{{asset("plugins/sportspress/assets/css/icons.css") }}' type='text/css' media='all'>
+
             <link rel='stylesheet' href='{{ asset("css/style-core.css") }}' type='text/css' media='all'>
             <link rel='stylesheet' href='{{ asset("css/bigslam-style-custom.css") }}' type='text/css' media='all'>
 
@@ -171,87 +173,78 @@
                         });
                     }
                 });
-            </script>
+            }
+        });
+    </script>
 
-            <script type="text/javascript">
-                setREVStartSize({
-                    c: 'rev_slider_1_1',
-                    rl: [1240, 1240, 1240, 480],
-                    el: [890, 890, 890, 520],
-                    gw: [1300, 1300, 1300, 480],
-                    gh: [890, 890, 890, 520],
-                    layout: 'fullwidth',
-                    mh: "0"
-                });
-                var revapi1,
-                    tpj;
-                jQuery(function() {
-                    tpj = jQuery;
-                    if (tpj("#rev_slider_1_1").revolution == undefined) {
-                        revslider_showDoubleJqueryError("#rev_slider_1_1");
-                    } else {
-                        revapi1 = tpj("#rev_slider_1_1").show().revolution({
-                            jsFileLocation: "plugins/revslider/public/assets/js/",
-                            visibilityLevels: "1240,1240,1240,480",
-                            gridwidth: "1300,1300,1300,480",
-                            gridheight: "890,890,890,520",
-                            minHeight: "",
-                            editorheight: "890,768,960,520",
-                            responsiveLevels: "1240,1240,1240,480",
-                            disableProgressBar: "on",
-                            navigation: {
-                                mouseScrollNavigation: false,
-                                onHoverStop: false,
-                                arrows: {
-                                    enable: true,
-                                    style: "uranus",
-                                    hide_onmobile: true,
-                                    hide_under: "980px",
-                                    hide_onleave: true,
-                                    left: {
-                                        v_offset: 101
-                                    },
-                                    right: {
-                                        v_offset: 101
-                                    }
-                                },
-                                bullets: {
-                                    enable: true,
-                                    tmp: "<span class=\"tp-bullet-inner\"></span>",
-                                    style: "uranus",
-                                    v_offset: 40,
-                                    space: 10
-                                }
+    <script type="text/javascript">
+        setREVStartSize({
+            c: 'rev_slider_1_1',
+            rl: [1240, 1240, 1240, 480],
+            el: [890, 890, 890, 520],
+            gw: [1300, 1300, 1300, 480],
+            gh: [890, 890, 890, 520],
+            layout: 'fullwidth',
+            mh: "0"
+        });
+        var revapi1,
+            tpj;
+        jQuery(function() {
+            tpj = jQuery;
+            if (tpj("#rev_slider_1_1").revolution == undefined) {
+                revslider_showDoubleJqueryError("#rev_slider_1_1");
+            } else {
+                revapi1 = tpj("#rev_slider_1_1").show().revolution({
+                    jsFileLocation: "plugins/revslider/public/assets/js/",
+                    visibilityLevels: "1240,1240,1240,480",
+                    gridwidth: "1300,1300,1300,480",
+                    gridheight: "890,890,890,520",
+                    minHeight: "",
+                    editorheight: "890,768,960,520",
+                    responsiveLevels: "1240,1240,1240,480",
+                    disableProgressBar: "on",
+                    navigation: {
+                        mouseScrollNavigation: false,
+                        onHoverStop: false,
+                        arrows: {
+                            enable: true,
+                            style: "uranus",
+                            hide_onmobile: true,
+                            hide_under: "980px",
+                            hide_onleave: true,
+                            left: {
+                                v_offset: 101
                             },
-                            fallbacks: {
-                                allowHTML5AutoPlayOnAndroid: true
-                            },
+
                         });
                     }
                 });
-            </script>
-            <script>
-                var htmlDivCss = unescape("%23rev_slider_1_1_wrapper%20.uranus.tparrows%20%7B%0A%20%20width%3A50px%3B%0A%20%20height%3A50px%3B%0A%20%20background%3Argba%28255%2C255%2C255%2C0%29%3B%0A%20%7D%0A%20%23rev_slider_1_1_wrapper%20.uranus.tparrows%3Abefore%20%7B%0A%20width%3A50px%3B%0A%20height%3A50px%3B%0A%20line-height%3A50px%3B%0A%20font-size%3A40px%3B%0A%20transition%3Aall%200.3s%3B%0A-webkit-transition%3Aall%200.3s%3B%0A%20%7D%0A%20%0A%20%20%23rev_slider_1_1_wrapper%20.uranus.tparrows%3Ahover%3Abefore%20%7B%0A%20%20%20%20opacity%3A0.75%3B%0A%20%20%7D%0A%23rev_slider_1_1_wrapper%20.uranus%20.tp-bullet%7B%0A%20%20border-radius%3A%2050%25%3B%0A%20%20box-shadow%3A%200%200%200%202px%20rgba%28255%2C255%2C255%2C0%29%3B%0A%20%20-webkit-transition%3A%20box-shadow%200.3s%20ease%3B%0A%20%20transition%3A%20box-shadow%200.3s%20ease%3B%0A%20%20background%3Atransparent%3B%0A%20%20width%3A15px%3B%0A%20%20height%3A15px%3B%0A%7D%0A%23rev_slider_1_1_wrapper%20.uranus%20.tp-bullet.selected%2C%0A%23rev_slider_1_1_wrapper%20.uranus%20.tp-bullet%3Ahover%20%7B%0A%20%20box-shadow%3A%200%200%200%202px%20rgba%28255%2C255%2C255%2C1%29%3B%0A%20%20border%3Anone%3B%0A%20%20border-radius%3A%2050%25%3B%0A%20%20background%3Atransparent%3B%0A%7D%0A%0A%23rev_slider_1_1_wrapper%20.uranus%20.tp-bullet-inner%20%7B%0A%20%20-webkit-transition%3A%20background-color%200.3s%20ease%2C%20-webkit-transform%200.3s%20ease%3B%0A%20%20transition%3A%20background-color%200.3s%20ease%2C%20transform%200.3s%20ease%3B%0A%20%20top%3A%200%3B%0A%20%20left%3A%200%3B%0A%20%20width%3A%20100%25%3B%0A%20%20height%3A%20100%25%3B%0A%20%20outline%3A%20none%3B%0A%20%20border-radius%3A%2050%25%3B%0A%20%20background-color%3A%20rgba%28255%2C255%2C255%2C0%29%3B%0A%20%20background-color%3A%20rgba%28255%2C255%2C255%2C0.3%29%3B%0A%20%20text-indent%3A%20-999em%3B%0A%20%20cursor%3A%20pointer%3B%0A%20%20position%3A%20absolute%3B%0A%7D%0A%0A%23rev_slider_1_1_wrapper%20.uranus%20.tp-bullet.selected%20.tp-bullet-inner%2C%0A%23rev_slider_1_1_wrapper%20.uranus%20.tp-bullet%3Ahover%20.tp-bullet-inner%7B%0A%20transform%3A%20scale%280.4%29%3B%0A%20-webkit-transform%3A%20scale%280.4%29%3B%0A%20background-color%3Argba%28255%2C255%2C255%2C1%29%3B%0A%7D%0A");
-                var htmlDiv = document.getElementById('rs-plugin-settings-inline-css');
-                if (htmlDiv) {
-                    htmlDiv.innerHTML = htmlDiv.innerHTML + htmlDivCss;
-                } else {
-                    var htmlDiv = document.createElement('div');
-                    htmlDiv.innerHTML = '<style>' + htmlDivCss + '</style>';
-                    document.getElementsByTagName('head')[0].appendChild(htmlDiv.childNodes[0]);
-                }
-            </script>
-            <script>
-                var htmlDivCss = unescape("%0A%0A%0A%0A");
-                var htmlDiv = document.getElementById('rs-plugin-settings-inline-css');
-                if (htmlDiv) {
-                    htmlDiv.innerHTML = htmlDiv.innerHTML + htmlDivCss;
-                } else {
-                    var htmlDiv = document.createElement('div');
-                    htmlDiv.innerHTML = '<style>' + htmlDivCss + '</style>';
-                    document.getElementsByTagName('head')[0].appendChild(htmlDiv.childNodes[0]);
-                }
-            </script>
+            }
+        });
+    </script>
+    <script>
+        var htmlDivCss = unescape("%23rev_slider_1_1_wrapper%20.uranus.tparrows%20%7B%0A%20%20width%3A50px%3B%0A%20%20height%3A50px%3B%0A%20%20background%3Argba%28255%2C255%2C255%2C0%29%3B%0A%20%7D%0A%20%23rev_slider_1_1_wrapper%20.uranus.tparrows%3Abefore%20%7B%0A%20width%3A50px%3B%0A%20height%3A50px%3B%0A%20line-height%3A50px%3B%0A%20font-size%3A40px%3B%0A%20transition%3Aall%200.3s%3B%0A-webkit-transition%3Aall%200.3s%3B%0A%20%7D%0A%20%0A%20%20%23rev_slider_1_1_wrapper%20.uranus.tparrows%3Ahover%3Abefore%20%7B%0A%20%20%20%20opacity%3A0.75%3B%0A%20%20%7D%0A%23rev_slider_1_1_wrapper%20.uranus%20.tp-bullet%7B%0A%20%20border-radius%3A%2050%25%3B%0A%20%20box-shadow%3A%200%200%200%202px%20rgba%28255%2C255%2C255%2C0%29%3B%0A%20%20-webkit-transition%3A%20box-shadow%200.3s%20ease%3B%0A%20%20transition%3A%20box-shadow%200.3s%20ease%3B%0A%20%20background%3Atransparent%3B%0A%20%20width%3A15px%3B%0A%20%20height%3A15px%3B%0A%7D%0A%23rev_slider_1_1_wrapper%20.uranus%20.tp-bullet.selected%2C%0A%23rev_slider_1_1_wrapper%20.uranus%20.tp-bullet%3Ahover%20%7B%0A%20%20box-shadow%3A%200%200%200%202px%20rgba%28255%2C255%2C255%2C1%29%3B%0A%20%20border%3Anone%3B%0A%20%20border-radius%3A%2050%25%3B%0A%20%20background%3Atransparent%3B%0A%7D%0A%0A%23rev_slider_1_1_wrapper%20.uranus%20.tp-bullet-inner%20%7B%0A%20%20-webkit-transition%3A%20background-color%200.3s%20ease%2C%20-webkit-transform%200.3s%20ease%3B%0A%20%20transition%3A%20background-color%200.3s%20ease%2C%20transform%200.3s%20ease%3B%0A%20%20top%3A%200%3B%0A%20%20left%3A%200%3B%0A%20%20width%3A%20100%25%3B%0A%20%20height%3A%20100%25%3B%0A%20%20outline%3A%20none%3B%0A%20%20border-radius%3A%2050%25%3B%0A%20%20background-color%3A%20rgba%28255%2C255%2C255%2C0%29%3B%0A%20%20background-color%3A%20rgba%28255%2C255%2C255%2C0.3%29%3B%0A%20%20text-indent%3A%20-999em%3B%0A%20%20cursor%3A%20pointer%3B%0A%20%20position%3A%20absolute%3B%0A%7D%0A%0A%23rev_slider_1_1_wrapper%20.uranus%20.tp-bullet.selected%20.tp-bullet-inner%2C%0A%23rev_slider_1_1_wrapper%20.uranus%20.tp-bullet%3Ahover%20.tp-bullet-inner%7B%0A%20transform%3A%20scale%280.4%29%3B%0A%20-webkit-transform%3A%20scale%280.4%29%3B%0A%20background-color%3Argba%28255%2C255%2C255%2C1%29%3B%0A%7D%0A");
+        var htmlDiv = document.getElementById('rs-plugin-settings-inline-css');
+        if (htmlDiv) {
+            htmlDiv.innerHTML = htmlDiv.innerHTML + htmlDivCss;
+        } else {
+            var htmlDiv = document.createElement('div');
+            htmlDiv.innerHTML = '<style>' + htmlDivCss + '</style>';
+            document.getElementsByTagName('head')[0].appendChild(htmlDiv.childNodes[0]);
+        }
+    </script>
+    <script>
+        var htmlDivCss = unescape("%0A%0A%0A%0A");
+        var htmlDiv = document.getElementById('rs-plugin-settings-inline-css');
+        if (htmlDiv) {
+            htmlDiv.innerHTML = htmlDiv.innerHTML + htmlDivCss;
+        } else {
+            var htmlDiv = document.createElement('div');
+            htmlDiv.innerHTML = '<style>' + htmlDivCss + '</style>';
+            document.getElementsByTagName('head')[0].appendChild(htmlDiv.childNodes[0]);
+        }
+    </script>
+
 
 
             <script type="text/javascript">

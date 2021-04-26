@@ -26,5 +26,4 @@ class Utilities {
         return $rand;
     }
 }
-
 ?>
