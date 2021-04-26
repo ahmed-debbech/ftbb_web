@@ -97,6 +97,9 @@
     "laminas/laminas-zendframework-bridge": {
         "version": "1.2.0"
     },
+    "league/html-to-markdown": {
+        "version": "5.0.0"
+    },
     "monolog/monolog": {
         "version": "1.26.0"
     },
@@ -433,9 +436,9 @@
             "ref": "ae4d22af30bbd484506bc1817c5a3ef72c855b93"
         },
         "files": [
-            "./config/packages/dev/swiftmailer.yaml",
-            "./config/packages/swiftmailer.yaml",
-            "./config/packages/test/swiftmailer.yaml"
+            "config/packages/dev/swiftmailer.yaml",
+            "config/packages/swiftmailer.yaml",
+            "config/packages/test/swiftmailer.yaml"
         ]
     },
     "symfony/test-pack": {
@@ -517,6 +520,12 @@
         "version": "v4.4.21"
     },
     "twig/extra-bundle": {
+        "version": "v3.3.0"
+    },
+    "twig/intl-extra": {
+        "version": "v3.3.0"
+    },
+    "twig/markdown-extra": {
         "version": "v3.3.0"
     },
     "twig/twig": {
