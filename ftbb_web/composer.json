@@ -11,9 +11,9 @@
         "doctrine/doctrine-bundle": "^2.3",
         "doctrine/doctrine-migrations-bundle": "^3.1",
         "doctrine/orm": "^2.8",
+        "dompdf/dompdf": "^1.0",
         "knplabs/knp-snappy": "^1.2",
         "knplabs/knp-snappy-bundle": "^1.8",
-        "dompdf/dompdf": "^1.0",
         "league/html-to-markdown": "^5.0",
         "nikic/php-parser": "^4.10",
         "phpdocumentor/reflection-docblock": "^5.2",
@@ -44,13 +44,13 @@
         "symfony/validator": "4.4.*",
         "symfony/web-link": "4.4.*",
         "symfony/yaml": "4.4.*",
-        "wemersonjanuario/wkhtmltopdf-windows": "0.12.2.3",
         "symfonycasts/reset-password-bundle": "^1.7",
         "symfonycasts/verify-email-bundle": "^1.4",
         "twig/extra-bundle": "^3.3",
         "twig/intl-extra": "^3.3",
         "twig/markdown-extra": "^3.3",
-        "twig/twig": "^2.12|^3.0"
+        "twig/twig": "^2.12|^3.0",
+        "wemersonjanuario/wkhtmltopdf-windows": "0.12.2.3"
     },
     "require-dev": {
         "symfony/browser-kit": "^4.4",
