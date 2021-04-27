@@ -43,7 +43,7 @@ class Player
     private $logo;
 
     /**
-     * @var \Team
+     * @var Team
      *
      * @ORM\ManyToOne(targetEntity="Team")
      * @ORM\JoinColumns({
@@ -51,6 +51,87 @@ class Player
      * })
      */
     private $idTeam;
+
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAge(): int
+    {
+        return $this->age;
+    }
+
+    /**
+     * @param int $age
+     */
+    public function setAge(int $age): void
+    {
+        $this->age = $age;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLogo(): string
+    {
+        return $this->logo;
+    }
+
+    /**
+     * @param string $logo
+     */
+    public function setLogo(string $logo): void
+    {
+        $this->logo = $logo;
+    }
+
+    /**
+     * @return Team
+     */
+    public function getIdTeam(): Team
+    {
+        return $this->idTeam;
+    }
+
+    /**
+     * @param Team $idTeam
+     */
+    public function setIdTeam(Team $idTeam): void
+    {
+        $this->idTeam = $idTeam;
+    }
 
 
 }
