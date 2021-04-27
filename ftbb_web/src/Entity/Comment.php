@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Article;
@@ -26,6 +27,7 @@ class Comment
     private $id;
 
     /**
+
     * @var int
     *
     * @ORM\Column(name="article_id", type="integer", nullable=false)
@@ -40,6 +42,7 @@ class Comment
     private $content;
 
     /**
+
 
      * @var \DateTime|null
      *

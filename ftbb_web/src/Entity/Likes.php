@@ -7,7 +7,6 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Likes
  *
-
  * @ORM\Table(name="likes", indexes={@ORM\Index(name="id_comment", columns={"id_comment"}), @ORM\Index(name="id_article", columns={"id_article"}), @ORM\Index(name="id_client", columns={"id_client"})})
  * @ORM\Entity
  */
@@ -18,11 +17,11 @@ class Likes
      *
      * @ORM\Column(name="id_like", type="integer", nullable=false)
      * @ORM\Id
-
      */
     private $idLike;
 
     /**
+
 
 
      * @var \Comment

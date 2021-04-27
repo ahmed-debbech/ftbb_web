@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+
 use Symfony\Component\Validator\Constraints as Assert;
 
 
@@ -34,6 +35,7 @@ class Product
      * @var int
      *
      * @ORM\Column(name="stock", type="integer", nullable=false)
+
      *  @Assert\Range(min=1 , max=10000)
      */
     private $stock;
@@ -42,6 +44,7 @@ class Product
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
+
      * @Assert\Length(
      *     min=4,
      *     max=50,
@@ -55,6 +58,7 @@ class Product
      * @var int
      *
      * @ORM\Column(name="price", type="integer", nullable=false)
+
      * @Assert\Positive
      */
     private $price;
@@ -63,6 +67,7 @@ class Product
      * @var string
      *
      * @ORM\Column(name="details", type="string", length=255, nullable=false)
+
      * @Assert\Length(
      *     min=4,
      *     max=500,
@@ -93,6 +98,7 @@ class Product
      * @ORM\Column(name="photo", type="string", length=50, nullable=false)
      */
     private $photo;
+
 
     public function getRefProduct(): ?int
     {
@@ -174,5 +180,6 @@ class Product
     {
         $this->photo=$photo;
     }
+
 
 }

@@ -96,5 +96,4 @@ class Command
         $this->totalPrice=$totalPrice;
     }
 
-
 }

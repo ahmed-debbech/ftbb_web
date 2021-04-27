@@ -17,6 +17,7 @@ class Galerie
      *
      * @ORM\Column(name="galerie_id", type="integer", nullable=false)
      * @ORM\Id
+
      */
     private $galerieId;
 
@@ -47,7 +48,6 @@ class Galerie
      * @ORM\Column(name="description", type="string", length=255, nullable=false)
      */
     private $description;
-
 
 
 

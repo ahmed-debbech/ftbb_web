@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Game
  *
+
  * @ORM\Table(name="game", indexes={@ORM\Index(name="ph2", columns={"id_phase"}), @ORM\Index(name="t3", columns={"id_team_away"}), @ORM\Index(name="statistique", columns={"id_statistique"}), @ORM\Index(name="t4", columns={"id_team_home"}), @ORM\Index(name="w1", columns={"id_week"}), @ORM\Index(name="c3", columns={"id_competition"})})
  * @ORM\Entity
  */

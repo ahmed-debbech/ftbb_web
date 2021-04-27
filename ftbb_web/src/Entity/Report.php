@@ -3,11 +3,11 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\EmailValidator;
-
 
 /**
  * Report
@@ -38,6 +38,7 @@ class Report
      *
      * @ORM\Column(name="command_id", type="integer", nullable=false)
 
+
      * @Assert\NotBlank(message="Insert command ID")
      */
     private $commandId;
@@ -54,6 +55,7 @@ class Report
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=false)
 
+
      * @Assert\NotBlank(message="Email ")
      */
     private $email;
@@ -62,6 +64,7 @@ class Report
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=false)
+
 
      * @Assert\NotBlank(message="azerty")
      */
@@ -226,5 +229,5 @@ class Report
         ]));
     }
 
-  
+
 }

@@ -17,6 +17,7 @@ class CommandProduct
      *
      * @ORM\Column(name="id_cp", type="integer", nullable=false)
      * @ORM\Id
+
      */
     private $idCp;
 

@@ -21,6 +21,7 @@ class Feedback
      *
      * @ORM\Column(name="feedback_id", type="integer", nullable=false)
      * @ORM\Id
+
      */
     private $feedbackId;
 
@@ -42,6 +43,7 @@ class Feedback
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=false)
+
      * @Assert\NotBlank(message="wrong email")
      */
     private $email;
@@ -58,6 +60,7 @@ class Feedback
      *
      * @ORM\Column(name="text", type="string", length=255, nullable=false)
 
+
      * @Assert\NotBlank(message="Insert command ID")     
      */
     private $text;
@@ -68,6 +71,7 @@ class Feedback
      * @ORM\Column(name="type", type="string", length=255, nullable=false)
      */
     private $type;
+
 
 
 
