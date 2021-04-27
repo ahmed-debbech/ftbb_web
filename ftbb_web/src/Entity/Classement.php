@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Classement
  *
  * @ORM\Table(name="classement", indexes={@ORM\Index(name="t2", columns={"id_team"}), @ORM\Index(name="c2", columns={"id_competition"}), @ORM\Index(name="ph1", columns={"id_phase"})})
+
  * @ORM\Entity
  */
 class Classement
