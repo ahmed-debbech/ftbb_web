@@ -52,6 +52,7 @@ class Player
      */
     private $idTeam;
 
+
     /**
      * @return int
      */

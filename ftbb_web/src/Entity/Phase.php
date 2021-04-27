@@ -60,5 +60,4 @@ class Phase
         $this->name = $name;
     }
 
-
 }
