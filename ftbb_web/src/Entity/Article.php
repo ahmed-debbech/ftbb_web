@@ -32,7 +32,7 @@ class Article
     /**
      * @var int
      *
-     * @ORM\Column(name="admin_id", type="integer", nullable=false
+     * @ORM\Column(name="admin_id", type="integer", nullable=false)
      */
     private $adminId;
 
