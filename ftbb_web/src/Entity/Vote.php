@@ -44,6 +44,7 @@ class Vote
      */
     private $option;
 
+
     /**
      * @return int
      */

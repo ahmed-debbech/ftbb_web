@@ -17,30 +17,71 @@ class Likes
      *
      * @ORM\Column(name="id_like", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idLike;
 
     /**
-     * @var int|null
-     *
-     * @ORM\Column(name="id_article", type="integer", nullable=true)
-     */
-    private $idArticle;
 
-    /**
-     * @var int|null
+
+
+     * @var \Comment
      *
-     * @ORM\Column(name="id_comment", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Comment")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_comment", referencedColumnName="id")
+     * })
      */
     private $idComment;
 
     /**
-     * @var int
+     * @var \Article
      *
-     * @ORM\Column(name="id_client", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Article")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_article", referencedColumnName="article_id")
+     * })
+     */
+    private $idArticle;
+
+    /**
+     * @var \Client
+     *
+     * @ORM\ManyToOne(targetEntity="Client")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_client", referencedColumnName="id")
+     * })
      */
     private $idClient;
+	public function getIdLike(){
+		return $this->idLike;
+	}
 
+	public function setIdLike($idLike){
+		$this->idLike = $idLike;
+	}
+
+	public function getIdComment(){
+		return $this->idComment;
+	}
+
+	public function setIdComment($idComment){
+		$this->idComment = $idComment;
+	}
+
+	public function getIdArticle(){
+		return $this->idArticle;
+	}
+
+	public function setIdArticle($idArticle){
+		$this->idArticle = $idArticle;
+	}
+
+	public function getIdClient(){
+		return $this->idClient;
+	}
+
+	public function setIdClient($idClient){
+		$this->idClient = $idClient;
+	}
 
 }

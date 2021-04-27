@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Cart
  *
@@ -17,7 +19,7 @@ class Cart
      *
      * @ORM\Column(name="addition_id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+
      */
     private $additionId;
 
@@ -39,6 +41,8 @@ class Cart
      * @var int
      *
      * @ORM\Column(name="num_products", type="integer", nullable=false)
+
+     * @Assert\Range(min=1, max=100)
      */
     private $numProducts;
 
@@ -46,6 +50,7 @@ class Cart
      * @var int
      *
      * @ORM\Column(name="total_price", type="integer", nullable=false)
+     * @Assert\Positive
      */
     private $totalPrice;
 
@@ -57,4 +62,66 @@ class Cart
     private $refProduct;
 
 
+    public function getAdditionId()
+    {
+        return $this->additionId;
+    }
+    public function setAdditionId($additionId)
+    {
+        $this->additionId=$additionId;
+    }
+
+    public function getCartId()
+    {
+        return $this->cartId;
+    }
+    public function setCartId($cartId)
+    {
+        $this->cartId=$cartId;
+    }
+
+    public function getIdClient()
+    {
+        return $this->idClient;
+    }
+    public function setIdClient($idClient)
+    {
+        $this->idClient=$idClient;
+    }
+
+    public function getIdAdmin(): ?int
+    {
+        return $this->idAdmin;
+    }
+    public function setIdAdmin($idAdmin)
+    {
+        $this->idAdmin=$idAdmin;
+    }
+
+    public function getNumProducts()
+    {
+        return $this->numProducts;
+    }
+    public function setNumProducts($numProducts)
+    {
+        $this->numProducts=$numProducts;
+    }
+
+    public function getTotalPrice()
+    {
+        return $this->totalPrice;
+    }
+    public function setTotalPrice($totalPrice)
+    {
+        $this->totalPrice=$totalPrice;
+    }
+
+    public function getRefproduct()
+    {
+        return $this->refProduct;
+    }
+    public function setRefproduct($refproduct)
+    {
+        $this->refProduct = $refproduct;
+    }
 }

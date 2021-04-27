@@ -31,6 +31,7 @@ class Options
      * @var Poll
      *
      * @ORM\ManyToOne(targetEntity=Poll::class)
+
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="poll_id", referencedColumnName="poll_id")
      * })

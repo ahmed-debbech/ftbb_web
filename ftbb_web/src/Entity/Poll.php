@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
 /**
  * Poll
  *
@@ -30,11 +31,13 @@ class Poll
      *      max = 255,
      *      minMessage = "Your description must be {{ limit }} characters long",
      *      maxMessage = "Your description cannot be longer than {{ limit }} characters")
+
      */
     private $description;
 
     /**
      * @var DateTime
+
      *
      * @ORM\Column(name="creation_date", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
