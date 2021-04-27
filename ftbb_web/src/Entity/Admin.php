@@ -12,13 +12,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table(name="admin", uniqueConstraints={@ORM\UniqueConstraint(name="email", columns={"email"})}, indexes={@ORM\Index(name="password_id", columns={"password"})})
  * @ORM\Entity
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
-
-/**
- * Admin
- *
- * @ORM\Table(name="admin", uniqueConstraints={@ORM\UniqueConstraint(name="email", columns={"email"})}, indexes={@ORM\Index(name="password_id", columns={"password_id"})})
- * @ORM\Entity
- */
+*/
 class Admin
 {
     /**

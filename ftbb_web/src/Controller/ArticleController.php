@@ -29,7 +29,7 @@ class ArticleController extends AbstractController
         return $this->render('article/articles.html.twig', ['articles' => $articles]);
     }
     /**
-     * @Route("/admin/articles", name="articles_admin")
+     * @Route("/a/articles", name="articles_admin")
      */
     public function listArticlesForAdmin(): Response
     {
@@ -141,7 +141,7 @@ class ArticleController extends AbstractController
             return $this->redirectToRoute("add_comment", ['id' => $id, 'content' => $form->getData()->getContent()]);
         }
         $article = $this->getDoctrine()->getRepository(Article::class)->find($id);
-        return $this->render('article/article-post.html.twig', ['id_cli' =>122,'article' => $article, 'form' => $form->createView()]);
+        return $this->render('article/article-post.html.twig', ['id_cli' =>ArticleController::$CLIENT_ID,'article' => $article, 'form' => $form->createView()]);
     }
 
     
