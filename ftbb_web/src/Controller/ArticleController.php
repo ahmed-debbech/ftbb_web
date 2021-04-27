@@ -167,4 +167,10 @@ class ArticleController extends AbstractController
         $articles = $this->getDoctrine()->getRepository(Article::class)->getTopLast($time);
         return $this->render('article/articles.html.twig', ['articles' => $articles]);
     }
+    /**
+     * @Route("/index", name="root")
+     */
+    public function root(){
+        return $this->render('index.html.twig', []);
+    }
 }
