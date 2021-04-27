@@ -12,6 +12,12 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table(name="admin", uniqueConstraints={@ORM\UniqueConstraint(name="email", columns={"email"})}, indexes={@ORM\Index(name="password_id", columns={"password"})})
  * @ORM\Entity
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+
+/**
+ * Admin
+ *
+ * @ORM\Table(name="admin", uniqueConstraints={@ORM\UniqueConstraint(name="email", columns={"email"})}, indexes={@ORM\Index(name="password_id", columns={"password_id"})})
+ * @ORM\Entity
  */
 class Admin
 {
@@ -47,6 +53,7 @@ class Admin
      *      minMessage = "Your last name must be at least {{ limit }} characters long",
      *      maxMessage = "Your last name cannot be longer than {{ limit }} characters"
      * )
+
      */
     private $surname;
 
@@ -68,6 +75,7 @@ class Admin
      * )
      * @ORM\Column(name="number", type="integer", nullable=false)
 
+
      */
     private $number;
 
@@ -82,7 +90,6 @@ class Admin
      * @var string|null
      *
      * @ORM\Column(name="sex", type="string", length=255, nullable=true)
-     *
      */
     private $sex;
 
@@ -338,4 +345,5 @@ class Admin
             // $this->salt
             ) = unserialize($serialized, array('allowed_classes' => false));
     }
+
 }

@@ -15,15 +15,16 @@ class Utilities {
         return $dateTime;
     }
     public static function generateId($table,$atr, $doctrine){
-        $rand = rand(10000000, 99999999);
+
         $article = NULL;
+        $rand = 0;
         do{
-            $article = $doctrine->getManager()
-                ->getRepository(get_class($table))
-                ->findOneBy(array($atr => $rand));
+        $rand = rand(10000000, 99999999);
+        $article = $doctrine->getManager()
+             ->getRepository(get_class($table))
+             ->findOneBy(array($atr => $rand));
         }while($article != NULL);
         return $rand;
     }
 }
-
 ?>

@@ -15,11 +15,13 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *  @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class Client implements UserInterface, \Serializable
+
 {
     /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false,unique=true)
+
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -58,6 +60,7 @@ class Client implements UserInterface, \Serializable
      * @Assert\Email(
      *     message = "The email '{{ value }}' is not a valid email."
      * )
+
      */
     private $email;
 
@@ -102,6 +105,7 @@ class Client implements UserInterface, \Serializable
      */
     private $password;
 
+
     /**
      * @var string
      *
@@ -109,6 +113,7 @@ class Client implements UserInterface, \Serializable
      * @Assert\Url(
      *    message = "The url '{{ value }}' is not a valid url",
      * )
+
      */
     private $photoUrl;
 
