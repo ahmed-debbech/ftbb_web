@@ -7,8 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Classement
  *
-
- * @ORM\Table(name="classement", indexes={@ORM\Index(name="c2", columns={"id_competition"}), @ORM\Index(name="ph1", columns={"id_phase"}), @ORM\Index(name="t2", columns={"id_team"})})
+ * @ORM\Table(name="classement", indexes={@ORM\Index(name="t2", columns={"id_team"}), @ORM\Index(name="c2", columns={"id_competition"}), @ORM\Index(name="ph1", columns={"id_phase"})})
  * @ORM\Entity
  */
 class Classement
@@ -58,7 +57,7 @@ class Classement
     private $nbrPts;
 
     /**
-     * @var \Competition
+     * @var Competition
      *
      * @ORM\ManyToOne(targetEntity="Competition")
      * @ORM\JoinColumns({
@@ -68,7 +67,7 @@ class Classement
     private $idCompetition;
 
     /**
-     * @var \Phase
+     * @var Phase
      *
      * @ORM\ManyToOne(targetEntity="Phase")
      * @ORM\JoinColumns({
@@ -78,7 +77,7 @@ class Classement
     private $idPhase;
 
     /**
-     * @var \Team
+     * @var Team
      *
      * @ORM\ManyToOne(targetEntity="Team")
      * @ORM\JoinColumns({
@@ -86,6 +85,151 @@ class Classement
      * })
      */
     private $idTeam;
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getNbrPtsP(): ?int
+    {
+        return $this->nbrPtsP;
+    }
+
+    /**
+     * @param int|null $nbrPtsP
+     */
+    public function setNbrPtsP(?int $nbrPtsP): void
+    {
+        $this->nbrPtsP = $nbrPtsP;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getNbrPtsG(): ?int
+    {
+        return $this->nbrPtsG;
+    }
+
+    /**
+     * @param int|null $nbrPtsG
+     */
+    public function setNbrPtsG(?int $nbrPtsG): void
+    {
+        $this->nbrPtsG = $nbrPtsG;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getNbrPtsD(): ?int
+    {
+        return $this->nbrPtsD;
+    }
+
+    /**
+     * @param int|null $nbrPtsD
+     */
+    public function setNbrPtsD(?int $nbrPtsD): void
+    {
+        $this->nbrPtsD = $nbrPtsD;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getPtsDiff(): ?int
+    {
+        return $this->ptsDiff;
+    }
+
+    /**
+     * @param int|null $ptsDiff
+     */
+    public function setPtsDiff(?int $ptsDiff): void
+    {
+        $this->ptsDiff = $ptsDiff;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getNbrPts(): ?int
+    {
+        return $this->nbrPts;
+    }
+
+    /**
+     * @param int|null $nbrPts
+     */
+    public function setNbrPts(?int $nbrPts): void
+    {
+        $this->nbrPts = $nbrPts;
+    }
+
+    /**
+     * @return Competition
+     */
+    public function getIdCompetition(): Competition
+    {
+        return $this->idCompetition;
+    }
+
+    /**
+     * @param Competition $idCompetition
+     */
+    public function setIdCompetition(Competition $idCompetition): void
+    {
+        $this->idCompetition = $idCompetition;
+    }
+
+    /**
+     * @return Phase
+     */
+    public function getIdPhase(): Phase
+    {
+        return $this->idPhase;
+    }
+
+    /**
+     * @param Phase $idPhase
+     */
+    public function setIdPhase(Phase $idPhase): void
+    {
+        $this->idPhase = $idPhase;
+    }
+
+    /**
+     * @return Team
+     */
+    public function getIdTeam(): Team
+    {
+        return $this->idTeam;
+    }
+
+    /**
+     * @param Team $idTeam
+     */
+    public function setIdTeam(Team $idTeam): void
+    {
+        $this->idTeam = $idTeam;
+    }
+
 
 
 }
