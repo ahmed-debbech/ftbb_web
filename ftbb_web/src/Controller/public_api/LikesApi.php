@@ -44,7 +44,7 @@ class LikesApi extends AbstractController
             $this->addFlash('message', 'Le message a bien été envoyé');
             }
         }
-        $json = $norm->normalize($like, 'json', ['groups' => 'post:read']);
+        $json = $norm->normalize($like, 'json', ['groups' => 'likes']);
         return new Response(json_encode($json));
     }
 
@@ -68,7 +68,7 @@ class LikesApi extends AbstractController
             $em->persist($like);
             $em->flush();
         }
-        $json = $norm->normalize($like, 'json', ['groups' => 'post:read']);
+        $json = $norm->normalize($like, 'json', ['groups' => 'likes']);
         return new Response(json_encode($json));
     }
 }

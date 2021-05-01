@@ -1,5 +1,5 @@
 Articles:
-get all articles at: [/articles/getall]
+get all articles at: [/articles/get/all]
 get an article at: [/articles/get/{id}]
 delete article at: [/articles/delete/{id}]
 modify article at: [/articles/modify/{id}]

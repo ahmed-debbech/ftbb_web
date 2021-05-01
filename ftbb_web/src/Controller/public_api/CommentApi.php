@@ -36,7 +36,7 @@ class CommentApi extends AbstractController
         $em->persist($com);
         $em->flush();
         
-        $json = $norm->normalize($com, 'json', ['groups' => 'post:read']);
+        $json = $norm->normalize($com, 'json', ['groups' => 'comment']);
         return new Response(json_encode($json));
     }
 
@@ -50,7 +50,7 @@ class CommentApi extends AbstractController
         $em->remove($com);
         $em->flush();
 
-        $json = $norm->normalize($com, 'json', ['groups' => 'post:read']);
+        $json = $norm->normalize($com, 'json', ['groups' => 'comment']);
         return new Response(json_encode($json));
     }
     /**
@@ -58,7 +58,7 @@ class CommentApi extends AbstractController
      */
     public function sortByLike(NormalizerInterface $norm, $article_id){
         $comments = $this->getDoctrine()->getRepository(Comment::class)->getTopLiked($article_id);
-        $json = $norm->normalize($comments, 'json', ['groups' => 'post:read']);
+        $json = $norm->normalize($comments, 'json', ['groups' => 'comment']);
         return new Response(json_encode($json));
     }
     /**
@@ -66,7 +66,7 @@ class CommentApi extends AbstractController
      */
     public function sortByNewest($article_id, NormalizerInterface $norm){
         $comments = $this->getDoctrine()->getRepository(Comment::class)->getNewest($article_id);
-        $json = $norm->normalize($comments, 'json', ['groups' => 'post:read']);
+        $json = $norm->normalize($comments, 'json', ['groups' => 'comment']);
         return new Response(json_encode($json));
     }
 }

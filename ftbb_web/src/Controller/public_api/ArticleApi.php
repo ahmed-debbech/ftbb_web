@@ -14,11 +14,11 @@ class ArticleApi extends AbstractController
 {
 
     /**
-     * @Route("/articles/getall", name="articles_getall")
+     * @Route("/articles/get/all", name="articles_getall")
      */
     public function listArticles(NormalizerInterface $normalizer){
         $articles = $this ->getDoctrine()->getRepository(Article :: class)->findAll();
-        $json = $normalizer->normalize($articles, 'json', ['groups' => 'post:read']);
+        $json = $normalizer->normalize($articles, 'json', ['groups' => 'article']);
         return new Response(json_encode($json));
     }
     /**
@@ -30,7 +30,7 @@ class ArticleApi extends AbstractController
         $article=$em->getRepository(Article::class)->find($id);
         $em->remove($article);
         $em->flush();
-        $json = $norm->normalize($article, 'json', ['groups' => 'post:read']);
+        $json = $norm->normalize($article, 'json', ['groups' => 'article']);
         return new Response(json_encode($json));
     }
 
@@ -63,7 +63,7 @@ class ArticleApi extends AbstractController
         $em->persist($article);
         $em->flush();
         
-        $json = $norm->normalize($article, 'json', ['groups' => 'post:read']);
+        $json = $norm->normalize($article, 'json', ['groups' => 'article']);
         return new Response(json_encode($json));
     }
 
@@ -91,7 +91,7 @@ class ArticleApi extends AbstractController
         $em->persist($article);
         $em->flush();
 
-        $json = $norm->normalize($article, 'json', ['groups' => 'post:read']);
+        $json = $norm->normalize($article, 'json', ['groups' => 'article']);
         return new Response(json_encode($json));
     }
 
@@ -102,7 +102,7 @@ class ArticleApi extends AbstractController
     public function getArticle(NormalizerInterface $norm, $id)
     {
         $articles = $this ->getDoctrine()->getRepository(Article :: class)->findBy(['articleId' => $id]);
-        $json = $norm->normalize($articles[0], 'json', ['groups' => 'post:read']);
+        $json = $norm->normalize($articles[0], 'json', ['groups' => 'article']);
         return new Response(json_encode($json));
     }
 
@@ -112,7 +112,7 @@ class ArticleApi extends AbstractController
      */
     public function sortByLiked(NormalizerInterface $norm){
         $articles = $this->getDoctrine()->getRepository(Article::class)->getTopLiked();
-        $json = $norm->normalize($articles, 'json', ['groups' => 'post:read']);
+        $json = $norm->normalize($articles, 'json', ['groups' => 'article']);
         return new Response(json_encode($json));
     }
     /**
@@ -120,7 +120,7 @@ class ArticleApi extends AbstractController
      */
     public function sortByComments(NormalizerInterface $norm){
         $articles = $this->getDoctrine()->getRepository(Article::class)->getMostCommented();
-        $json = $norm->normalize($articles, 'json', ['groups' => 'post:read']);
+        $json = $norm->normalize($articles, 'json', ['groups' => 'article']);
         return new Response(json_encode($json));
     }
 
@@ -129,7 +129,7 @@ class ArticleApi extends AbstractController
      */
     public function lastSort(NormalizerInterface $norm, $time){
         $articles = $this->getDoctrine()->getRepository(Article::class)->getTopLast($time);
-        $json = $norm->normalize($articles, 'json', ['groups' => 'post:read']);
+        $json = $norm->normalize($articles, 'json', ['groups' => 'article']);
         return new Response(json_encode($json));
     }
 }

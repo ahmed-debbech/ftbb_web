@@ -21,7 +21,7 @@ class Comment
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @Groups("post:read")
+     * @Groups("comment")
      */
     private $id;
 
@@ -29,7 +29,7 @@ class Comment
     * @var int
     *
     * @ORM\Column(name="article_id", type="integer", nullable=false)
-    * @Groups("post:read")
+    * @Groups("comment")
     */
    private $article_id;
    
@@ -37,7 +37,7 @@ class Comment
      * @var string
      *
      * @ORM\Column(name="content", type="string", length=255, nullable=false)
-     * @Groups("post:read")
+     * @Groups("comment")
      */
     private $content;
 
@@ -45,7 +45,7 @@ class Comment
      * @var \DateTime|null
      *
      * @ORM\Column(name="date", type="datetime", nullable=true)
-     * @Groups("post:read")
+     * @Groups("comment")
      */
     private $date;
 
@@ -56,7 +56,7 @@ class Comment
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="article_id", referencedColumnName="article_id")
      * })
-     * @Groups("post:read")
+     * @Groups("comment")
      */
     private $article;
 
@@ -67,13 +67,13 @@ class Comment
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="client_id", referencedColumnName="id")
      * })
-     * @Groups("post:read")
+     * @Groups("comment")
      */
     private $client;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Likes", mappedBy="idComment")
-     * @Groups("post:read")
+     * @Groups("comment")
      */
     private $likes;
 
