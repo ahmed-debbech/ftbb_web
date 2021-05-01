@@ -7,6 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 /**
  * Article
  *
@@ -24,6 +26,7 @@ class Article
      *
      * @ORM\Column(name="article_id", type="integer", nullable=false)
      * @ORM\Id
+     * @Groups("post:read")
      */
     private $articleId;
 
@@ -31,6 +34,7 @@ class Article
      * @var int
      *
      * @ORM\Column(name="admin_id", type="integer", nullable=false)
+     * @Groups("post:read")
      */
     private $adminId;
 
@@ -38,7 +42,7 @@ class Article
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255, nullable=false)
-     * 
+     * @Groups("post:read")
      */
     private $title;
 
@@ -46,7 +50,7 @@ class Article
      * @var string
      *
      * @ORM\Column(name="text", type="string", length=2048, nullable=false)
-     *
+     * @Groups("post:read")
      */
     private $text;
 
@@ -54,7 +58,7 @@ class Article
      * @var string
      *
      * @ORM\Column(name="author", type="string", length=255, nullable=false)
-     * 
+     * @Groups("post:read")
      */
     private $author;
 
@@ -62,7 +66,7 @@ class Article
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime", nullable=true)
-     * 
+     * @Groups("post:read")
      */
     private $date;
 
@@ -70,7 +74,7 @@ class Article
      * @var string
      *
      * @ORM\Column(name="photo_url", type="string", length=255, nullable=false)
-     * 
+     * @Groups("post:read")
      */
     private $photoUrl;
 
@@ -78,17 +82,19 @@ class Article
      * @var int
      *
      * @ORM\Column(name="category", type="integer", nullable=false)
-     *
+     * @Groups("post:read")
      */
     private $category;
 
      /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="article")
+     * @Groups("post:read")
      */
     private $comments;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Likes", mappedBy="idArticle")
+     * @Groups("post:read")
      */
     private $likes;
 

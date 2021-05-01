@@ -1,0 +1,19 @@
+Articles:
+get all articles at: [/articles/getall]
+get an article at: [/articles/get/{id}]
+delete article at: [/articles/delete/{id}]
+modify article at: [/articles/modify/{id}]
+add article at: [/articles/add]
+sort by most liked at: [/articles/sort/sortliked]
+sort by most commented on at: [/articles/sort/mostcomment]
+sort by newest at: [/articles/sort/newest/{time}]
+
+Comments:
+add comment to an article at: []
+delete/ban comment at: []
+sort comments by most liked at: []
+sort comments by newest at: []
+
+Likes:
+add like to a comment at: []
+add like to an article at: []
