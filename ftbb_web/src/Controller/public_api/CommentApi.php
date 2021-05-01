@@ -20,9 +20,9 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 class CommentApi extends AbstractController
 {
     /**
-     * @Route("/comments/add/{article_id}", name="comments_add")
+     * @Route("/comments/add/{article_id}/{client_id}", name="comments_add")
      */
-    public function addComment(NormalizerInterface $norm, $article_id, Request $req){
+    public function addComment(NormalizerInterface $norm, $article_id, $client_id ,Request $req){
         $em = $this->getDoctrine()->getManager();
         $com = new Comment();
         $com->setContent($req->get('content'));
@@ -31,7 +31,8 @@ class CommentApi extends AbstractController
         $com->setDate($dateTime);
         $article = $this->getDoctrine()->getRepository(Article::class)->find($article_id);
         $com->setArticle($article);
-        $com->setClient($req->get('client_id'));
+        $client = $this->getDoctrine()->getRepository(Client::class)->find($client_id);
+        $com->setClient($client);
         $em->persist($com);
         $em->flush();
         
