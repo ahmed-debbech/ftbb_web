@@ -9,10 +9,10 @@ sort by most commented on at: [/articles/sort/mostcomment]
 sort by newest at: [/articles/sort/newest/{time}]
 
 Comments:
-add comment to an article at: []
-delete/ban comment at: []
-sort comments by most liked at: []
-sort comments by newest at: []
+add comment to an article at: [/comments/add/{article_id}]
+delete/ban comment at: [/comments/delete/{comment_id}]
+sort comments by most liked at: [/comments/sort/sortliked/{article_id}]
+sort comments by newest at: [/comments/sort/sortnewest/{article_id}]
 
 Likes:
 add like to a comment at: []

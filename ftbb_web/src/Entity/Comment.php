@@ -6,12 +6,13 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Article;
 use Doctrine\Common\Collections\ArrayCollection;
-
+use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * Comment
  *
  * @ORM\Table(name="comment", indexes={@ORM\Index(name="client_id", columns={"client_id"}), @ORM\Index(name="article_id", columns={"article_id"})})
  * @ORM\Entity(repositoryClass="App\Repository\CommentRepository")
+ * 
  */
 class Comment
 {
@@ -20,6 +21,7 @@ class Comment
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
+     * @Groups("post:read")
      */
     private $id;
 
@@ -27,6 +29,7 @@ class Comment
     * @var int
     *
     * @ORM\Column(name="article_id", type="integer", nullable=false)
+    * @Groups("post:read")
     */
    private $article_id;
    
@@ -34,6 +37,7 @@ class Comment
      * @var string
      *
      * @ORM\Column(name="content", type="string", length=255, nullable=false)
+     * @Groups("post:read")
      */
     private $content;
 
@@ -41,6 +45,7 @@ class Comment
      * @var \DateTime|null
      *
      * @ORM\Column(name="date", type="datetime", nullable=true)
+     * @Groups("post:read")
      */
     private $date;
 
@@ -51,6 +56,7 @@ class Comment
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="article_id", referencedColumnName="article_id")
      * })
+     * @Groups("post:read")
      */
     private $article;
 
@@ -61,11 +67,13 @@ class Comment
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="client_id", referencedColumnName="id")
      * })
+     * @Groups("post:read")
      */
     private $client;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Likes", mappedBy="idComment")
+     * @Groups("post:read")
      */
     private $likes;
 
