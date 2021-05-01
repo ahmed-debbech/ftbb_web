@@ -3,12 +3,15 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 /**
  * Galerie
  *
  * @ORM\Table(name="galerie")
  * @ORM\Entity
+ * @Groups("galerie")
  */
 class Galerie
 {
@@ -17,6 +20,8 @@ class Galerie
      *
      * @ORM\Column(name="galerie_id", type="integer", nullable=false)
      * @ORM\Id
+     * @Groups("galerie")
+     * 
      */
     private $galerieId;
 
@@ -24,6 +29,7 @@ class Galerie
      * @var int
      *
      * @ORM\Column(name="admin_id", type="integer", nullable=false)
+     * @Groups("galerie")
      */
     private $adminId;
 
@@ -31,6 +37,7 @@ class Galerie
      * @var string
      *
      * @ORM\Column(name="photo_url", type="string", length=255, nullable=false)
+     * @Groups("galerie")
      */
     private $photoUrl;
 
@@ -38,6 +45,7 @@ class Galerie
      * @var string
      *
      * @ORM\Column(name="photo_title", type="string", length=255, nullable=false)
+     * @Groups("galerie")
      */
     private $photoTitle;
 
@@ -45,6 +53,7 @@ class Galerie
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=false)
+     * @Groups("galerie")
      */
     private $description;
 
