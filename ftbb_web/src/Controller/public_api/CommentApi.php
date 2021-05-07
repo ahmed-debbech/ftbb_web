@@ -69,4 +69,12 @@ class CommentApi extends AbstractController
         $json = $norm->normalize($comments, 'json', ['groups' => 'comment']);
         return new Response(json_encode($json));
     }
+    /**
+     * @Route("/comments/get/{article_id}", name="comments_get")
+     */
+    public function getComments($article_id, NormalizerInterface $norm){
+        $comments = $this->getDoctrine()->getRepository(Comment::class)->findBy(['article_id' => $article_id]);
+        $json = $norm->normalize($comments, 'json', ['groups' => 'comment']);
+        return new Response(json_encode($json));
+    }
 }
