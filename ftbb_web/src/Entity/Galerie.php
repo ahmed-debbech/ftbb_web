@@ -11,7 +11,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *
  * @ORM\Table(name="galerie")
  * @ORM\Entity
- * @Groups("galerie")
  */
 class Galerie
 {

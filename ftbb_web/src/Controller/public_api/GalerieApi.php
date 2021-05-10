@@ -10,6 +10,7 @@ use App\Form\GalerieFormType;
 use App\Form\ModifyGalerieType;
 use App\Utils\Utilities;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class GalerieApi extends AbstractController
