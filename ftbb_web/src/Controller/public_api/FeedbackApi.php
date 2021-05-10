@@ -25,19 +25,24 @@ class FeedbackApi extends AbstractController
         $fed = new Feedback();
         $form = $this ->createForm(FeedbackFormType::class,$fed); 
         $form->handleRequest($req);
-        if($form->isSubmitted() && $form->isValid()){
+        
             $em = $this->getDoctrine()->getManager();
             $fed->setFeedbackId(Utilities::generateId($fed,"feedbackId",$this->getDoctrine()));
             $fed->setClientId("2943761");   
             $dateTime = Utilities::getDateTimeObject(date("D M d, Y G:i"),"D M d, Y G:i");  
             $fed->setFeedbackDate($dateTime);
+
+            $fed->setEmail($req->get("email"));
+            $fed->setTopic($req->get("topic"));
+            $fed->setType($req->get("type"));
+            $fed->setText($req->get("text"));
             $em->persist($fed);
             
             $em->flush();
             
 
-            return $this->redirectToRoute("feedback_sent");
-        }
+            
+    
 
         
         $json = $normalizer->normalize($fed, 'json', ['groups' => 'feedback']);
