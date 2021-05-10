@@ -25,17 +25,18 @@ class ReportApi extends AbstractController
         $rep = new Report();
         $form = $this ->createForm(ReportFormType::class,$rep); 
         $form->handleRequest($req);
-        if($form->isSubmitted() && $form->isValid()){
+        
             $em = $this->getDoctrine()->getManager();
             $rep->setReportId(Utilities::generateId($rep,"reportId",$this->getDoctrine()));
             $rep->setClientId("2943763");
             $dateTime = Utilities::getDateTimeObject(date("D M d, Y G:i"),"D M d, Y G:i");             
             $rep->setReportDate($dateTime);
+            $rep->setCommandId($req->get("commandId"));
+            $rep->setEmail($req->get("email"));
+            $rep->setDescription($req->get("description"));
             $em->persist($rep);
             $em->flush();
 
-            return $this->redirectToRoute("report_sent");
-        }
         $json = $normalizer->normalize($rep, 'json', ['groups' => 'report']);
 
         return new Response(json_encode($json));        
