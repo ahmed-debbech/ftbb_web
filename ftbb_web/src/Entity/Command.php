@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 /**
  * Command
@@ -17,6 +19,7 @@ class Command
      *
      * @ORM\Column(name="command_id", type="integer", nullable=false)
      * @ORM\Id
+     * @Groups("command")
      */
     private $commandId;
 
@@ -24,6 +27,7 @@ class Command
      * @var int
      *
      * @ORM\Column(name="id_client", type="integer", nullable=false)
+     * @Groups("command")
      */
     private $idClient;
 
@@ -31,6 +35,7 @@ class Command
      * @var \DateTime
      *
      * @ORM\Column(name="date_command", type="datetime", nullable=true)
+     * @Groups("command")
      */
     private $dateCommand;
 
@@ -38,6 +43,7 @@ class Command
      * @var int
      *
      * @ORM\Column(name="status", type="integer", nullable=false)
+     * @Groups("command")
      */
     private $status;
 
@@ -45,6 +51,7 @@ class Command
      * @var int
      *
      * @ORM\Column(name="total_price", type="integer", nullable=false)
+     * @Groups("command")
      */
     private $totalPrice;
 

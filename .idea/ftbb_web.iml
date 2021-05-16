@@ -47,7 +47,6 @@
       <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/symfony/inflector" />
       <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/symfony/http-kernel" />
       <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/symfony/http-foundation" />
-      <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/symfony/http-client-contracts" />
       <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/symfony/http-client" />
       <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/symfony/framework-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/symfony/form" />
@@ -102,11 +101,22 @@
       <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/doctrine/deprecations" />
       <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/doctrine/dbal" />
       <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/doctrine/common" />
-      <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/doctrine/collections" />
       <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/doctrine/cache" />
       <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/doctrine/annotations" />
       <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/doctrine/inflector" />
       <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/phpdocumentor/type-resolver" />
+      <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/symfony/swiftmailer-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/swiftmailer/swiftmailer" />
+      <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/sabberworm/php-css-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/league/html-to-markdown" />
+      <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/phenx/php-svg-lib" />
+      <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/dompdf/dompdf" />
+      <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/phenx/php-font-lib" />
+      <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/cmen/google-charts-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/twig/markdown-extra" />
+      <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/twig/intl-extra" />
+      <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/symfony/http-client-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/ftbb_web/vendor/doctrine/collections" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

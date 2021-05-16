@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 
 /**
@@ -19,6 +20,7 @@ class Product
      *
      * @ORM\Column(name="ref_product", type="integer", nullable=false)
      * @ORM\Id
+     * @Groups("product")
      */
     private $refProduct;
 
@@ -26,6 +28,7 @@ class Product
      * @var string
      *
      * @ORM\Column(name="category", type="string", length=255, nullable=false)
+     * @Groups("product")
      */
     private $category;
 
@@ -34,6 +37,7 @@ class Product
      *
      * @ORM\Column(name="stock", type="integer", nullable=false)
      *  @Assert\Range(min=1 , max=10000)
+     * @Groups("product")
      */
     private $stock;
 
@@ -47,6 +51,7 @@ class Product
      *     minMessage = "Le nom du produit doit comporte au moins {{ limit }} caratères",
      *     maxMessage = "Le nom du produit doit comporte au plus {{ limit }} cractères",
      *     )
+     * @Groups("product")
      */
     private $name;
 
@@ -55,6 +60,7 @@ class Product
      *
      * @ORM\Column(name="price", type="integer", nullable=false)
      * @Assert\Positive
+     * @Groups("product")
      */
     private $price;
 
@@ -68,6 +74,7 @@ class Product
      *     minMessage = "Le nom du produit doit comporte au moins {{ limit }} caratères",
      *     maxMessage = "Le nom du produit doit comporte au plus {{ limit }} cractères",
      *     )
+     * @Groups("product")
      */
     private $details;
 
@@ -75,6 +82,7 @@ class Product
      * @var int
      *
      * @ORM\Column(name="id_admin", type="integer", nullable=false)
+     * @Groups("product")
      */
     private $idAdmin;
 
@@ -82,6 +90,7 @@ class Product
      * @var \DateTime
      *
      * @ORM\Column(name="add_date", type="date", nullable=true)
+     * @Groups("product")
      */
     private $addDate;
 
@@ -89,6 +98,7 @@ class Product
      * @var string
      *
      * @ORM\Column(name="photo", type="string", length=50, nullable=false)
+     * @Groups("product")
      */
     private $photo;
 

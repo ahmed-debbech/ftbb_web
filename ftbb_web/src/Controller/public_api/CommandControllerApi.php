@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\public_api;
 
 use App\Entity\Cart;
 use App\Entity\Command;
@@ -16,8 +16,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class CommandController extends AbstractController
+
+class CommandControllerApi extends AbstractController
 {
     /**
      * @Route("/command", name="command")
@@ -30,21 +32,19 @@ class CommandController extends AbstractController
     }
 
     /**
-     * @Route("/command/list_command_admin", name="list_command_admin")
+     * @Route("/mobile/command/list_command_admin", name="list_command_admin_mobile")
      */
-    public function Afficher_command(): Response #objet min aand symfony jey par defaut
+    public function Afficher_command(NormalizerInterface $norm): Response #objet min aand symfony jey par defaut
     {
         $command = $this ->getDoctrine()->getRepository(Command :: class)->findAll(); //findAll trajjalik tableau lkoll
-        return $this->render('back/list_command_admin.html.twig', [
-            'controller_name' => 'CommandControllerApi',
-            'data'=> $command,
-        ]);
+        $json = $norm->normalize($command, 'json', ['groups' => 'command']);
+        return new Response(json_encode($json));
     }
 
     /**
-     * @Route("/command/modifier_status_admin/{commandId}", name="modifier_status")
+     * @Route("/mobile/command/modifier_status_admin/{commandId}", name="modifier_status_mobile")
      */
-    public function modifier_status_admin(Request $req , $commandId , \Swift_Mailer $mailer): Response #objet min aand symfony jey par defaut
+    public function modifier_status_admin(Request $req , $commandId , \Swift_Mailer $mailer, NormalizerInterface $norm): Response #objet min aand symfony jey par defaut
     {
         $command = new Command();
         $em = $this->getDoctrine()->getManager();
@@ -71,26 +71,25 @@ Merci davoir fait vos achats sur  FTBB store.
         $em->persist($command);
         $em->flush();
 
-        return $this->redirectToRoute('list_command_admin');
+        $json = $norm->normalize($command, 'json', ['groups' => 'command']);
+        return new Response(json_encode($json));
     }
 
     /**
-     * @Route("/command/list_command_client", name="list_command_client")
+     * @Route("/mobile/command/list_command_client", name="list_command_client_mobile")
      */
-    public function Afficher_command_client(): Response #objet min aand symfony jey par defaut
+    public function Afficher_command_client(NormalizerInterface $norm): Response #objet min aand symfony jey par defaut
     {
         $commands = $this ->getDoctrine()->getRepository(Command :: class)->findBy(array('idClient' => 2) );
         //dd($commands);
-        return $this->render('command/list_command_client.html.twig', [
-            'controller_name' => 'CommandControllerApi',
-            'data'=> $commands,
-        ]);
+        $json = $norm->normalize($commands, 'json', ['groups' => 'command']);
+        return new Response(json_encode($json));
     }
 
     /**
-     * @Route("/command/add_new_command", name="add_new_command")
+     * @Route("/mobile/command/add_new_command", name="add_new_command_mobile")
      */
-    public function add_new_command()
+    public function add_new_command(NormalizerInterface $norm)
     {
         $command=new Command();
         $entityManager = $this->getDoctrine()->getManager();
@@ -120,39 +119,36 @@ Merci davoir fait vos achats sur  FTBB store.
         $command->setIdClient(2);
         $entityManager->persist($command);
         $entityManager->flush();
-        return $this->redirectToRoute('cart');
-    }
+
+        $json = $norm->normalize($command, 'json', ['groups' => 'command']);
+        return new Response(json_encode($json));    }
 
     /**
-     * @Route("/command/recherche_list_command_client",name="recherche_list_command_client")
+     * @Route("/mobile/command/recherche_list_command_client",name="recherche_list_command_client_mobile")
      */
-    public function Recherche_listcommandclient(CommandRepository $repository,Request $request)
+    public function Recherche_listcommandclient(CommandRepository $repository,Request $request,NormalizerInterface $norm)
     {
         $data=$request->get('search');
         $em=$repository->search($data);
 
-        return $this->render('command/list_command_client.html.twig',[
-            'data'=>$em
-
-        ]);
+        $json = $norm->normalize($command, 'json', ['groups' => 'command']);
+        return new Response(json_encode($json));
     }
 
     /**
-     * @Route("/command/recherche_list_command_admin",name="recherche_list_command_admin")
+     * @Route("/mobile/command/recherche_list_command_admin",name="recherche_list_command_admin_mobile")
      */
-    public function Recherche_listcommandadmin(CommandRepository $repository,Request $request)
+    public function Recherche_listcommandadmin(CommandRepository $repository,Request $request,NormalizerInterface $norm)
     {
         $data=$request->get('search');
         $em=$repository->search($data);
 
-        return $this->render('back/list_command_admin.html.twig',[
-            'data'=>$em
-
-        ]);
+        $json = $norm->normalize($command, 'json', ['groups' => 'command']);
+        return new Response(json_encode($json));
     }
 
     /**
-     * @Route("/command/list_command_pdf", name="list_command_pdf")
+     * @Route("/mobile/command/list_command_pdf", name="list_command_pdf_mobile")
      */
     public function pdf(CommandRepository $repository,Request $request): Response
     {

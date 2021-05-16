@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\public_api;
 
 use App\Entity\Cart;
 use App\Entity\Product;
@@ -11,8 +11,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class CartController extends AbstractController
+class CartControllerApi extends AbstractController
 {
     /**
      * @Route("/cart", name="cart")
@@ -25,9 +26,9 @@ class CartController extends AbstractController
     }
 
     /**
-     * @Route("/product/cart", name="cart")
+     * @Route("/mobile/product/cart", name="cart_mobile")
      */
-    public function Afficher_product_cart(): Response #objet min aand symfony jey par defaut
+    public function Afficher_product_cart(NormalizerInterface $norm): Response #objet min aand symfony jey par defaut
     {
         $carts = $this ->getDoctrine()->getRepository(Cart :: class)->findBy(array('cartId' => 2) ); //findAll trajjalik tableau lkoll
         $products = array();
@@ -42,17 +43,13 @@ class CartController extends AbstractController
         }
         // dd function tnejem testa3melha kima sout fl java
         //dd($carts);
-        return $this->render('cart.html.twig', [
-            'controller_name' => 'ProductControllerApi',
-            'data'=> $products,
-            'total'=>$somme,
-            'num'=>$k
-        ]);
+        $json = $norm->normalize($carts, 'json', ['groups' => 'cart']);
+        return new Response(json_encode($json));
     }
     /**
-     * @Route("/cart/quant/{q}/{id}"), name="add_quant")
+     * @Route("/mobile/cart/quant/{q}/{id}"), name="add_quant_mobile")
      */
-    public function addQuant($q, $id){
+    public function addQuant($q, $id,NormalizerInterface $norm){
         $em = $this->getDoctrine()->getManager();
         $cart = $this ->getDoctrine()->getRepository(Cart :: class)->findBy(array('refProduct' => $id, 'cartId' => 2));
         $cart[0]->setNumProducts($q);
@@ -72,12 +69,12 @@ class CartController extends AbstractController
         foreach($carts as $x){
             $somme=$somme+ $x->getTotalPrice();
         }
-        return new JsonResponse(['stock' => $p->getstock(), 'tot' => $somme]);
-    }
+        $json = $norm->normalize($cart, 'json', ['groups' => 'cart']);
+        return new Response(json_encode($json));    }
     /**
-     * @Route("/cart/add/{id}", name="add_to_cart")
+     * @Route("/mobile/cart/add/{id}", name="add_to_cart_mobile")
      */
-    public function addtocart($id)
+    public function addtocart($id, NormalizerInterface $norm)
     {
        $fine = $this->getDoctrine()->getRepository(Cart::class)->findBy(array('refProduct' => $id, 'cartId' => 2));
         if($fine == NULL) {
@@ -94,13 +91,13 @@ class CartController extends AbstractController
             $em->flush();
         }
 
-            return new JsonResponse();
-    }
+        $json = $norm->normalize($cart, 'json', ['groups' => 'cart']);
+        return new Response(json_encode($json));    }
 
     /**
-     * @Route("/cart/supprimer/{refProduct}", name="supprimer_cart")
+     * @Route("/mobile/cart/supprimer/{refProduct}", name="supprimer_cart_mobile")
      */
-    public function supprimer($refProduct): Response #objet min aand symfony jey par defaut
+    public function supprimer($refProduct,NormalizerInterface $norm): Response #objet min aand symfony jey par defaut
     {
         $cart = new Cart();
         $em = $this ->getDoctrine()->getManager();
@@ -108,7 +105,8 @@ class CartController extends AbstractController
         $em->remove($product[0]); //remove awell case fi tableau
         $em->flush();
 
-        return $this->redirectToRoute('cart');
+        $json = $norm->normalize($cart, 'json', ['groups' => 'cart']);
+        return new Response(json_encode($json));
         //return new Response("deleted successfully");
     }
 }

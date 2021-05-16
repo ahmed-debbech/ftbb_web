@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 
 /**
@@ -19,6 +21,7 @@ class Cart
      *
      * @ORM\Column(name="addition_id", type="integer", nullable=false)
      * @ORM\Id
+     * @Groups("cart")
      */
     private $additionId;
 
@@ -26,6 +29,7 @@ class Cart
      * @var int
      *
      * @ORM\Column(name="cart_id", type="integer", nullable=false)
+     * @Groups("cart")
      */
     private $cartId;
 
@@ -33,6 +37,7 @@ class Cart
      * @var int
      *
      * @ORM\Column(name="id_client", type="integer", nullable=false)
+     * @Groups("cart")
      */
     private $idClient;
 
@@ -41,6 +46,7 @@ class Cart
      *
      * @ORM\Column(name="num_products", type="integer", nullable=false)
      * @Assert\Range(min=1, max=100)
+     * @Groups("cart")
      */
     private $numProducts;
 
@@ -49,6 +55,7 @@ class Cart
      *
      * @ORM\Column(name="total_price", type="integer", nullable=false)
      * @Assert\Positive
+     * @Groups("cart")
      */
     private $totalPrice;
 
@@ -56,6 +63,7 @@ class Cart
      * @var int
      *
      * @ORM\Column(name="ref_product", type="integer", nullable=false)
+     * @Groups("cart")
      */
     private $refProduct;
 

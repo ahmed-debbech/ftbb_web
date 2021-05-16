@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 /**
  * Favourite
@@ -17,6 +19,7 @@ class Favourite
      *
      * @ORM\Column(name="id_fav", type="integer", nullable=false)
      * @ORM\Id
+     * @Groups("favourite")
      */
     private $idFav;
 
@@ -24,6 +27,7 @@ class Favourite
      * @var int
      *
      * @ORM\Column(name="id_client", type="integer", nullable=false)
+     * @Groups("favourite")
      */
     private $idClient;
 
@@ -34,6 +38,7 @@ class Favourite
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="ref_product", referencedColumnName="ref_product")
      * })
+     * @Groups("favourite")
      */
     private $refProduct;
 
