@@ -59,7 +59,7 @@ class ReportApi extends AbstractController
      * @Route("/reportapi/supp/{id}", name="reportapi_delete_client")
      */
 
-    public function DeleteReports($id,NormalizerInterface $normalizer)
+    public function DeleteReports($id)
     {
         $report = new Report();
         /*$classe->setId($id);
@@ -71,11 +71,10 @@ class ReportApi extends AbstractController
         $em->flush();
 
         //return $this->redirect('formulaire_ajout');
-        $json = $normalizer->normalize($report, 'json', ['groups' => 'report']);
 
        
         //return $this->redirectToRoute("report_show_client");
-        return new Response(json_encode($json));        
+        return new Response();        
 
     }
 
@@ -92,29 +91,43 @@ class ReportApi extends AbstractController
         
         if($diff->format('%R%a')=="0"){
         
-        $report = $entityManager->getRepository(Report::class)->find($id);
-        $form = $this->createForm(ModifyReportType::class, $report);
-        $form->handleRequest($req);
+            $report = $entityManager->getRepository(Report::class)->find($id);
+            $form = $this->createForm(ModifyReportType::class, $report);
+            $form->handleRequest($req);
         
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $entityManager->flush();
-            return $this->redirectToRoute('report_show_client');
-        }
+            
 
 
-        return $this->render('report/clientmodifyreport.html.twig', [
-            'report_form' => $form->createView()
-        ]);
+            return new Response(json_encode([["v" => "valid"]]));
         }else{
-            return $this->render('report/reportExpired.html.twig', []);
+            return new Response(json_encode([["v" => "notvalid"]]));     
         }
 
         $json = $normalizer->normalize($rep, 'json', ['groups' => 'report']);
         return new Response(json_encode($json));        
 
     }
+    /**
+     * @Route("/reportapi/modifynow/{id}", name="reportapi_modifynow_client")
+     */
+    public function modnow(Request $req,$id,NormalizerInterface $normalizer)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $reep= $entityManager->getRepository(Report::class)->find($id);
+        $rep = $reep;
+        $entityManager->remove($reep);
+        $entityManager->flush();
 
+        $rep->setCommandId($req->get("cmd"));
+        $rep->setEmail($req->get("email"));
+        $rep->setDescription($req->get("dsc"));
+        $entityManager->persist($rep);
+        $entityManager->flush();
+
+        $json = $normalizer->normalize($rep, 'json', ['groups' => 'report']);
+        return new Response(json_encode($json));        
+
+    }
     /**
      * @Route("/reportapi/showAdmin", name="reportapi_show_admin")
      */
