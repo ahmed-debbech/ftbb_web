@@ -4,8 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
-
+use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * Poll
  *
@@ -16,7 +15,7 @@ class Poll
 {
     /**
      * @var int
-     *
+     * @Groups("post:read")
      * @ORM\Column(name="poll_id", type="integer", nullable=false)
      * @ORM\Id
      */
@@ -24,34 +23,33 @@ class Poll
 
     /**
      * @var string
-     *
+     * @Groups("post:read")
      * @ORM\Column(name="description", type="string", length=255, nullable=false)
      * @Assert\Length(
      *      min = 3,
      *      max = 255,
      *      minMessage = "Your description must be {{ limit }} characters long",
      *      maxMessage = "Your description cannot be longer than {{ limit }} characters")
-
      */
     private $description;
 
     /**
      * @var DateTime
-
-     *
+     *@Groups("post:read")
      * @ORM\Column(name="creation_date", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
     private $creationDate = 'CURRENT_TIMESTAMP';
 
     /**
      * @var string
-     *
+     *@Groups("post:read")
      * @ORM\Column(name="status", type="string", length=255, nullable=false, options={"default"="Active"})
      */
     private $status = 'Active';
 
     /**
      * @return int
+     * @Groups("post:read")
      */
     public function getPollId(): int
     {

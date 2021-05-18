@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 /**
  * Vote
@@ -14,7 +16,7 @@ class Vote
 {
     /**
      * @var int
-     *
+     *@Groups("post:read")
      * @ORM\Column(name="vote_id", type="integer", nullable=false)
      * @ORM\Id
      */
@@ -22,28 +24,27 @@ class Vote
 
     /**
      * @var int|null
-     *
+     *@Groups("post:read")
      * @ORM\Column(name="client_id", type="integer", nullable=true)
      */
     private $clientId;
 
     /**
      * @var int|null
-     *
+     * *@Groups("post:read")
      * @ORM\Column(name="vote_nbr", type="integer", nullable=true, options={"default"="1"})
      */
     private $voteNbr = 1;
 
     /**
      * @var Options
-     *
+     *@Groups("post:read")
      * @ORM\ManyToOne(targetEntity="Options")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="option_id", referencedColumnName="option_id")
      * })
      */
     private $option;
-
 
     /**
      * @return int

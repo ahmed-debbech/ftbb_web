@@ -3,18 +3,21 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 /**
  * Options
  *
  * @ORM\Table(name="options", indexes={@ORM\Index(name="poll_id", columns={"poll_id"})})
+ *
  * @ORM\Entity
  */
 class Options
 {
     /**
      * @var int
-     *
+      *@Groups("post:read")
      * @ORM\Column(name="option_id", type="integer", nullable=false)
      * @ORM\Id
      */
@@ -22,16 +25,15 @@ class Options
 
     /**
      * @var string
-     *
+     *@Groups("post:read")
      * @ORM\Column(name="description", type="string", length=255, nullable=false)
      */
     private $description;
 
     /**
      * @var Poll
-     *
+     *@Groups("post:read")
      * @ORM\ManyToOne(targetEntity=Poll::class)
-
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="poll_id", referencedColumnName="poll_id")
      * })
