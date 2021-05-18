@@ -66,7 +66,7 @@ class FeedbackApi extends AbstractController
      * @Route("/feedbackapi/supp/{id}", name="feedbackapi_delete_client")
      */
 
-    public function DeleteFeedbacks($id,NormalizerInterface $normalizer)
+    public function DeleteFeedbacks($id)
     {
         $feedback = new Feedback();
         /*$classe->setId($id);
@@ -77,11 +77,7 @@ class FeedbackApi extends AbstractController
         $em->remove($feedback);
         $em->flush();
 
-        //return $this->redirect('formulaire_ajout');
-        $json = $normalizer->normalize($feedback, 'json', ['groups' => 'feedback']);
-        return new Response(json_encode($json));
-       
-        return $this->redirectToRoute("feedback_show_client");
+        return new Response();  
         
     }
 
@@ -101,23 +97,38 @@ class FeedbackApi extends AbstractController
         $form = $this->createForm(ModifyFeedbackType::class, $feedback);
         $form->handleRequest($req);
 
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $entityManager->flush();
-            return $this->redirectToRoute('feedback_show_client');
-        }
-
+        return new Response(json_encode([["v" => "valid"]]));
         
-        return $this->render('feedback/clientmodifyfeedback.html.twig', [
-            'feedback_form' => $form->createView()
-        ]);
         }else{
-            return $this->render('feedback/feedbackExpired.html.twig', []);
+            return new Response(json_encode([["v" => "notvalid"]]));
 
         }
         $json = $normalizer->normalize($feedback, 'json', ['groups' => 'feedback']);
         return new Response(json_encode($json));
     }
+     /**
+     * @Route("/feedbackapi/modifynow/{id}", name="feedbackapi_modifynow_client")
+     */
+    public function modnow(Request $req,$id,NormalizerInterface $normalizer)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $reep= $entityManager->getRepository(Feedback::class)->find($id);
+        $rep = $reep;
+        $entityManager->remove($reep);
+        $entityManager->flush();
+
+        
+        $rep->setText($req->get("text"));
+        $entityManager->persist($rep);
+        $entityManager->flush();
+
+        $json = $normalizer->normalize($rep, 'json', ['groups' => 'feedback']);
+        return new Response(json_encode($json));        
+
+    }
+
+
+
 
     /**
      * @Route("/feedbackapi/showAdmin", name="feedbackapi_show_admin")
