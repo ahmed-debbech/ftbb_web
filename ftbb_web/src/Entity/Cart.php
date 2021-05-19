@@ -7,6 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Cart
@@ -45,6 +46,7 @@ class Cart
      * @var int
      *
      * @ORM\Column(name="num_products", type="integer", nullable=false)
+
      * @Assert\Range(min=1, max=100)
      * @Groups("cart")
      */

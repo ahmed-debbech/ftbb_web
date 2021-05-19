@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -36,6 +37,7 @@ class Product
      * @var int
      *
      * @ORM\Column(name="stock", type="integer", nullable=false)
+
      *  @Assert\Range(min=1 , max=10000)
      * @Groups("product")
      */
@@ -45,6 +47,7 @@ class Product
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
+
      * @Assert\Length(
      *     min=4,
      *     max=50,
@@ -59,6 +62,7 @@ class Product
      * @var int
      *
      * @ORM\Column(name="price", type="integer", nullable=false)
+
      * @Assert\Positive
      * @Groups("product")
      */
@@ -68,6 +72,7 @@ class Product
      * @var string
      *
      * @ORM\Column(name="details", type="string", length=255, nullable=false)
+
      * @Assert\Length(
      *     min=4,
      *     max=500,
@@ -90,7 +95,11 @@ class Product
      * @var \DateTime
      *
      * @ORM\Column(name="add_date", type="date", nullable=true)
+<<<<<<< HEAD
      * @Groups("product")
+=======
+     * @ORM\Column(name="add_date", type="date", nullable=false)
+>>>>>>> master
      */
     public $addDate;
 
@@ -101,6 +110,7 @@ class Product
      * @Groups("product")
      */
     public $photo;
+
 
     public function getRefProduct(): ?int
     {
@@ -182,4 +192,6 @@ class Product
     {
         $this->photo=$photo;
     }
+
+
 }

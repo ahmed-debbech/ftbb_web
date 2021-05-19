@@ -6,6 +6,7 @@ use App\Entity\Cart;
 use App\Entity\Command;
 use App\Entity\CommandProduct;
 use App\Entity\Product;
+use App\Entity\Client;
 use App\Form\ModifierProductType;
 use App\Repository\CommandRepository;
 use App\Repository\ProductRepository;
@@ -49,13 +50,14 @@ class CommandController extends AbstractController
         $command = new Command();
         $em = $this->getDoctrine()->getManager();
         $command = $em->getRepository(Command::class)->find($commandId);
+        $client = $em->getRepository(Client::class)->find($command->getIdClient());
         if($command->getStatus()==0)
         {
             $command->setStatus(1);
         }
         $message = (new \Swift_Message('Commande validée !'))
             ->setFrom('ftbb.store@gmail.com')
-            ->setTo('ons.kechrid@esprit.tn')
+            ->setTo($client->getEmail())
             ->setBody(
                 'Cher Client,
 

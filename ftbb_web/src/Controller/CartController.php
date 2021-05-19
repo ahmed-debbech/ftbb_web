@@ -41,7 +41,6 @@ class CartController extends AbstractController
             array_push($k,$x->getNumProducts());
         }
         // dd function tnejem testa3melha kima sout fl java
-        //dd($carts);
         return $this->render('cart.html.twig', [
             'controller_name' => 'ProductControllerApi',
             'data'=> $products,
