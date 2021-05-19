@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 
 /**
@@ -20,16 +21,17 @@ class Product
      *
      * @ORM\Column(name="ref_product", type="integer", nullable=false)
      * @ORM\Id
-
+     * @Groups("product")
      */
-    private $refProduct;
+    public $refProduct;
 
     /**
      * @var string
      *
      * @ORM\Column(name="category", type="string", length=255, nullable=false)
+     * @Groups("product")
      */
-    private $category;
+    public $category;
 
     /**
      * @var int
@@ -37,8 +39,9 @@ class Product
      * @ORM\Column(name="stock", type="integer", nullable=false)
 
      *  @Assert\Range(min=1 , max=10000)
+     * @Groups("product")
      */
-    private $stock;
+    public $stock;
 
     /**
      * @var string
@@ -51,8 +54,9 @@ class Product
      *     minMessage = "Le nom du produit doit comporte au moins {{ limit }} caratères",
      *     maxMessage = "Le nom du produit doit comporte au plus {{ limit }} cractères",
      *     )
+     * @Groups("product")
      */
-    private $name;
+    public $name;
 
     /**
      * @var int
@@ -60,8 +64,9 @@ class Product
      * @ORM\Column(name="price", type="integer", nullable=false)
 
      * @Assert\Positive
+     * @Groups("product")
      */
-    private $price;
+    public $price;
 
     /**
      * @var string
@@ -74,30 +79,37 @@ class Product
      *     minMessage = "Le nom du produit doit comporte au moins {{ limit }} caratères",
      *     maxMessage = "Le nom du produit doit comporte au plus {{ limit }} cractères",
      *     )
+     * @Groups("product")
      */
-    private $details;
+    public $details;
 
     /**
      * @var int
      *
      * @ORM\Column(name="id_admin", type="integer", nullable=false)
+     * @Groups("product")
      */
-    private $idAdmin;
+    public $idAdmin;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="add_date", type="date", nullable=true)
+<<<<<<< HEAD
+     * @Groups("product")
+=======
      * @ORM\Column(name="add_date", type="date", nullable=false)
+>>>>>>> master
      */
-    private $addDate;
+    public $addDate;
 
     /**
      * @var string
      *
      * @ORM\Column(name="photo", type="string", length=50, nullable=false)
+     * @Groups("product")
      */
-    private $photo;
+    public $photo;
 
 
     public function getRefProduct(): ?int

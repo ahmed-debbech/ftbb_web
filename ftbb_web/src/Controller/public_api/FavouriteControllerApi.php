@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\public_api;
 
 use App\Entity\Cart;
 use App\Entity\Favourite;
@@ -9,8 +9,10 @@ use App\Utils\Utilities;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class FavouriteController extends AbstractController
+
+class FavouriteControllerApi extends AbstractController
 {
     /**
      * @Route("/favourite/controller/php", name="favourite")
@@ -23,9 +25,9 @@ class FavouriteController extends AbstractController
     }
 
     /**
-     * @Route("/favourite/list_favourite", name="favourite")
+     * @Route("/mobile/favourite/list_favourite", name="favourite_mobile")
      */
-    public function Afficher_product_favourite(): Response #objet min aand symfony jey par defaut
+    public function Afficher_product_favourite(NormalizerInterface $norm): Response #objet min aand symfony jey par defaut
     {
         $favourites = $this ->getDoctrine()->getRepository(Favourite :: class)->findBy(array('idClient' => 2) ); //findAll trajjalik tableau lkoll
         $products = array();
@@ -34,16 +36,14 @@ class FavouriteController extends AbstractController
             $product = $this ->getDoctrine()->getRepository(Product :: class)->find($x->getRefproduct());
             array_push($products, $product);
         }
-        return $this->render('favourite/list_favourite.html.twig', [
-            'controller_name' => 'ProductControllerApi',
-            'data'=> $products,
-        ]);
+        $json = $norm->normalize($favourites, 'json', ['groups' => 'favourite']);
+        return new Response(json_encode($json));
     }
 
     /**
-     * @Route("/favourite/add/{id}", name="add_to_favourite")
+     * @Route("/mobile/favourite/add/{id}", name="add_to_favourite_mobile")
      */
-    public function addtofavourite($id)
+    public function addtofavourite($id,NormalizerInterface $norm)
     {
         $product = $this->getDoctrine()->getRepository(Favourite::class)->findBy(array('refProduct'=>$id));
         if($product==NULL) {
@@ -57,13 +57,14 @@ class FavouriteController extends AbstractController
             $em->flush();
 
         }
-        return $this->redirectToRoute('list_product_client');
+        $json = $norm->normalize($product, 'json', ['groups' => 'favourite']);
+        return new Response(json_encode($json));
     }
 
     /**
-     * @Route("/favourite/supprimer/{refProduct}", name="supprimer_favourite")
+     * @Route("/mobile/favourite/supprimer/{refProduct}", name="supprimer_favourite_mobile")
      */
-    public function supprimer($refProduct): Response #objet min aand symfony jey par defaut
+    public function supprimer($refProduct,NormalizerInterface $norm): Response #objet min aand symfony jey par defaut
     {
         $favourite = new Favourite();
         $em = $this ->getDoctrine()->getManager();
@@ -71,7 +72,8 @@ class FavouriteController extends AbstractController
         $em->remove($product[0]); //remove awell case fi tableau
         $em->flush();
 
-        return $this->redirectToRoute('favourite');
+        $json = $norm->normalize($favourite, 'json', ['groups' => 'favourite']);
+        return new Response(json_encode($json));
         //return new Response("deleted successfully");
     }
 

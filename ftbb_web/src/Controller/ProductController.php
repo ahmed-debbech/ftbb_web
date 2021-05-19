@@ -29,7 +29,7 @@ class ProductController extends AbstractController
     public function index(): Response
     {
         return $this->render('product/index.html.twig', [
-            'controller_name' => 'ProductController',
+            'controller_name' => 'ProductControllerApi',
         ]);
     }
 
@@ -40,7 +40,7 @@ class ProductController extends AbstractController
     {
         $product = $this->getDoctrine()->getRepository(Product :: class)->findAll(); //findAll trajjalik tableau lkoll
         return $this->render('back/list_product.html.twig', [
-            'controller_name' => 'ProductController',
+            'controller_name' => 'ProductControllerApi',
             'data' => $product,
         ]);
     }
@@ -192,7 +192,7 @@ class ProductController extends AbstractController
             array_push($products, $prod);
         }
         return $this->render('product/list_product_command.html.twig', [
-            'controller_name' => 'ProductController',
+            'controller_name' => 'ProductControllerApi',
             'data'=> $products,
         ]);
     }
