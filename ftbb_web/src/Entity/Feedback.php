@@ -7,6 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\EmailValidator;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Feedback
@@ -21,6 +22,7 @@ class Feedback
      *
      * @ORM\Column(name="feedback_id", type="integer", nullable=false)
      * @ORM\Id
+     * @Groups("feedback")
 
      */
     private $feedbackId;
@@ -29,6 +31,7 @@ class Feedback
      * @var int
      *
      * @ORM\Column(name="client_id", type="integer", nullable=false)
+     * @Groups("feedback")
      */
     private $clientId;
 
@@ -36,6 +39,7 @@ class Feedback
      * @var \DateTime
      *
      * @ORM\Column(name="feedback_date", type="date", nullable=false)
+     * @Groups("feedback")
      */
     private $feedbackDate;
 
@@ -45,6 +49,7 @@ class Feedback
      * @ORM\Column(name="email", type="string", length=255, nullable=false)
 
      * @Assert\NotBlank(message="wrong email")
+     * @Groups("feedback")
      */
     private $email;
 
@@ -52,6 +57,7 @@ class Feedback
      * @var string
      *
      * @ORM\Column(name="topic", type="string", length=255, nullable=false)
+     * @Groups("feedback")
      */
     private $topic;
 
@@ -59,9 +65,8 @@ class Feedback
      * @var string
      *
      * @ORM\Column(name="text", type="string", length=255, nullable=false)
-
-
-     * @Assert\NotBlank(message="Insert command ID")     
+     * @Assert\NotBlank(message="Insert command ID")
+     * @Groups("feedback")     
      */
     private $text;
 
@@ -69,6 +74,7 @@ class Feedback
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255, nullable=false)
+     * @Groups("feedback")
      */
     private $type;
 

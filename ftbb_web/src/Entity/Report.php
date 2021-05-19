@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\EmailValidator;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Report
@@ -22,7 +23,7 @@ class Report
      *
      * @ORM\Column(name="report_id", type="integer", nullable=false)
      * @ORM\Id
-
+     * @Groups("report")
      */
     private $reportId;
 
@@ -30,6 +31,7 @@ class Report
      * @var int
      *
      * @ORM\Column(name="client_id", type="integer", nullable=false)
+     * @Groups("report")
      */
     private $clientId;
 
@@ -40,6 +42,7 @@ class Report
 
 
      * @Assert\NotBlank(message="Insert command ID")
+     * @Groups("report")
      */
     private $commandId;
 
@@ -47,6 +50,7 @@ class Report
      * @var \DateTime
      *
      * @ORM\Column(name="report_date", type="date", nullable=false)
+     * @Groups("report")
      */
     private $reportDate;
 
@@ -57,6 +61,7 @@ class Report
 
 
      * @Assert\NotBlank(message="Email ")
+     * @Groups("report")
      */
     private $email;
 
@@ -67,6 +72,7 @@ class Report
 
 
      * @Assert\NotBlank(message="azerty")
+     * @Groups("report")
      */
     private $description;
 
