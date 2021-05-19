@@ -18,7 +18,7 @@ class Likes
      *
      * @ORM\Column(name="id_like", type="integer", nullable=false)
      * @ORM\Id
-     * @Groups("likes")
+     * @Groups({"comment", "likes", "article"})
      */
     private $idLike;
 

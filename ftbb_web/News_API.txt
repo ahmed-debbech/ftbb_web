@@ -18,5 +18,7 @@ sort comments by newest at: [/comments/sort/sortnewest/{article_id}]
 Likes:
 add like to a comment at: [/likes/comment/{comment_id}/{client_id}]
 add like to an article at: [/likes/article/{article_id}/{client_id}]
+check if a client liked this article at: [/likes/check/article/{article_id}/{client_id}]
+check if a client liked this comment at: [/likes/check/comment/{comment_id}/{client_id}]
 
-API v0.2
+API v0.3

@@ -50,7 +50,7 @@ class CommentApi extends AbstractController
         $em->remove($com);
         $em->flush();
 
-        $json = $norm->normalize($com, 'json', ['groups' => 'comment']);
+        $json = $norm->normalize($com, 'json', ['groups' => ['comment']]);
         return new Response(json_encode($json));
     }
     /**

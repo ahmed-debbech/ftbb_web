@@ -44,8 +44,7 @@ class LikesApi extends AbstractController
             $this->addFlash('message', 'Le message a bien été envoyé');
             }
         }
-        $json = $norm->normalize($like, 'json', ['groups' => 'likes']);
-        return new Response(json_encode($json));
+        return new Response(json_encode(""));
     }
 
     /**
@@ -54,6 +53,7 @@ class LikesApi extends AbstractController
     public function onClickLikeArticle(NormalizerInterface $norm, $article_id, $client_id){
         $em = $this ->getDoctrine()->getManager();
         $like = $this ->getDoctrine()->getRepository(Likes :: class)->findBy(array('idClient'=>$client_id, 'idArticle'=>$article_id));
+        
         if(!empty($like)){
             $em->remove($like[0]);
             $em->flush();
@@ -68,7 +68,32 @@ class LikesApi extends AbstractController
             $em->persist($like);
             $em->flush();
         }
-        $json = $norm->normalize($like, 'json', ['groups' => 'likes']);
-        return new Response(json_encode($json));
+        return new Response(json_encode(""));
+    }
+    /**
+     * @Route("/likes/check/article/{article_id}/{client_id}", name="check_article_like_api");
+     */
+    public function onClickLikeArticleChecker(NormalizerInterface $norm, $article_id, $client_id){
+        $em = $this ->getDoctrine()->getManager();
+        $like = $this ->getDoctrine()->getRepository(Likes :: class)->findBy(array('idClient'=>$client_id, 'idArticle'=>$article_id));
+        if(empty($like)){
+            return new Response(json_encode([["check" => "0"]]));
+        }else{
+            return new Response(json_encode([["check" => "1"]]));
+        }
+        return new Response(json_encode([["check" => "1"]]));
+    }
+    /**
+     * @Route("/likes/check/comment/{comment_id}/{client_id}", name="check_comment_like_api");
+     */
+    public function onClickLikeCommentChecker(NormalizerInterface $norm, $comment_id, $client_id){
+        $em = $this ->getDoctrine()->getManager();
+        $like = $this ->getDoctrine()->getRepository(Likes :: class)->findBy(array('idClient'=>$client_id, 'idComment'=>$comment_id));
+        if(empty($like)){
+            return new Response(json_encode([["check" => "0"]]));
+        }else{
+            return new Response(json_encode([["check" => "1"]]));
+        }
+        return new Response(json_encode([["check" => "1"]]));
     }
 }
