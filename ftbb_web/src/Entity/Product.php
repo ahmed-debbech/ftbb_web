@@ -22,7 +22,7 @@ class Product
      * @ORM\Id
      * @Groups("product")
      */
-    private $refProduct;
+    public $refProduct;
 
     /**
      * @var string
@@ -30,7 +30,7 @@ class Product
      * @ORM\Column(name="category", type="string", length=255, nullable=false)
      * @Groups("product")
      */
-    private $category;
+    public $category;
 
     /**
      * @var int
@@ -39,7 +39,7 @@ class Product
      *  @Assert\Range(min=1 , max=10000)
      * @Groups("product")
      */
-    private $stock;
+    public $stock;
 
     /**
      * @var string
@@ -53,7 +53,7 @@ class Product
      *     )
      * @Groups("product")
      */
-    private $name;
+    public $name;
 
     /**
      * @var int
@@ -62,7 +62,7 @@ class Product
      * @Assert\Positive
      * @Groups("product")
      */
-    private $price;
+    public $price;
 
     /**
      * @var string
@@ -76,7 +76,7 @@ class Product
      *     )
      * @Groups("product")
      */
-    private $details;
+    public $details;
 
     /**
      * @var int
@@ -84,7 +84,7 @@ class Product
      * @ORM\Column(name="id_admin", type="integer", nullable=false)
      * @Groups("product")
      */
-    private $idAdmin;
+    public $idAdmin;
 
     /**
      * @var \DateTime
@@ -92,7 +92,7 @@ class Product
      * @ORM\Column(name="add_date", type="date", nullable=true)
      * @Groups("product")
      */
-    private $addDate;
+    public $addDate;
 
     /**
      * @var string
@@ -100,7 +100,7 @@ class Product
      * @ORM\Column(name="photo", type="string", length=50, nullable=false)
      * @Groups("product")
      */
-    private $photo;
+    public $photo;
 
     public function getRefProduct(): ?int
     {

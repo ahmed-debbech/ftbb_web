@@ -76,20 +76,20 @@ Merci davoir fait vos achats sur  FTBB store.
     }
 
     /**
-     * @Route("/mobile/command/list_command_client", name="list_command_client_mobile")
+     * @Route("/mobile/command/list_command_client/{id}", name="list_command_client_mobile")
      */
-    public function Afficher_command_client(NormalizerInterface $norm): Response #objet min aand symfony jey par defaut
+    public function Afficher_command_client($id, NormalizerInterface $norm): Response #objet min aand symfony jey par defaut
     {
-        $commands = $this ->getDoctrine()->getRepository(Command :: class)->findBy(array('idClient' => 2) );
+        $commands = $this ->getDoctrine()->getRepository(Command :: class)->findBy(array('idClient' => $id) );
         //dd($commands);
         $json = $norm->normalize($commands, 'json', ['groups' => 'command']);
         return new Response(json_encode($json));
     }
 
     /**
-     * @Route("/mobile/command/add_new_command", name="add_new_command_mobile")
+     * @Route("/mobile/command/add_new_command/{id}", name="add_new_command_mobile")
      */
-    public function add_new_command(NormalizerInterface $norm)
+    public function add_new_command($id, NormalizerInterface $norm)
     {
         $command=new Command();
         $entityManager = $this->getDoctrine()->getManager();
@@ -98,7 +98,7 @@ Merci davoir fait vos achats sur  FTBB store.
         $command->setCommandId(Utilities::generateId($command,'commandId',$this->getDoctrine()));
 
 
-        $carts = $this ->getDoctrine()->getRepository(Cart :: class)->findBy(array('idClient' => 2) );
+        $carts = $this ->getDoctrine()->getRepository(Cart :: class)->findBy(array('idClient' => $id) );
         $x =null;
         $somme = 0;
         foreach($carts as $x){
@@ -106,7 +106,7 @@ Merci davoir fait vos achats sur  FTBB store.
             $command_product->setIdCp(Utilities::generateId($command_product,'idCp',$this->getDoctrine()));
             $command_product->setRefProduct($x->getRefProduct());
             $somme = $somme + $x->getTotalPrice();
-            $command_product->setIdClient(2);
+            $command_product->setIdClient($id);
             $command_product->setCommandId($command->getCommandId());
             $entityManager->persist($command_product);
             $entityManager->flush();
