@@ -27,7 +27,7 @@ class ReportController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $em = $this->getDoctrine()->getManager();
             $rep->setReportId(Utilities::generateId($rep,"reportId",$this->getDoctrine()));
-            $rep->setClientId("2943763");
+            $rep->setClientId(122);
             $dateTime = Utilities::getDateTimeObject(date("D M d, Y G:i"),"D M d, Y G:i");             
             $rep->setReportDate($dateTime);
             $em->persist($rep);
@@ -46,7 +46,7 @@ class ReportController extends AbstractController
      */
     public function showReports()
     {
-        $reports = $this ->getDoctrine()->getRepository(Report :: class)->findAll(); //findAll trajjalik tableau lkoll
+        $reports = $this ->getDoctrine()->getRepository(Report :: class)->findBy(array('clientId'=>122));
        
         return $this->render('report/clientshowreport.html.twig', ['reports' => $reports]);
         

@@ -15,6 +15,7 @@ class Utilities {
         return $dateTime;
     }
     public static function generateId($table,$atr, $doctrine){
+
         $article = NULL;
         $rand = 0;
         do{
@@ -26,5 +27,4 @@ class Utilities {
         return $rand;
     }
 }
-
 ?>

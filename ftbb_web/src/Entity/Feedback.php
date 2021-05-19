@@ -9,7 +9,6 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\EmailValidator;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-
 /**
  * Feedback
  *
@@ -48,6 +47,7 @@ class Feedback
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=false)
+
      * @Assert\NotBlank(message="wrong email")
      * @Groups("feedback")
      */
@@ -77,6 +77,7 @@ class Feedback
      * @Groups("feedback")
      */
     private $type;
+
 
 
 

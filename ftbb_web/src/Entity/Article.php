@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Entity;
+
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -10,6 +11,7 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
  * Article
  *
  * @ORM\Table(name="article", indexes={@ORM\Index(name="admin_id", columns={"admin_id"})})
+
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
  */
 class Article
@@ -18,6 +20,7 @@ class Article
     public static $HOT = "Hot";
     public static $ANNOUNCE = "Announce";
     public static $MISC = "Misc";
+
     /**
      * @var int
      *
@@ -51,7 +54,6 @@ class Article
      * @var string
      *
      * @ORM\Column(name="author", type="string", length=255, nullable=false)
-
      */
     private $author;
 
@@ -75,6 +77,7 @@ class Article
      * @var int
      *
      * @ORM\Column(name="category", type="integer", nullable=false)
+
      *
      */
     private $category;
@@ -221,5 +224,4 @@ class Article
 
         return $this;
     }
-    
-}
+    }

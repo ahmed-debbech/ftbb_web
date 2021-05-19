@@ -17,7 +17,6 @@ class Vote
      *
      * @ORM\Column(name="vote_id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $voteId;
 
@@ -36,7 +35,7 @@ class Vote
     private $voteNbr = 1;
 
     /**
-     * @var \Options
+     * @var Options
      *
      * @ORM\ManyToOne(targetEntity="Options")
      * @ORM\JoinColumns({
@@ -44,6 +43,71 @@ class Vote
      * })
      */
     private $option;
+
+
+    /**
+     * @return int
+     */
+    public function getVoteId(): int
+    {
+        return $this->voteId;
+    }
+
+    /**
+     * @param int $voteId
+     */
+    public function setVoteId(int $voteId): void
+    {
+        $this->voteId = $voteId;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getClientId(): ?int
+    {
+        return $this->clientId;
+    }
+
+    /**
+     * @param int|null $clientId
+     */
+    public function setClientId(?int $clientId): void
+    {
+        $this->clientId = $clientId;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getVoteNbr(): ?int
+    {
+        return $this->voteNbr;
+    }
+
+    /**
+     * @param int|null $voteNbr
+     */
+    public function setVoteNbr(?int $voteNbr): void
+    {
+        $this->voteNbr = $voteNbr;
+    }
+
+    /**
+     * @return Options
+     */
+    public function getOption(): Options
+    {
+        return $this->option;
+    }
+
+    /**
+     * @param Options $option
+     */
+    public function setOption(Options $option): void
+    {
+        $this->option = $option;
+    }
 
 
 }
