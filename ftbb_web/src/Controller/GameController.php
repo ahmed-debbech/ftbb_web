@@ -68,6 +68,16 @@ class GameController extends AbstractController
              $classement1->setIdCompetition($competition);
              $classement1->setIdPhase($phase);
              $classement1->setIdTeam($team_H);
+
+             $classement1->setNbrPts(0);
+             $classement1->setNbrPtsD(0);
+             $classement1->setNbrPtsG(0);
+             $classement1->setNbrPtsP(0);
+             $classement1->setPtsDiff(0);
+             
+
+            
+
              $em=$this->getDoctrine()->getManager();
              $em->persist($classement1);
               $em->flush(); 
@@ -76,6 +86,13 @@ class GameController extends AbstractController
              $classement2->setIdCompetition($competition);
              $classement2->setIdPhase($phase);
              $classement2->setIdTeam($team_A);
+
+             
+             $classement2->setNbrPts(0);
+             $classement2->setNbrPtsD(0);
+             $classement2->setNbrPtsG(0);
+             $classement2->setNbrPtsP(0);
+             $classement2->setPtsDiff(0);
              $em->persist($classement2);
               $em->flush();
              
@@ -93,9 +110,17 @@ class GameController extends AbstractController
                 if ( ($id_team_h!=$classementH[0]->getIdTeam()->getId()) ) {
            
                     $classement= new classement();
+
                      $classement->setIdCompetition($competition);
                      $classement->setIdPhase($phase);
                      $classement->setIdTeam($team_H);
+                     
+                        $classement->setNbrPts(0);
+                        $classement->setNbrPtsD(0);
+                        $classement->setNbrPtsG(0);
+                        $classement->setNbrPtsP(0);
+                        $classement->setPtsDiff(0);
+
                      $em=$this->getDoctrine()->getManager();
                     $em->persist($classement);
                      $em->flush();
@@ -104,10 +129,17 @@ class GameController extends AbstractController
                  } 
             }
             else {
-                $classement= new classement();
+                    $classement= new classement();
                      $classement->setIdCompetition($competition);
                      $classement->setIdPhase($phase);
                      $classement->setIdTeam($team_H);
+
+                     $classement->setNbrPts(0);
+                     $classement->setNbrPtsD(0);
+                     $classement->setNbrPtsG(0);
+                     $classement->setNbrPtsP(0);
+                     $classement->setPtsDiff(0);
+
                      $em=$this->getDoctrine()->getManager();
                     $em->persist($classement);
                      $em->flush();
@@ -123,6 +155,13 @@ class GameController extends AbstractController
                      $classement->setIdCompetition($competition);
                      $classement->setIdPhase($phase);
                      $classement->setIdTeam($team_A);
+
+                     $classement->setNbrPts(0);
+                     $classement->setNbrPtsD(0);
+                     $classement->setNbrPtsG(0);
+                     $classement->setNbrPtsP(0);
+                     $classement->setPtsDiff(0);
+
                      $em=$this->getDoctrine()->getManager();
                     $em->persist($classement);
                      $em->flush();
@@ -135,6 +174,13 @@ class GameController extends AbstractController
                      $classement->setIdCompetition($competition);
                      $classement->setIdPhase($phase);
                      $classement->setIdTeam($team_A);
+                     $classement->setNbrPts(0);
+                     $classement->setNbrPtsD(0);
+                     $classement->setNbrPtsG(0);
+                     $classement->setNbrPtsP(0);
+                     $classement->setPtsDiff(0);
+
+
                      $em=$this->getDoctrine()->getManager();
                     $em->persist($classement);
                      $em->flush();
@@ -160,7 +206,7 @@ class GameController extends AbstractController
      
        $message = (new \Swift_Message('Match Adedd  !'))
        ->setFrom('ftbb.store@gmail.com')
-       ->setTo('ali.dagdoug55@gmail.com')
+       ->setTo('habib.chaabene@esprit.tn')
        
        ->setBody($this->renderView('contact/gameContact.html.twig',['game'=>$game]),'text/html');
 
