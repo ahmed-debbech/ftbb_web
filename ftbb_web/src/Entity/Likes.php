@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Likes
@@ -17,6 +18,7 @@ class Likes
      *
      * @ORM\Column(name="id_like", type="integer", nullable=false)
      * @ORM\Id
+     * @Groups({"comment", "likes", "article"})
      */
     private $idLike;
 
@@ -30,6 +32,7 @@ class Likes
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_comment", referencedColumnName="id")
      * })
+     * @Groups("likes")
      */
     private $idComment;
 
@@ -40,6 +43,7 @@ class Likes
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_article", referencedColumnName="article_id")
      * })
+     * @Groups("likes")
      */
     private $idArticle;
 
@@ -50,6 +54,7 @@ class Likes
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_client", referencedColumnName="id")
      * })
+     * @Groups("likes")
      */
     private $idClient;
 	public function getIdLike(){
