@@ -34,7 +34,7 @@ class ClientApiController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $client = $em->getRepository(Client::class)->findOneBy(['email'=>$email]);
         if($client){
-            return new Response(json_encode([["id" => $client->getId()]]));
+            return new Response(json_encode([["id" => $client->getId()],["name"=>$client->getName()]]));
         }
 
     }

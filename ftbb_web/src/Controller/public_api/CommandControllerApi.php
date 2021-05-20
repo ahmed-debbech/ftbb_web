@@ -116,7 +116,7 @@ Merci davoir fait vos achats sur  FTBB store.
 
         $command->setTotalPrice($somme);
         $command->setStatus(0);
-        $command->setIdClient(2);
+        $command->setIdClient($id);
         $entityManager->persist($command);
         $entityManager->flush();
 
