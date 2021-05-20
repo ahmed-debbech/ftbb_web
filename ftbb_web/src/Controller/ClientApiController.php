@@ -28,6 +28,17 @@ class ClientApiController extends AbstractController
     }
 
     /**
+     * @Route("/get/{email}", name="getclient")
+     */
+    public function getClient($email){
+        $em = $this->getDoctrine()->getManager();
+        $client = $em->getRepository(Client::class)->findOneBy(['email'=>$email]);
+        if($client){
+            return new Response(json_encode([["id" => $client->getId()]]));
+        }
+
+    }
+    /**
      * @Route("/signup", name="appregister")
      */
     public function  signupAction(Request  $request, UserPasswordEncoderInterface $passwordEncoder) {

@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Client
@@ -24,6 +25,7 @@ class Client implements UserInterface, \Serializable
 
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Groups("comment")
      */
     private $id;
 
@@ -37,6 +39,7 @@ class Client implements UserInterface, \Serializable
      *      minMessage = "Your first name must be at least {{ limit }} characters long",
      *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
      * )
+     * @Groups("comment")
      */
     private $name;
 
@@ -50,6 +53,7 @@ class Client implements UserInterface, \Serializable
      *      minMessage = "Your lastname name must be at least {{ limit }} characters long",
      *      maxMessage = "Your lastname name cannot be longer than {{ limit }} characters"
      * )
+     * @Groups("comment")
      */
     private $surname;
 
@@ -60,7 +64,7 @@ class Client implements UserInterface, \Serializable
      * @Assert\Email(
      *     message = "The email '{{ value }}' is not a valid email."
      * )
-
+        *
      */
     private $email;
 
