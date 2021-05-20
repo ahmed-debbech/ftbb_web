@@ -13,6 +13,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * Article
  *
  * @ORM\Table(name="article", indexes={@ORM\Index(name="admin_id", columns={"admin_id"})})
+
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
  */
 class Article
@@ -21,6 +22,7 @@ class Article
     public static $HOT = "Hot";
     public static $ANNOUNCE = "Announce";
     public static $MISC = "Misc";
+
     /**
      * @var int
      *
@@ -63,6 +65,7 @@ class Article
     private $author;
 
     /**
+
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime", nullable=true)
@@ -230,5 +233,4 @@ class Article
 
         return $this;
     }
-    
-}
+    }

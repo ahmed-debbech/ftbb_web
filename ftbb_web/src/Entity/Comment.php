@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Article;
@@ -11,6 +12,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * Comment
  *
  * @ORM\Table(name="comment", indexes={@ORM\Index(name="client_id", columns={"client_id"}), @ORM\Index(name="article_id", columns={"article_id"})})
+
  * @ORM\Entity(repositoryClass="App\Repository\CommentRepository")
  * 
  */
@@ -26,6 +28,7 @@ class Comment
     private $id;
 
     /**
+
     * @var int
     *
     * @ORM\Column(name="article_id", type="integer", nullable=false)
@@ -42,6 +45,8 @@ class Comment
     private $content;
 
     /**
+
+
      * @var \DateTime|null
      *
      * @ORM\Column(name="date", type="datetime", nullable=true)
